@@ -1,4 +1,4 @@
-import * React from "react";
+import * as React from "react";
 import { Form } from "./Form";
 import { Field } from "./Field";
 
@@ -16,7 +16,7 @@ export const ContactUsForm: React.SFC = () => {
           <Field
             id="reason"
             label="Reason"
-            editor="dropdpwn"
+            editor="dropdown"
             options={["", "Marketing", "Support", "Feedback", "Jobs"]}
           />
           <Field id="notes" label="Notes" editor="multilinetextbox" />

@@ -1,7 +1,7 @@
 import * as React from "react";
-import { IErrors } from "./Form"
+import { IErrors } from "./Form";
 
-/* The avaliable editors for the field */
+/* The available editors for the field */
 type Editor = "textbox" | "multilinetextbox" | "dropdown";
 
 export interface IFieldProps {
@@ -43,9 +43,9 @@ export const Field: React.SFC<IFieldProps> = ({
           }
           onBlur={
             (e: React.FormEvent<HTMLInputElement>) =>
-            console.log(e) /* TODO: validade field value */
+              console.log(e) /* TODO: validate field value */
           }
-          className="form-control" 
+          className="form-control"
         />
       )}
 
@@ -55,11 +55,11 @@ export const Field: React.SFC<IFieldProps> = ({
           value={value}
           onChange={
             (e: React.FormEvent<HTMLTextAreaElement>) =>
-              console.log(e) /* TODO: pushchange to form values */
+              console.log(e) /* TODO: push change to form values */
           }
           onBlur={
             (e: React.FormEvent<HTMLTextAreaElement>) =>
-              console.log /* TODO: validate field value */
+              console.log(e) /* TODO: validate field value */
           }
           className="form-control"
         />
@@ -74,7 +74,7 @@ export const Field: React.SFC<IFieldProps> = ({
             (e: React.FormEvent<HTMLSelectElement>) =>
               console.log(e) /* TODO: push change to form values */
           }
-          onBLur={
+          onBlur={
             (e: React.FormEvent<HTMLSelectElement>) =>
               console.log(e) /* TODO: validate field value */
           }
@@ -93,7 +93,6 @@ export const Field: React.SFC<IFieldProps> = ({
     </div>
   );
 };
-
 Field.defaultProps = {
   editor: "textbox"
 };
