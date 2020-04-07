@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Form } from "./Form";
+import './Form';
 
 function App() {
   return (
@@ -13,7 +13,9 @@ function App() {
         <h2>
           How do you want your capsule wardrobe to be?
         </h2>
-        < Form />
+        <div className="mt-3">
+          {/* TODO - reference "contact us" form*/}
+        </div>
       </header>
     </div>
   );

@@ -37,8 +37,7 @@ export interface IFormContext extends IFormState {
  * The context which allows state and functions to be shared with Field.
  * Note that we need to pass createContext a default value which is why undefined is unioned in the type
  */
-export const FormContext =
-  (React.createContext < IFormContext) | (undefined > undefined);
+export const FormContext = (React.createContext < IFormContext) | (undefined > undefined);
 
 export class Form extends React.Component<IFormProps, IFormState> {
   constructor(props: IFormProps) {
@@ -75,6 +74,8 @@ export class Form extends React.Component<IFormProps, IFormState> {
   ): Promise<void> => {
     e.preventDefault();
 
+    console.log(this.state.values);
+
     if (this.validateForm()) {
       const submitSuccess: boolean = await this.submitForm();
       this.setState({ submitSuccess });
@@ -99,42 +100,57 @@ export class Form extends React.Component<IFormProps, IFormState> {
     return true;
   }
 
+  /**
+  * Stores new field values in state
+  * @param {IValues} values - The new field values
+  */
+  private setValues = (values: IValues) => {
+    this.setState({ values: { ...this.state.values, ...values } });
+  };
+
   public render() {
     const { submitSuccess, errors } = this.state;
+    const context: IFormContext = {
+      ...this.state,
+      setValeus: this.setValues
+    };
+
     return (
-      <form onSubmit={this.handleSubmit} noValidate={true}>
-        <div className="container">
+      <FormContext.Provider value={context}>
+        <form onSubmit={this.handleSubmit} noValidate={true}>
+          <div className="container">
 
-          {this.props.render()}
+            {this.props.render()}
 
-          <div className="form-group">
-            <button
-              type="submit"
-              className="btn btn-primary"
-              disabled={this.haveErrors(errors)}
-            >
-              Submit
+            <div className="form-group">
+              <button
+                type="submit"
+                className="btn btn-primary"
+                disabled={this.haveErrors(errors)}
+              >
+                Submit
             </button>
-          </div>
-          {submitSuccess && (
-            <div className="alert alert-info" role="alert">
-              The form was successfully submitted!
             </div>
-          )}
-          {submitSuccess === false &&
-            !this.haveErrors(errors) && (
-              <div className="alert alert-danger" role="alert">
-                Sorry, an unexpected error has occurred
+            {submitSuccess && (
+              <div className="alert alert-info" role="alert">
+                The form was successfully submitted!
               </div>
             )}
-          {submitSuccess === false &&
-            this.haveErrors(errors) && (
-              <div className="alert alert-danger" role="alert">
-                Sorry, the form is invalid. Please review, adjust and try again
-              </div>
-            )}
-        </div>
-      </form>
+            {submitSuccess === false &&
+              !this.haveErrors(errors) && (
+                <div className="alert alert-danger" role="alert">
+                  Sorry, an unexpected error has occurred
+                </div>
+              )}
+            {submitSuccess === false &&
+              this.haveErrors(errors) && (
+                <div className="alert alert-danger" role="alert">
+                  Sorry, the form is invalid. Please review, adjust and try again
+                </div>
+              )}
+          </div>
+        </form>
+      </FormContext.Provider>
     );
   }
 }
