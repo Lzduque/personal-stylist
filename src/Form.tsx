@@ -91,7 +91,9 @@ export class Form extends React.Component<IFormProps, IFormState> {
     return (
       <form onSubmit={this.handleSubmit} noValidate={true}>
         <div className="container">
-          {/* {TODO - render fields} */}
+
+          {this.props.render()}
+          
           <div className="form-group">
             <button
               type="submit"
