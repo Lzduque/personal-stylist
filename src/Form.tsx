@@ -1,263 +1,146 @@
-import * as React from "react";
+import React from 'react';
 
-export interface IFields {
-  [key: string]: IFieldProps;
-}
-
-interface IFormProps {
-  /* The http path that the form will be posted to */
-  action: string;
-
-  // The props for all the fields on the form
-  fields: IFields;
-
-  /* A prop which allows content to be injected */
-  render: () => React.ReactNode;
-}
-
-export interface IValues {
-  /* Key value pairs for all the field values with key being the field name */
-  [key: string]: any;
-}
-
-export interface IErrors {
-  /* The validation error messages for each field (key is the field name */
-  [key: string]: string;
-}
-
-export interface IFormState {
-  /* The field values */
-  values: IValues;
-
-  /* The field validation error messages */
-  errors: IErrors;
-
-  /* Whether the form has been successfully submitted */
-  submitSuccess?: boolean;
-}
-
-export interface IFormContext extends IFormState {
-  /* Function that allows values in the values state to be set */
-  setValeus: (values: IValues) => void;
-
-  /* Function that validates a field */
-  validate: (fieldname: string) => void;
-}
-
-/*
- * The context which allows state and functions to be shared with Field.
- * Note that we need to pass createContext a default value which is why undefined is unioned in the type
- */
-export const FormContext = (React.createContext < IFormContext) | (undefined > undefined);
-
-
-/**
- * Validates whether a field has a value
- * @param {IValues} values - All the field values in the form
- * @param {string} fieldName - The field to validate
- * @returns {string} - The error message
- */
-export const required = (values: IValues, fieldName: string): string =>
-  values[fieldName] === undefined ||
-    values[fieldName] === null ||
-    values[fieldName] === ""
-    ? "This must be populated"
-    : "";
-
-/**
- * Validates whether a field is a valid email
- * @param {IValues} values - All the field values in the form
- * @param {string} fieldName - The field to validate
- * @returns {string} - The error message
- */
-export const isEmail = (values: IValues, fieldName: string): string =>
-  values[fieldName] &&
-    values[fieldName].search(
-      /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-    )
-    ? "This must be in a valid email format"
-    : "";
-  
-/**
- * Validates whether a field is within a certain amount of characters
- * @param {IValues} values - All the field values in the form
- * @param {string} fieldName - The field to validate
- * @param {number} length - The maximum number of characters
- * @returns {string} - The error message
- */
-export const maxLength = (
-  values: IValues,
-  fieldName: string,
-  length: number
-): string =>
-  values[fieldName] && values[fieldName].length > length
-    ? `This can not exceed ${length} characters`
-    : "";
-
-export class Form extends React.Component<IFormProps, IFormState> {
-  constructor(props: IFormProps) {
+export class Form extends React.Component<{}, IState> {
+  constructor(props: {}) {
     super(props);
 
-    const errors: IErrors = {};
-    const values: IValues = {};
     this.state = {
-      errors,
-      values
-    };
+      currentTask: "",
+      tasks: []
+    } 
   }
 
-  /**
-   * Returns whether there are any errors in the errors object that is passed in
-   * @param {IErrors} errors - The field errors
-   */
-  private haveErrors(errors: IErrors) {
-    let haveError: boolean = false;
-    Object.keys(errors).map((key: string) => {
-      if (errors[key].length > 0) {
-        haveError = true;
-      }
-    });
-    return haveError;
-  }
-
-  /**
-   * Handles form submission
-   * @param {React.FormEvent<HTMLFormElement>} e - The form event
-   */
-  private handleSubmit = async (
-    e: React.FormEvent<HTMLFormElement>
-  ): Promise<void> => {
+  public handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
-
-    console.log(this.state.values);
-
-    if (this.validateForm()) {
-      const submitSuccess: boolean = await this.submitForm();
-      this.setState({ submitSuccess });
-    }
-  };
-
-  /**
-   * Executes the validation rules for all the fields on the form and sets the error state
-   * @returns {boolean} - Whether the form is valid or not
-   */
-  private validateForm(): boolean {
-    const errors: IError = {};
-    Pbject.keys(this.props.fields).map((fieldName: string) => {
-      errors[fieldName] = this.validate(fieldName);
-    });
-    this.setState({ errors });
-    return !this.haveErrors(errors);
-  }
-
-  /**
-   * Submits the form to the http api
-   * @returns {boolean} - Whether the form submission was successful or not
-   */
-  private async submitForm(): Promise<boolean> {
-    try {
-      const response = await fetch(this.props.action, {
-        method: "post",
-        headers: new Headers({
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        }),
-        body: JSON.stringify(this.state.values)
-      });
-      if (response.status === 400) {
-        //  map the validation errors to IErrors
-        let responseBody: any;
-        responseBody = await response.json();
-        const errors: IErrors = {};
-        Object.keys(responseBody).map((key: string) => {
-          // For ASP.NET core, the field names are in title case - so converto to camel case
-          const fieldName = key.charAt(0).toLowerCase() + key.substring(1);
-          errors[fieldName] = responseBody[key];
-        });
-        this.setState({ errors });
-      }
-      return response.ok;
-    } catch (ex) {
-      return false;
-    }
-  }
-
-  /**
-  * Stores new field values in state
-  * @param {IValues} values - The new field values
-  */
-  private setValues = (values: IValues) => {
-    this.setState({ values: { ...this.state.values, ...values } });
-  };
-
-  /**
-  * Executes the validation rule for the field and updates the form errors
-  * @param {string} fieldName - The field to validate
-  * @returns {string} - The error message
-  */
-  private validate = (fieldName: string): string => {
-    let newError: string = "";
-
-    if (
-      this.props.fields[fieldName] &&
-      this.props.fields[fieldName].validation
-    ) {
-      newError = this.PaymentResponse.fields[fieldName].valdiation!.rule(this.StaticRange.values,
-        fieldName,
-        this.PaymentResponse.fields[fieldName].validation!.args
-      );
-    }
-    this.StaticRange.errors[fieldName] = newError;
     this.setState({
-      errors: { ...this.state.errors, [fieldName]: newError }
-    });
-    return newError;
+      currentTask: "",
+      tasks: [
+        ...this.state.tasks,
+        this.state.currentTask
+      ]
+    })
   }
 
-  public render() {
-    const { submitSuccess, errors } = this.state;
-    const context: IFormContext = {
-      ...this.state,
-      setValues: this.setValues,
-      validate: this.validate
-    };
+  public renderTasks(): JSX.Element[] {
+    return this.state.tasks.map((task: string, index: number) => {
+      return (
+        <div key={index}>
+          {task}
+        </div>
+      )
+    })
+  }
 
+  public render(): JSX.Element {
+    console.log(this.state);
     return (
-      <FormContext.Provider value={context}>
-        <form onSubmit={this.handleSubmit} noValidate={true}>
-          <div className="container">
-
-            {this.props.render()}
-
-            <div className="form-group">
-              <button
-                type="submit"
-                className="btn btn-primary"
-                disabled={this.haveErrors(errors)}
-              >
-                Submit
-            </button>
-            </div>
-            {submitSuccess && (
-              <div className="alert alert-info" role="alert">
-                The form was successfully submitted!
-              </div>
-            )}
-            {submitSuccess === false &&
-              !this.haveErrors(errors) && (
-                <div className="alert alert-danger" role="alert">
-                  Sorry, an unexpected error has occurred
-                </div>
-              )}
-            {submitSuccess === false &&
-              this.haveErrors(errors) && (
-                <div className="alert alert-danger" role="alert">
-                  Sorry, the form is invalid. Please review, adjust and try again
-                </div>
-              )}
-          </div>
+      <div>
+        <h1>React form</h1>
+        <form onSubmit={(e) => this.handleSubmit(e)}>
+          <input 
+            type="text" 
+            placeholder="Add a Task"
+            value={this.state.currentTask}
+            onChange={(e) => this.setState({currentTask: e.target.value}) }/>
+          <button type="submit">
+            Add Task
+          </button>
+          <section>
+            {this.renderTasks()}
+          </section>
         </form>
-      </FormContext.Provider>
-    );
+      </div>
+    )
   }
 }
+export default Form;
+
+interface IState {
+  currentTask: string;
+  tasks: Array<string>
+}
+
+// import React from "react"
+// import { useTranslation } from "react-i18next"
+// import { Box } from "rebass"
+// import { TextInput } from "shared"
+// import { TValidationTypes } from "shared/validation-text"
+// interface IAddressFormProps {
+//   fields: IAddressField[]
+//   disabledFields?: boolean
+// }
+// interface IAddressField {
+//   field: string
+//   value: string
+//   validationText?: string
+//   validationType?: TValidationTypes
+//   setValue: (value: string) => void
+// }
+// export const AddressForm: React.SFC<IAddressFormProps> = ({ fields, disabledFields }) => {
+//   const { t } = useTranslation()
+//   return (
+//     <Box>
+//       {fields.map(({ field, value, validationText, validationType, setValue }, idx) => (
+//         <Box style={{ marginTop: "3rem" }}>
+//           <TextInput
+//             placeholderText={t(`shared.addressForm.placeholder.${field}`)}
+//             onChange={setValue}
+//             value={value}
+//             focus={!idx}
+//             disabled={disabledFields}
+//             validationText={validationText}
+//             validationType={validationType}
+//           />
+//         </Box>
+//       ))}
+//     </Box>
+//   )
+// }
+
+// import React from "react"
+// import { Box } from "rebass"
+// import { theme } from "theme/theme"
+// import downArrow from "images/downArrow.svg"
+// interface IProps {
+//   options: string[]
+//   newValue: string
+//   setNewValue: (value: string) => void
+//   placeholder: string
+// }
+// export const DropDown: React.SFC<IProps> = ({ options, newValue, setNewValue, placeholder }) => (
+//   <Box style={{ marginTop: "3rem" }}>
+//     <select
+//       style={{
+//         backgroundColor: "transparent",
+//         width: "27rem",
+//         borderWidth: 0,
+//         borderBottomWidth: 1,
+//         borderColor: theme.colors.mediumGrey,
+//         borderStyle: "solid",
+//         borderRadius: 0,
+//         WebkitAppearance: "none",
+//         appearance: "none",
+//         MozAppearance: "none",
+//         color: theme.colors.mediumGrey,
+//         fontSize: theme.fontSizes[3],
+//         backgroundImage: `url(${downArrow})`,
+//         backgroundRepeat: "no-repeat",
+//         backgroundPosition: "right 50%",
+//         padding: "0.5em",
+//         paddingLeft: "0em",
+//         outline: "none",
+//       }}
+//       onChange={(e) => setNewValue(e.target.value)}
+//       value={newValue}
+//     >
+//       <option value="" disabled selected>
+//         {placeholder}
+//       </option>
+//       {options.map((option) => (
+//         <option key={option} value={option}>
+//           {option}
+//         </option>
+//       ))}
+//     </select>
+//   </Box>
+// )
