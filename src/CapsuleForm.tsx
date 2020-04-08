@@ -8,7 +8,12 @@ export class CapsuleForm extends React.Component<{}, {}> {
   public render(): JSX.Element {
     return (
       <div>
-
+        <form>
+          <input type="text" placeholder="Type here" />
+          <button type="submit">
+            Submit
+          </button>
+        </form>
       </div>
     )
   }
