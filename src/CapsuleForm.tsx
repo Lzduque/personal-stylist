@@ -49,8 +49,26 @@ export class CapsuleForm extends React.Component<{}, {}> {
           <label>
             Colors:
             <select name="colors" >
-              <option value="AutumnWinter">AutumnWinter</option>
-              <option value="SpringSummer">SpringSummer</option>
+              <option value="White">White</option>
+              <option value="OffWhite">OffWhite</option>
+              <option value="Beige">Beige</option>
+              <option value="Brown">Brown</option>
+              <option value="Black">Black</option>
+              <option value="Navy">Navy</option>
+              <option value="Blue">Blue</option>
+              <option value="LightBlue">LightBlue</option>
+              <option value="DarkGreen">DarkGreen</option>
+              <option value="LightGreen">LightGreen</option>
+              <option value="DarkYellow">DarkYellow</option>
+              <option value="LightYellow">LightYellow</option>
+              <option value="DarkPink">DarkPink</option>
+              <option value="LightPink">LightPink</option>
+              <option value="DarkRed">DarkRed</option>
+              <option value="LightRed">LightRed</option>
+              <option value="DarkOrgange">DarkOrgange</option>
+              <option value="LightOrange">LightOrange</option>
+              <option value="DarkPurple">DarkPurple</option>
+              <option value="LightPurple">LightPurple</option>
             </select>
           </label>
           <br />
