@@ -25,18 +25,6 @@ export class Form extends React.Component<{}, IState> {
     })
   }
 
-  public renderTasks(): JSX.Element[] {
-    return this.state.tasks.map((task: ITask, index: number) => {
-      return (
-        <div key={task.id}>
-          <span>{task.value}</span>
-          <button onClick={() => this.deleteTask(task.id)}>Delete</button>
-          <button onClick={() => this.toggleDone(index)}>Done</button>
-        </div>
-      )
-    })
-  }
-
   public deleteTask(id: number): void {
     const filteredTasks: Array<ITask> = this.state.tasks.filter((task: ITask) => task.id !== id);
     this.setState({tasks: filteredTasks});
@@ -45,11 +33,23 @@ export class Form extends React.Component<{}, IState> {
   public toggleDone(index: number): void {
     let task: ITask[] = this.state.tasks.splice(index, 1);
     task[0].completed = !task[0].completed;
-    const currentTasks: ITask[] = [...this.state.tasks, ...task];
-    this.setState({tasks: currentTasks});
+    const tasks: ITask[] = [...this.state.tasks, ...task];
+    this.setState({ tasks });
   }
 
-  public render(): JSX.Element {
+  public renderTasks(): JSX.Element[] {
+    return this.state.tasks.map((task: ITask, index: number) => {
+      return (
+        <div key={task.id} className="tdl-task">
+          <span className={task.completed ? "is-completed" : ""}>{task.value}</span>
+          <button onClick={() => this.deleteTask(task.id)}>Delete</button>
+          <button onClick={() => this.toggleDone(index)}>{ task.completed ? "undo" : "done"}</button>
+        </div>
+      )
+    })
+  }
+
+public render(): JSX.Element {
     console.log(this.state);
     return (
       <div>
@@ -57,16 +57,18 @@ export class Form extends React.Component<{}, IState> {
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <input 
             type="text" 
+            className="tdl-input"
             placeholder="Add a Task"
             value={this.state.currentTask}
-            onChange={(e) => this.setState({currentTask: e.target.value}) }/>
+            onChange={(e) => this.setState({currentTask: e.target.value}) }
+          />
           <button type="submit">
             Add Task
           </button>
-          <section>
-            {this.renderTasks()}
-          </section>
         </form>
+        <section>
+          {this.renderTasks()}
+        </section>
       </div>
     )
   }
