@@ -108,10 +108,11 @@ export class CapsuleForm extends React.Component<{}, IState> {
         this.setState({ colors: Array.from(colorsSet) })
         break;
       case Fields.Preferences:
-        let preferencesArr = [...this.state.preferences,
-        e.target.value as Preferences];
+        let preferencesArr = ;
         let preferencesSet = new Set(preferencesArr);
-        this.setState({ preferences: Array.from(preferencesSet) })
+        this.setState({
+          preferences: [...this.state.preferences,
+          e.target.value as Preferences] })
         break;
       default:
         return
@@ -129,68 +130,77 @@ export class CapsuleForm extends React.Component<{}, IState> {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <label>
-            Season:
-            <br />
-            <select name="season" value={this.state.season} onChange={(e) => this.handleChange(e, Fields.Season)}>
-              {Object.keys(Season).map((k) =>
-                <option key={"season-" + (Math.random()).toString()} value={k}>{Season[k as keyof typeof Season]}</option>
-              )}
-            </select>
-          </label>
+          <div className="season">
+            <label>
+              Season:
+              <br />
+              <select name="season" value={this.state.season} onChange={(e) => this.handleChange(e, Fields.Season)}>
+                {Object.keys(Season).map((k) =>
+                  <option key={"season-" + (Math.random()).toString()} value={k}>{Season[k as keyof typeof Season]}</option>
+                )}
+              </select>
+            </label>
+          </div>
           <br />
-          <label>
-            Style:
-            <br />
-            <select name="style" value={this.state.style} onChange={(e) => this.handleChange(e, Fields.Style)}>
-              {Object.keys(Style).map((k) =>
-                <option key={"style-" + (Math.random()).toString()} value={k}>{Style[k as keyof typeof Style]}</option>
-              )}
-            </select>
-          </label>
+          <div className="style">
+            <label>
+              Style:
+              <br />
+              <select name="style" value={this.state.style} onChange={(e) => this.handleChange(e, Fields.Style)}>
+                {Object.keys(Style).map((k) =>
+                  <option key={"style-" + (Math.random()).toString()} value={k}>{Style[k as keyof typeof Style]}</option>
+                )}
+              </select>
+            </label>
+          </div>
           <br />
-          <label>
-            Number of Outfits:
-            <br />
-            <select name="numberOfOutfits" value={this.state.numberOfOutfits} onChange={(e) => this.handleChange(e, Fields.NumberOfOutfits)} >
-              {Object.keys(NumberOfOutfits).map((k) =>
-                <option key={"numberOfOutfits-" + (Math.random()).toString()} value={k}>{NumberOfOutfits[k as keyof typeof NumberOfOutfits]}</option>
-              )}
-            </select>
-          </label>
+          <div className="numberOfOutfits">
+            <label>
+              Number of Outfits:
+              <br />
+              <select name="numberOfOutfits" value={this.state.numberOfOutfits} onChange={(e) => this.handleChange(e, Fields.NumberOfOutfits)} >
+                {Object.keys(NumberOfOutfits).map((k) =>
+                  <option key={"numberOfOutfits-" + (Math.random()).toString()} value={k}>{NumberOfOutfits[k as keyof typeof NumberOfOutfits]}</option>
+                )}
+              </select>
+            </label>
+          </div>
           <br />
-          <label>
-            Colors:
-            <br />
-            Select the colors you want in you capsule wardrobe. Select from 6 to 12 diferrent colors. Keep in mind that, to work well, the colors should be distributed like this:
-            <br />
-            Main colours: 3 - 4
-            <br />
-            Neutrals: 1 - 3
-            <br />
-            Accent colours: 2 - 5
-            <br />
-            <select name="colors" multiple={true} value={this.state.colors} onChange={(e) => this.handleChange(e, Fields.Colors)} >
-              {Object.keys(Colors).map(
-                (k) =>
-                  <option key={"color-neutrals-" + (Math.random()).toString()} value={k}>{Colors[k as keyof typeof Colors]}</option>
-              )}
-            </select>
-          </label>
+          <div className="colors">
+            <label>
+              Colors:
+              <p>
+                Select the colors you want in you capsule wardrobe. Select from 6 to 12 diferrent colors. Keep in mind that, to work well, the colors should be distributed like this:
+              </p>
+              <ul>
+                <li>Main colours: 3 - 4</li>
+                <li>Neutrals: 1 - 3</li>
+                <li>Accent colours: 2 - 5</li>
+              </ul>
+              <select name="colors" multiple={true} value={this.state.colors} onChange={(e) => this.handleChange(e, Fields.Colors)} >
+                {Object.keys(Colors).map(
+                  (k) =>
+                    <option key={"color-neutrals-" + (Math.random()).toString()} value={k}>{Colors[k as keyof typeof Colors]}</option>
+                )}
+              </select>
+            </label>
+          </div>
           <br />
-          <label>
-            Preferences:
-            <br />
-            <select name="preferences" multiple={true} value={this.state.preferences} onChange={(e) => this.handleChange(e, Fields.Preferences)} >
-              {Object.keys(Preferences).map(
-                (k) => 
-                <option key={"preferences-" + (Math.random()).toString()} value={k}>{Preferences[k as keyof typeof Preferences]}</option>
-              )}
-            </select>
-          </label>
+          <div className="preferences">
+            <label>
+              Preferences:
+              <br />
+              <select name="preferences" multiple={true} value={this.state.preferences} onChange={(e) => this.handleChange(e, Fields.Preferences)} >
+                {Object.keys(Preferences).map(
+                  (k) => 
+                  <option key={"preferences-" + (Math.random()).toString()} value={k}>{Preferences[k as keyof typeof Preferences]}</option>
+                )}
+              </select>
+            </label>
+          </div>
           <br />
           <button type="submit">
-            Submit
+            Check your new Capsule Wardrobe!
           </button>
         </form>
       </div>
