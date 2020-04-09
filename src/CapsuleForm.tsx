@@ -68,6 +68,10 @@ enum Preferences {
   LeggingsPants = "Leggings"
 }
 
+interface IErrors {
+  [key: string]: string
+}
+
 interface IState {
   season: Season;
   style: Style;
@@ -109,14 +113,28 @@ export class CapsuleForm extends React.Component<{}, IState> {
         this.setState({ numberOfOutfits: e.target.value as NumberOfOutfits })
         break;
       case Fields.Colors:
-        this.setState({
-          colors: [...this.state.colors,
-          e.target.value as Colors] })
+        const colorClicked = e.target.value as Colors
+        if (this.state.colors.includes(colorClicked)) {
+          const newColors = this.state.colors.filter((color) => color !== colorClicked)
+          this.setState({ colors: newColors })
+        } else {
+          this.setState({
+            colors: [...this.state.colors,
+            e.target.value as Colors]
+          })
+        }
         break;
       case Fields.Preferences:
-        this.setState({
-          preferences: [...this.state.preferences,
-          e.target.value as Preferences] })
+        const preferenceClicked = e.target.value as Preferences
+        if (this.state.preferences.includes(preferenceClicked)) {
+          const newPreferences = this.state.preferences.filter((preference) => preference !== preferenceClicked)
+          this.setState({ preferences: newPreferences })
+        } else {
+          this.setState({
+            preferences: [...this.state.preferences,
+            e.target.value as Preferences]
+          })
+        }
         break;
       default:
         return
@@ -141,6 +159,13 @@ export class CapsuleForm extends React.Component<{}, IState> {
     await this.submitForm();
   }
 
+  // private validateForm(): boolean {
+  //   const errors: IError = {};
+  //   Object.keys(this.state).map((fieldName: string) => {
+  //     errors[fieldName] = this.validate(fieldName)
+  //   })
+  // }
+
   private async submitForm(): Promise<boolean> {
     const encodedRequest = btoa(JSON.stringify(this.state)).replace(/\//g, '_').replace(/\+/g, '-')
     try {
@@ -150,17 +175,11 @@ export class CapsuleForm extends React.Component<{}, IState> {
           Accept: "application/json"
         }),
       })
-      if (response.status === 400) {
+      if (response.status === 400) {     
         console.log("Status 400");
         return false;
       }
       const responseBody = await response.text();
-      console.log("state submitted: ");
-      console.log(JSON.stringify(this.state));
-      console.log("encodedRequest");
-      console.log(encodedRequest);
-      console.log("response");
-      console.log(response);
       console.log("responseBody");
       console.log(responseBody);
       return response.ok;
