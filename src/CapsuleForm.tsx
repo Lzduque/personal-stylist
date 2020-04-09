@@ -64,12 +64,20 @@ interface IState {
   style: Style;
   numberOfOutfits: NumberOfOutfits;
   colors: Colors[];
-  preferences: Preferences;
+  preferences: Preferences[];
 }
 
-export class CapsuleForm extends React.Component<{}, {}> {
+export class CapsuleForm extends React.Component<{}, IState> {
   constructor(props: {}) {
     super(props);
+
+    this.state = {
+      season: Season.AutumnWinter,
+      style: Style.Casual,
+      numberOfOutfits: NumberOfOutfits.From10to20,
+      colors: [],
+      preferences: []
+    }
   }
 
   public render(): JSX.Element {
