@@ -80,10 +80,21 @@ export class CapsuleForm extends React.Component<{}, IState> {
     }
   }
 
+  public handleChange(e: React.FormEvent<HTMLFormElement>): void {
+    e.preventDefault();
+    this.setState({season: e.target.value})
+  }
+
+  public handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
+    e.preventDefault();
+    console.log("e submit: ")
+    console.log(e)
+  }
+
   public render(): JSX.Element {
     return (
       <div>
-        <form>
+        <form onSubmit={(e) => this.handleSubmit(e)}>
           <label>
             Season:
             <select name="season" >
