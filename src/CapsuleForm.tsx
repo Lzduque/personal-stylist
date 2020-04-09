@@ -142,12 +142,6 @@ export class CapsuleForm extends React.Component<{}, IState> {
     console.log(this.state)
   }
 
-  // public handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
-  //   e.preventDefault();
-  //   console.log("e submit: ")
-  //   console.log(this.state)
-  // }
-
   public handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
@@ -158,13 +152,6 @@ export class CapsuleForm extends React.Component<{}, IState> {
 
     await this.submitForm();
   }
-
-  // private validateForm(): boolean {
-  //   const errors: IError = {};
-  //   Object.keys(this.state).map((fieldName: string) => {
-  //     errors[fieldName] = this.validate(fieldName)
-  //   })
-  // }
 
   private async submitForm(): Promise<boolean> {
     const encodedRequest = btoa(JSON.stringify(this.state)).replace(/\//g, '_').replace(/\+/g, '-')
@@ -270,33 +257,3 @@ export class CapsuleForm extends React.Component<{}, IState> {
     )
   }
 }
-
-// class CapsuleForm extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {value: ''};
-
-//     this.handleChange = this.handleChange.bind(this);
-//     this.handleSubmit = this.handleSubmit.bind(this);
-//   }
-
-//   handleChange(event) {
-//     this.setState({value: event.target.value});
-//   }
-
-//   handleSubmit(event) {
-//     alert('A name was submitted: ' + this.state.value);
-//   }
-
-//   render() {
-//     return (
-//       <form onSubmit={this.handleSubmit}>
-//         <label>
-//           Season:
-//           <input type="text" value={this.state.value} onChange={this.handleChange} />
-//         </label>
-//         <input type="submit" value="Submit" />
-//       </form>
-//     )   
-//   }
-// }
