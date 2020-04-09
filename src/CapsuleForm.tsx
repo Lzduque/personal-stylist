@@ -1,5 +1,15 @@
 import React from 'react';
 
+enum Season {
+  AutumnWinter = "Autumn/Winter",
+  SpringSummer = "Spring/Summer"
+}
+
+enum Style {
+  Casual = "Casual",
+  Office = "Office"
+}
+
 enum NumberOfOutfits {
   From10to20 = "From 10 to 20",
   From21to30 = "From 21 to 30",
@@ -41,6 +51,22 @@ enum Colors {
   LightPurple = "Light Purple"
 }
 
+enum Preferences {
+  Skirts = "Skirts",
+  Dresses = "Dresses",
+  Pants = "Pants",
+  HighHeels = "High Heels",
+  LeggingsPants = "Leggings"
+}
+
+interface IState {
+  season: Season;
+  style: Style;
+  numberOfOutfits: NumberOfOutfits;
+  colors: Colors[];
+  preferences: Preferences;
+}
+
 export class CapsuleForm extends React.Component<{}, {}> {
   constructor(props: {}) {
     super(props);
@@ -53,16 +79,18 @@ export class CapsuleForm extends React.Component<{}, {}> {
           <label>
             Season:
             <select name="season" >
-              <option value="AutumnWinter">AutumnWinter</option>
-              <option value="SpringSummer">SpringSummer</option>
+              {Object.keys(Season).map((k) =>
+                <option value={k}>{Season[k as keyof typeof Season]}</option>
+              )}
             </select>
           </label>
           <br />
           <label>
             Style:
             <select name="style" >
-              <option value="Casual">Casual</option>
-              <option value="Office">Office</option>
+              {Object.keys(Style).map((k) =>
+                <option value={k}>{Style[k as keyof typeof Style]}</option>
+              )}
             </select>
           </label>
           <br />
