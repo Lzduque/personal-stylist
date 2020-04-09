@@ -79,18 +79,23 @@ export class CapsuleForm extends React.Component<{}, IState> {
     super(props);
 
     this.state = {
-      season: Season.AutumnWinter,
-      style: Style.Casual,
-      numberOfOutfits: NumberOfOutfits.From10to20,
+      season: "AutumnWinter" as Season,
+      style: "Casual" as Style,
+      numberOfOutfits: "From10to20" as NumberOfOutfits,
       colors: [],
       preferences: []
     }
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.submitForm = this.submitForm.bind(this);
   }
 
   public handleChange(e: React.ChangeEvent<HTMLSelectElement>, field: Fields): void {
     e.preventDefault();
+    console.log("event");
+    console.log(e.target.value);
+    
     switch (field) {
       case Fields.Season:
         this.setState({ season: e.target.value as Season })
@@ -117,10 +122,49 @@ export class CapsuleForm extends React.Component<{}, IState> {
     console.log(this.state)
   }
 
-  public handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
+  // public handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
+  //   e.preventDefault();
+  //   console.log("e submit: ")
+  //   console.log(this.state)
+  // }
+
+  public handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault();
-    console.log("e submit: ")
-    console.log(e)
+
+    console.log("state to submit");
+    console.log(this.state);
+
+    await this.submitForm();
+  }
+
+  private async submitForm(): Promise<boolean> {
+    const encodedRequest = btoa(JSON.stringify(this.state)).replace(/\//g, '_').replace(/\+/g, '-')
+    try {
+      const response = await fetch(`/capsule/${encodedRequest}`, {
+        method: "GET",
+        headers: new Headers({
+          Accept: "text/plain"
+        }),
+      })
+      // if (response.status === 400) {
+      //   console.log("Status 400");
+      //   return false;
+      // }
+      console.log("state submitted: ");
+      console.log(JSON.stringify(this.state));
+      console.log("encodedRequest");
+      console.log(encodedRequest);
+      console.log("response");
+      console.log(response);
+      console.log("response.body");
+      console.log(response.body);
+      return response.ok;
+    } catch (ex) {
+      console.log("error: " + ex)
+      return false;
+    }
   }
 
   public render(): JSX.Element {
