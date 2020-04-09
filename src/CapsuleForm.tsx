@@ -1,4 +1,6 @@
 import React from 'react';
+const server = "http://localhost:3000"
+
 enum Fields {
   Season = "season",
   Style = "style",
@@ -142,24 +144,25 @@ export class CapsuleForm extends React.Component<{}, IState> {
   private async submitForm(): Promise<boolean> {
     const encodedRequest = btoa(JSON.stringify(this.state)).replace(/\//g, '_').replace(/\+/g, '-')
     try {
-      const response = await fetch(`/capsule/${encodedRequest}`, {
+      const response = await fetch(`${server}/capsule/${encodedRequest}`, {
         method: "GET",
         headers: new Headers({
-          Accept: "text/plain"
+          Accept: "application/json"
         }),
       })
-      // if (response.status === 400) {
-      //   console.log("Status 400");
-      //   return false;
-      // }
+      if (response.status === 400) {
+        console.log("Status 400");
+        return false;
+      }
+      const responseBody = await response.text();
       console.log("state submitted: ");
       console.log(JSON.stringify(this.state));
       console.log("encodedRequest");
       console.log(encodedRequest);
       console.log("response");
       console.log(response);
-      console.log("response.body");
-      console.log(response.body);
+      console.log("responseBody");
+      console.log(responseBody);
       return response.ok;
     } catch (ex) {
       console.log("error: " + ex)
