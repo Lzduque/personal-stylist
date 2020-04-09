@@ -1,5 +1,46 @@
 import React from 'react';
 
+enum NumberOfOutfits {
+  From10to20 = "From 10 to 20",
+  From21to30 = "From 21 to 30",
+  From31to40 = "From 31 to 40",
+  From41to50 = "From 41 to 50",
+  From51to60 = "From 51 to 60",
+  From61to70 = "From 61 to 70",
+  From71to80 = "From 71 to 80",
+  From81to90 = "From 81 to 90",
+  From91to100 = "From 91 to 100",
+  From101to110 = "From 101 to 110",
+  From111to120 = "From 111 to 120",
+  From121to130 = "From 121 to 130",
+  From131to140 = "From 131 to 140",
+  From141to150 = "From 141 to 150",
+  From151to160 = "From 151 to 160"
+}
+
+enum Colors {
+  White = "White",
+  OffWhite = "Off-White",
+  Beige = "Beige",
+  Brown = "Brown",
+  Black = "Black",
+  Navy = "Navy",
+  Blue = "Blue",
+  LightBlue = "Light Blue",
+  DarkGreen = "Dark Green",
+  LightGreen = "Light Green",
+  DarkYellow = "Dark Yellow",
+  LightYellow = "Light Yellow",
+  DarkPink = "Dark Pink",
+  LightPink = "Light Pink",
+  DarkRed = "Dark Red",
+  LightRed = "Light Red",
+  DarkOrgange = "Dark Organge",
+  LightOrange = "Light Orange",
+  DarkPurple = "Dark Purple",
+  LightPurple = "Light Purple"
+}
+
 export class CapsuleForm extends React.Component<{}, {}> {
   constructor(props: {}) {
     super(props);
@@ -16,7 +57,7 @@ export class CapsuleForm extends React.Component<{}, {}> {
               <option value="SpringSummer">SpringSummer</option>
             </select>
           </label>
-          <br/>
+          <br />
           <label>
             Style:
             <select name="style" >
@@ -28,47 +69,79 @@ export class CapsuleForm extends React.Component<{}, {}> {
           <label>
             Number of Outfits:
             <select name="numberOfOutfits" >
-              <option value="From10to20">From10to20</option>
-              <option value="From21to30">From21to30</option>
-              <option value="From31to40">From31to40</option>
-              <option value="From41to50">From41to50</option>
-              <option value="From51to60">From51to60</option>
-              <option value="From61to70">From61to70</option>
-              <option value="From71to80">From71to80</option>
-              <option value="From81to90">From81to90</option>
-              <option value="From91to100">From91to100</option>
-              <option value="From101to110">From101to110</option>
-              <option value="From111to120">From111to120</option>
-              <option value="From121to130">From121to130</option>
-              <option value="From131to140">From131to140</option>
-              <option value="From141to150">From141to150</option>
-              <option value="From151to160">From151to160</option>
+              {Object.keys(NumberOfOutfits).map((k) =>
+                <option value={k}>{NumberOfOutfits[k as keyof typeof NumberOfOutfits]}</option>
+              )}
             </select>
           </label>
           <br />
           <label>
             Colors:
+            <br />
+            Neutrals(2):
             <select name="colors" >
-              <option value="White">White</option>
-              <option value="OffWhite">OffWhite</option>
-              <option value="Beige">Beige</option>
-              <option value="Brown">Brown</option>
-              <option value="Black">Black</option>
-              <option value="Navy">Navy</option>
-              <option value="Blue">Blue</option>
-              <option value="LightBlue">LightBlue</option>
-              <option value="DarkGreen">DarkGreen</option>
-              <option value="LightGreen">LightGreen</option>
-              <option value="DarkYellow">DarkYellow</option>
-              <option value="LightYellow">LightYellow</option>
-              <option value="DarkPink">DarkPink</option>
-              <option value="LightPink">LightPink</option>
-              <option value="DarkRed">DarkRed</option>
-              <option value="LightRed">LightRed</option>
-              <option value="DarkOrgange">DarkOrgange</option>
-              <option value="LightOrange">LightOrange</option>
-              <option value="DarkPurple">DarkPurple</option>
-              <option value="LightPurple">LightPurple</option>
+              {Object.keys(Colors).map(
+                (k) =>
+                  <option value={k}>{Colors[k as keyof typeof Colors]}</option>
+              )}
+            </select>
+            <select name="colors" >
+              {Object.keys(Colors).map(
+                (k) =>
+                  <option value={k}>{Colors[k as keyof typeof Colors]}</option>
+              )}
+            </select>
+            <br />
+            Mains(3):
+            <select name="colors" >
+              {Object.keys(Colors).map(
+                (k) =>
+                  <option value={k}>{Colors[k as keyof typeof Colors]}</option>
+              )}
+            </select>
+            <select name="colors" >
+              {Object.keys(Colors).map(
+                (k) =>
+                  <option value={k}>{Colors[k as keyof typeof Colors]}</option>
+              )}
+            </select>
+            <select name="colors" >
+              {Object.keys(Colors).map(
+                (k) =>
+                  <option value={k}>{Colors[k as keyof typeof Colors]}</option>
+              )}
+            </select>
+            <br />
+            Accents(5):
+            <select name="colors" >
+              {Object.keys(Colors).map(
+                (k) =>
+                  <option value={k}>{Colors[k as keyof typeof Colors]}</option>
+              )}
+            </select>
+            <select name="colors" >
+              {Object.keys(Colors).map(
+                (k) =>
+                  <option value={k}>{Colors[k as keyof typeof Colors]}</option>
+              )}
+            </select>
+            <select name="colors" >
+              {Object.keys(Colors).map(
+                (k) =>
+                  <option value={k}>{Colors[k as keyof typeof Colors]}</option>
+              )}
+            </select>
+            <select name="colors" >
+              {Object.keys(Colors).map(
+                (k) =>
+                  <option value={k}>{Colors[k as keyof typeof Colors]}</option>
+              )}
+            </select>
+            <select name="colors" >
+              {Object.keys(Colors).map(
+                (k) =>
+                  <option value={k}>{Colors[k as keyof typeof Colors]}</option>
+              )}
             </select>
           </label>
           <br />
