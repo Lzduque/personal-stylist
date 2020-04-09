@@ -102,14 +102,11 @@ export class CapsuleForm extends React.Component<{}, IState> {
         this.setState({ numberOfOutfits: e.target.value as NumberOfOutfits })
         break;
       case Fields.Colors:
-        let colorsArr = [...this.state.colors,
-        e.target.value as Colors];
-        let colorsSet = new Set(colorsArr);
-        this.setState({ colors: Array.from(colorsSet) })
+        this.setState({
+          colors: [...this.state.colors,
+          e.target.value as Colors] })
         break;
       case Fields.Preferences:
-        let preferencesArr = ;
-        let preferencesSet = new Set(preferencesArr);
         this.setState({
           preferences: [...this.state.preferences,
           e.target.value as Preferences] })
