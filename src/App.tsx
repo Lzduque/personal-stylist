@@ -9,7 +9,6 @@ function App() {
         <h1>
           Personal Stylist
         </h1>
-        <br/>
         <h2>
           How do you want your capsule wardrobe to be?
         </h2>
