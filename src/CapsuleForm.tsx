@@ -208,7 +208,7 @@ export class CapsuleForm extends React.Component<{}, IState> {
     let hasCapsule;
     if (this.state.wardrobe.length > 0) {
     hasCapsule = this.state.wardrobe.map((clothe) =>
-      <div>
+      <div key={clothe}>
         <p>{clothe[0]} {clothe[1]} {clothe[2]}</p>
       </div>
     )}
