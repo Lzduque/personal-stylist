@@ -70,6 +70,7 @@ enum Preferences {
 
 interface IState {
   error: string,
+  wardrobe: any[],
   capsule: {
     season: Season;
     style: Style;
@@ -85,6 +86,7 @@ export class CapsuleForm extends React.Component<{}, IState> {
 
     this.state = {
       error: "",
+      wardrobe: [],
       capsule: {
         season: "AutumnWinter" as Season,
         style: "Casual" as Style,
@@ -185,7 +187,12 @@ export class CapsuleForm extends React.Component<{}, IState> {
       console.log(response);
       console.log("responseBody");
       console.log(responseBody);
-      if (JSON.parse(responseBody).error === false) {
+
+      if (!JSON.parse(responseBody).error) {
+        console.log("JSON.parse(responseBody)")
+        console.log(JSON.parse(responseBody))
+        this.setState({ wardrobe: JSON.parse(responseBody) });
+        this.setState({ error: "" });
         return response.ok;
       } else {
         this.setState({ error: JSON.parse(responseBody).message });
@@ -198,6 +205,14 @@ export class CapsuleForm extends React.Component<{}, IState> {
   }
 
   public render(): JSX.Element {
+    let hasCapsule;
+    if (this.state.wardrobe.length > 0) {
+    hasCapsule = this.state.wardrobe.map((clothe) =>
+      <div>
+        <p>{clothe[0]} {clothe[1]} {clothe[2]}</p>
+      </div>
+    )}
+
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -241,7 +256,7 @@ export class CapsuleForm extends React.Component<{}, IState> {
             <label>
               Colors:
               <p>
-                Select the colors you want in you capsule wardrobe. Select from 6 to 12 diferrent colors. Keep in mind that, to work well, the colors should be distributed like this:
+                Select the colors you want in you capsule wardrobe. Select from 6 to 12 diferent colors. Keep in mind that, to work well, the colors should be distributed like this:
               </p>
               <ul>
                 <li>Main colours: 3 - 4</li>
@@ -277,6 +292,9 @@ export class CapsuleForm extends React.Component<{}, IState> {
             Check your new Capsule Wardrobe!
           </button>
         </form>
+        <div className="wardrobe">
+          {hasCapsule}
+        </div>
       </div>
     )
   }
