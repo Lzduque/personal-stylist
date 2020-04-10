@@ -68,16 +68,15 @@ enum Preferences {
   LeggingsPants = "Leggings"
 }
 
-interface IErrors {
-  [key: string]: string
-}
-
 interface IState {
-  season: Season;
-  style: Style;
-  numberOfOutfits: NumberOfOutfits;
-  colors: Colors[];
-  preferences: Preferences[];
+  error: string,
+  capsule: {
+    season: Season;
+    style: Style;
+    numberOfOutfits: NumberOfOutfits;
+    colors: Colors[];
+    preferences: Preferences[];
+  }
 }
 
 export class CapsuleForm extends React.Component<{}, IState> {
@@ -85,11 +84,15 @@ export class CapsuleForm extends React.Component<{}, IState> {
     super(props);
 
     this.state = {
-      season: "AutumnWinter" as Season,
-      style: "Casual" as Style,
-      numberOfOutfits: "From10to20" as NumberOfOutfits,
-      colors: [],
-      preferences: []
+      error: "",
+      capsule: {
+        season: "AutumnWinter" as Season,
+        style: "Casual" as Style,
+        numberOfOutfits: "From10to20" as NumberOfOutfits,
+        colors: [],
+        preferences: []
+
+      }
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -104,36 +107,45 @@ export class CapsuleForm extends React.Component<{}, IState> {
     
     switch (field) {
       case Fields.Season:
-        this.setState({ season: e.target.value as Season })
+        var capsule = { ...this.state.capsule}
+        capsule.season = e.target.value as Season
+        this.setState({ capsule })
         break;
       case Fields.Style:
-        this.setState({ style: e.target.value as Style })
+        var capsule = { ...this.state.capsule }
+        capsule.style = e.target.value as Style
+        this.setState({ capsule })
         break;
       case Fields.NumberOfOutfits:
-        this.setState({ numberOfOutfits: e.target.value as NumberOfOutfits })
+        var capsule = { ...this.state.capsule }
+        capsule.numberOfOutfits = e.target.value as NumberOfOutfits
+        this.setState({ capsule })
         break;
       case Fields.Colors:
         const colorClicked = e.target.value as Colors
-        if (this.state.colors.includes(colorClicked)) {
-          const newColors = this.state.colors.filter((color) => color !== colorClicked)
-          this.setState({ colors: newColors })
+        if (this.state.capsule.colors.includes(colorClicked)) {
+          const newColors = this.state.capsule.colors.filter((color) => color !== colorClicked)
+          var capsule = { ...this.state.capsule }
+          capsule.colors = newColors
+          this.setState({ capsule })
         } else {
-          this.setState({
-            colors: [...this.state.colors,
+          var capsule = { ...this.state.capsule }
+          capsule.colors = [...capsule.colors,
             e.target.value as Colors]
-          })
+          this.setState({ capsule })
         }
         break;
       case Fields.Preferences:
         const preferenceClicked = e.target.value as Preferences
-        if (this.state.preferences.includes(preferenceClicked)) {
-          const newPreferences = this.state.preferences.filter((preference) => preference !== preferenceClicked)
-          this.setState({ preferences: newPreferences })
+        if (this.state.capsule.preferences.includes(preferenceClicked)) {
+          const newPreferences = this.state.capsule.preferences.filter((preference) => preference !== preferenceClicked)
+          var capsule = { ...this.state.capsule }
+          capsule.preferences = newPreferences
+          this.setState({ capsule })
         } else {
-          this.setState({
-            preferences: [...this.state.preferences,
-            e.target.value as Preferences]
-          })
+          var capsule = { ...this.state.capsule }
+          capsule.preferences = [...capsule.preferences, e.target.value as Preferences]
+          this.setState({ capsule })
         }
         break;
       default:
@@ -148,14 +160,16 @@ export class CapsuleForm extends React.Component<{}, IState> {
     e.preventDefault();
 
     console.log("state to submit");
-    console.log(this.state);
+    console.log(this.state.capsule);
 
     await this.submitForm();
   }
 
   private async submitForm(): Promise<boolean> {
-    const encodedRequest = btoa(JSON.stringify(this.state)).replace(/\//g, '_').replace(/\+/g, '-')
+    const encodedRequest = btoa(JSON.stringify(this.state.capsule)).replace(/\//g, '_').replace(/\+/g, '-')
     try {
+      console.log("encodedRequest");
+      console.log(encodedRequest);
       const response = await fetch(`${server}/capsule/${encodedRequest}`, {
         method: "GET",
         headers: new Headers({
@@ -167,9 +181,16 @@ export class CapsuleForm extends React.Component<{}, IState> {
         return false;
       }
       const responseBody = await response.text();
+      console.log("response");
+      console.log(response);
       console.log("responseBody");
       console.log(responseBody);
-      return response.ok;
+      if (JSON.parse(responseBody).error === false) {
+        return response.ok;
+      } else {
+        this.setState({ error: JSON.parse(responseBody).message });
+        return false;
+      }
     } catch (ex) {
       console.log("error: " + ex)
       return false;
@@ -184,7 +205,7 @@ export class CapsuleForm extends React.Component<{}, IState> {
             <label>
               Season:
               <br />
-              <select name="season" value={this.state.season} onChange={(e) => this.handleChange(e, Fields.Season)}>
+              <select name="season" value={this.state.capsule.season} onChange={(e) => this.handleChange(e, Fields.Season)}>
                 {Object.keys(Season).map((k) =>
                   <option key={"season-" + (Math.random()).toString()} value={k}>{Season[k as keyof typeof Season]}</option>
                 )}
@@ -196,7 +217,7 @@ export class CapsuleForm extends React.Component<{}, IState> {
             <label>
               Style:
               <br />
-              <select name="style" value={this.state.style} onChange={(e) => this.handleChange(e, Fields.Style)}>
+              <select name="style" value={this.state.capsule.style} onChange={(e) => this.handleChange(e, Fields.Style)}>
                 {Object.keys(Style).map((k) =>
                   <option key={"style-" + (Math.random()).toString()} value={k}>{Style[k as keyof typeof Style]}</option>
                 )}
@@ -208,7 +229,7 @@ export class CapsuleForm extends React.Component<{}, IState> {
             <label>
               Number of Outfits:
               <br />
-              <select name="numberOfOutfits" value={this.state.numberOfOutfits} onChange={(e) => this.handleChange(e, Fields.NumberOfOutfits)} >
+              <select name="numberOfOutfits" value={this.state.capsule.numberOfOutfits} onChange={(e) => this.handleChange(e, Fields.NumberOfOutfits)} >
                 {Object.keys(NumberOfOutfits).map((k) =>
                   <option key={"numberOfOutfits-" + (Math.random()).toString()} value={k}>{NumberOfOutfits[k as keyof typeof NumberOfOutfits]}</option>
                 )}
@@ -227,7 +248,7 @@ export class CapsuleForm extends React.Component<{}, IState> {
                 <li>Neutrals: 1 - 3</li>
                 <li>Accent colours: 2 - 5</li>
               </ul>
-              <select name="colors" multiple={true} value={this.state.colors} onChange={(e) => this.handleChange(e, Fields.Colors)} >
+              <select name="colors" multiple={true} value={this.state.capsule.colors} onChange={(e) => this.handleChange(e, Fields.Colors)} >
                 {Object.keys(Colors).map(
                   (k) =>
                     <option key={"color-neutrals-" + (Math.random()).toString()} value={k}>{Colors[k as keyof typeof Colors]}</option>
@@ -240,7 +261,7 @@ export class CapsuleForm extends React.Component<{}, IState> {
             <label>
               Preferences:
               <br />
-              <select name="preferences" multiple={true} value={this.state.preferences} onChange={(e) => this.handleChange(e, Fields.Preferences)} >
+              <select name="preferences" multiple={true} value={this.state.capsule.preferences} onChange={(e) => this.handleChange(e, Fields.Preferences)} >
                 {Object.keys(Preferences).map(
                   (k) => 
                   <option key={"preferences-" + (Math.random()).toString()} value={k}>{Preferences[k as keyof typeof Preferences]}</option>
@@ -249,6 +270,9 @@ export class CapsuleForm extends React.Component<{}, IState> {
             </label>
           </div>
           <br />
+          <div className="error">
+            {this.state.error}
+          </div>
           <button type="submit">
             Check your new Capsule Wardrobe!
           </button>
