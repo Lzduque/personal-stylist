@@ -2,6 +2,7 @@ import React from 'react';
 import { SeasonField } from './SeasonField';
 import { StyleField } from './StyleField';
 import { NumberOfOutfitsField } from './NumberOfOutfitsField';
+import { ColorsField } from './ColorsField';
 
 const server = "http://localhost:3000"
 
@@ -41,7 +42,7 @@ export enum NumberOfOutfits {
   From151to160 = "From 151 to 160"
 }
 
-enum Colors {
+export enum Colors {
   White = "White",
   OffWhite = "Off-White",
   Beige = "Beige",
@@ -226,25 +227,7 @@ export class CapsuleForm extends React.Component<{}, IState> {
           <br />
           <NumberOfOutfitsField selectedNumberOfOutfits={this.state.capsule.numberOfOutfits} onChange={(e) => this.handleChange(e, Fields.NumberOfOutfits)} />
           <br />
-          <div className="colors">
-            <label>
-              Colors:
-              <p>
-                Select the colors you want in you capsule wardrobe. Select from 6 to 12 diferent colors. Keep in mind that, to work well, the colors should be distributed like this:
-              </p>
-              <ul>
-                <li>Main colours: 3 - 4</li>
-                <li>Neutrals: 1 - 3</li>
-                <li>Accent colours: 2 - 5</li>
-              </ul>
-              <select name="colors" multiple={true} value={this.state.capsule.colors} onChange={(e) => this.handleChange(e, Fields.Colors)} >
-                {Object.keys(Colors).map(
-                  (k) =>
-                    <option key={"color-neutrals-" + (Math.random()).toString()} value={k}>{Colors[k as keyof typeof Colors]}</option>
-                )}
-              </select>
-            </label>
-          </div>
+          <ColorsField selectedColors={this.state.capsule.colors} onChange={(e) => this.handleChange(e, Fields.Colors)} />
           <br />
           <div className="preferences">
             <label>

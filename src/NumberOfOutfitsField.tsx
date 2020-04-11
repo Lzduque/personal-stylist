@@ -18,4 +18,3 @@ export class NumberOfOutfitsField extends React.Component<{ selectedNumberOfOutf
     )
   }
 }
-
