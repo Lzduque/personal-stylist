@@ -1,7 +1,7 @@
 import React from 'react';
-import { Preferences } from './CapsuleForm';
+import { Preferences } from './Enums';
 
-export class PreferencesField extends React.Component<{ selectedPreferences: Preferences[]; onChange: (e: any) => void; }, {}> {
+export default class PreferencesField extends React.Component<{ selectedPreferences: Preferences[]; onChange: (e: any) => void; }, {}> {
   render() {
     return (
       <div className="preferences">

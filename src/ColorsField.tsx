@@ -1,7 +1,7 @@
 import React from 'react';
-import { Colors } from './CapsuleForm';
+import { Colors } from './Enums';
 
-export class ColorsField extends React.Component<{ selectedColors: Colors[]; onChange: (e: any) => void; }, {}> {
+export default class ColorsField extends React.Component<{ selectedColors: Colors[]; onChange: (e: any) => void; }, {}> {
   render() {
     return (
       <div className="colors">

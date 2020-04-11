@@ -1,7 +1,7 @@
 import React from 'react';
-import { Style } from './CapsuleForm';
+import { Style } from './Enums';
 
-export class StyleField extends React.Component<{ selectedStyle: Style; onChange: (e: any) => void; }, {}> {
+export default class StyleField extends React.Component<{ selectedStyle: Style; onChange: (e: any) => void; }, {}> {
   render() {
     return (
       <div className="style">

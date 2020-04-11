@@ -1,7 +1,7 @@
 import React from 'react';
-import { Season } from './CapsuleForm';
+import { Season } from './Enums';
 
-export class SeasonField extends React.Component<{ selectedSeason: Season; onChange: (e: any) => void;  },{}> {
+export default class SeasonField extends React.Component<{ selectedSeason: Season; onChange: (e: any) => void;  },{}> {
   render() {
     return (
       <div className="season">

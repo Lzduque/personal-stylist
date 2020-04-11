@@ -1,7 +1,7 @@
 import React from 'react';
-import { NumberOfOutfits } from './CapsuleForm';
+import { NumberOfOutfits } from './Enums';
 
-export class NumberOfOutfitsField extends React.Component<{ selectedNumberOfOutfits: NumberOfOutfits; onChange: (e: any) => void; }, {}> {
+export default class NumberOfOutfitsField extends React.Component<{ selectedNumberOfOutfits: NumberOfOutfits; onChange: (e: any) => void; }, {}> {
   render() {
     return (
       <div className="numberOfOutfits">
