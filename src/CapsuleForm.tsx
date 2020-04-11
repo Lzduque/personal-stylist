@@ -11,7 +11,7 @@ const server = "http://localhost:3000"
 
 interface IState {
   error: string,
-  wardrobe: any[],
+  wardrobe: [[string, number, [Colors]]] | null,
   capsule: {
     season: Season;
     style: Style;
@@ -27,7 +27,7 @@ export class CapsuleForm extends React.Component<{}, IState> {
 
     this.state = {
       error: "",
-      wardrobe: [],
+      wardrobe: null,
       capsule: {
         season: "AutumnWinter" as Season,
         style: "Casual" as Style,
@@ -47,10 +47,10 @@ export class CapsuleForm extends React.Component<{}, IState> {
     e.preventDefault();
     console.log("event");
     console.log(e.target.value);
-    
+
     switch (field) {
       case Fields.Season:
-        var capsule = { ...this.state.capsule}
+        var capsule = { ...this.state.capsule }
         capsule.season = e.target.value as Season
         this.setState({ capsule })
         break;
@@ -74,7 +74,7 @@ export class CapsuleForm extends React.Component<{}, IState> {
         } else {
           var capsule = { ...this.state.capsule }
           capsule.colors = [...capsule.colors,
-            e.target.value as Colors]
+          e.target.value as Colors]
           this.setState({ capsule })
         }
         break;
@@ -104,7 +104,7 @@ export class CapsuleForm extends React.Component<{}, IState> {
 
     console.log("state to submit");
     console.log(this.state.capsule);
-    this.setState({ wardrobe: [] })
+    this.setState({ wardrobe: null })
     await this.submitForm();
   }
 
@@ -119,7 +119,7 @@ export class CapsuleForm extends React.Component<{}, IState> {
           Accept: "application/json"
         }),
       })
-      if (response.status === 400) {     
+      if (response.status === 400) {
         console.log("Status 400");
         return false;
       }
@@ -146,14 +146,6 @@ export class CapsuleForm extends React.Component<{}, IState> {
   }
 
   public render(): JSX.Element {
-    let hasCapsule;
-    if (this.state.wardrobe.length > 0) {
-    hasCapsule = this.state.wardrobe.map((clothe) =>
-      <div key={clothe}>
-        <p>{clothe[0]} {clothe[1]} {clothe[2]}</p>
-      </div>
-    )}
-
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -174,9 +166,10 @@ export class CapsuleForm extends React.Component<{}, IState> {
             Check your new Capsule Wardrobe!
           </button>
         </form>
-        <div className="wardrobe">
-          {hasCapsule}
-        </div>
+        { this.state.wardrobe
+          ? <Wardrobe wardrobe={this.state.wardrobe} />
+          : <br />
+        }
       </div>
     )
   }
