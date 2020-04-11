@@ -1,11 +1,11 @@
 import React from 'react';
 import SeasonField from './SeasonField';
-import StyleField from './StyleField';
+import StyleField from '../StyleField';
 import NumberOfOutfitsField from './NumberOfOutfitsField';
 import ColorsField from './ColorsField';
 import PreferencesField from './PreferencesField';
-import { Fields, Season, Style, NumberOfOutfits, Colors, Preferences, Clothing } from './Enums';
-import Wardrobe from './Wardrobe';
+import { Fields, Season, Style, NumberOfOutfits, Colors, Preferences, Clothing } from '../Enums';
+import Wardrobe from '../Wardrobe';
 
 const server = "http://localhost:3000"
 
@@ -49,26 +49,21 @@ export class CapsuleForm extends React.Component<{}, IState> {
     switch (field) {
       case Fields.Season:
         capsule.season = e.target.value as Season
-        this.setState({ capsule })
         break;
       case Fields.Style:
         capsule.style = e.target.value as Style
-        this.setState({ capsule })
         break;
       case Fields.NumberOfOutfits:
         capsule.numberOfOutfits = e.target.value as NumberOfOutfits
-        this.setState({ capsule })
         break;
       case Fields.Colors:
         const colorClicked = e.target.value as Colors
         if (this.state.capsule.colors.includes(colorClicked)) {
           const newColors = this.state.capsule.colors.filter((color) => color !== colorClicked)
             capsule.colors = newColors
-          this.setState({ capsule })
         } else {
-            capsule.colors = [...capsule.colors,
+          capsule.colors = [...capsule.colors,
           e.target.value as Colors]
-          this.setState({ capsule })
         }
         break;
       case Fields.Preferences:
@@ -76,15 +71,14 @@ export class CapsuleForm extends React.Component<{}, IState> {
         if (this.state.capsule.preferences.includes(preferenceClicked)) {
           const newPreferences = this.state.capsule.preferences.filter((preference) => preference !== preferenceClicked)
             capsule.preferences = newPreferences
-          this.setState({ capsule })
         } else {
-            capsule.preferences = [...capsule.preferences, e.target.value as Preferences]
-          this.setState({ capsule })
+          capsule.preferences = [...capsule.preferences, e.target.value as Preferences]
         }
         break;
       default:
         return
     }
+    this.setState({ capsule });
     console.log(this.state)
   }
 

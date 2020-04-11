@@ -1,5 +1,5 @@
 import React from 'react';
-import { Season } from './Enums';
+import { Season } from '../Enums';
 
 export default class SeasonField extends React.Component<{ selectedSeason: Season; onChange: (e: any) => void;  },{}> {
   render() {

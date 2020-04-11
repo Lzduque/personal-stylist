@@ -1,5 +1,5 @@
 import React from 'react';
-import { Preferences } from './Enums';
+import { Preferences } from '../Enums';
 
 export default class PreferencesField extends React.Component<{ selectedPreferences: Preferences[]; onChange: (e: any) => void; }, {}> {
   render() {

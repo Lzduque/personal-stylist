@@ -1,5 +1,5 @@
 import React from 'react';
-import { Colors } from './Enums';
+import { Colors } from '../Enums';
 
 export default class ColorsField extends React.Component<{ selectedColors: Colors[]; onChange: (e: any) => void; }, {}> {
   render() {
