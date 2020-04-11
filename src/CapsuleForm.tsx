@@ -4,14 +4,14 @@ import StyleField from './StyleField';
 import NumberOfOutfitsField from './NumberOfOutfitsField';
 import ColorsField from './ColorsField';
 import PreferencesField from './PreferencesField';
-import { Fields, Season, Style, NumberOfOutfits, Colors, Preferences } from './Enums';
+import { Fields, Season, Style, NumberOfOutfits, Colors, Preferences, Clothing } from './Enums';
 import Wardrobe from './Wardrobe';
 
 const server = "http://localhost:3000"
 
 interface IState {
   error: string,
-  wardrobe: [[string, number, [Colors]]] | null,
+  wardrobe: [[Clothing, number, [Colors]]] | null,
   capsule: {
     season: Season;
     style: Style;
@@ -130,8 +130,9 @@ export class CapsuleForm extends React.Component<{}, IState> {
       console.log(responseBody);
 
       if (!JSON.parse(responseBody).error) {
-        console.log("JSON.parse(responseBody)")
-        console.log(JSON.parse(responseBody))
+        console.log("JSON.parse(responseBody)");
+        console.log(JSON.parse(responseBody));
+
         this.setState({ wardrobe: JSON.parse(responseBody) });
         this.setState({ error: "" });
         return response.ok;
