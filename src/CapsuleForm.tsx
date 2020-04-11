@@ -1,4 +1,6 @@
 import React from 'react';
+import { SeasonField } from './SeasonField';
+
 const server = "http://localhost:3000"
 
 enum Fields {
@@ -9,7 +11,7 @@ enum Fields {
   Preferences = "preferences"
 }
 
-enum Season {
+export enum Season {
   AutumnWinter = "Autumn/Winter",
   SpringSummer = "Spring/Summer"
 }
@@ -216,17 +218,7 @@ export class CapsuleForm extends React.Component<{}, IState> {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <div className="season">
-            <label>
-              Season:
-              <br />
-              <select name="season" value={this.state.capsule.season} onChange={(e) => this.handleChange(e, Fields.Season)}>
-                {Object.keys(Season).map((k) =>
-                  <option key={"season-" + (Math.random()).toString()} value={k}>{Season[k as keyof typeof Season]}</option>
-                )}
-              </select>
-            </label>
-          </div>
+          <SeasonField selectedSeason={this.state.capsule.season} onChange={(e) => this.handleChange(e, Fields.Season)} />
           <br />
           <div className="style">
             <label>
