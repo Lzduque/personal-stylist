@@ -3,6 +3,7 @@ import { SeasonField } from './SeasonField';
 import { StyleField } from './StyleField';
 import { NumberOfOutfitsField } from './NumberOfOutfitsField';
 import { ColorsField } from './ColorsField';
+import { PreferencesField } from './PreferencesField';
 
 const server = "http://localhost:3000"
 
@@ -65,7 +66,7 @@ export enum Colors {
   LightPurple = "Light Purple"
 }
 
-enum Preferences {
+export enum Preferences {
   Skirts = "Skirts",
   Dresses = "Dresses",
   Pants = "Pants",
@@ -229,18 +230,7 @@ export class CapsuleForm extends React.Component<{}, IState> {
           <br />
           <ColorsField selectedColors={this.state.capsule.colors} onChange={(e) => this.handleChange(e, Fields.Colors)} />
           <br />
-          <div className="preferences">
-            <label>
-              Preferences:
-              <br />
-              <select name="preferences" multiple={true} value={this.state.capsule.preferences} onChange={(e) => this.handleChange(e, Fields.Preferences)} >
-                {Object.keys(Preferences).map(
-                  (k) => 
-                  <option key={"preferences-" + (Math.random()).toString()} value={k}>{Preferences[k as keyof typeof Preferences]}</option>
-                )}
-              </select>
-            </label>
-          </div>
+          <PreferencesField selectedPreferences={this.state.capsule.preferences} onChange={(e) => this.handleChange(e, Fields.Preferences)} />
           <br />
           <div className="error">
             {this.state.error}
