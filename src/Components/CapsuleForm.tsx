@@ -1,11 +1,11 @@
 import React from 'react';
 import SeasonField from './SeasonField';
-import StyleField from '../StyleField';
+import StyleField from './StyleField';
 import NumberOfOutfitsField from './NumberOfOutfitsField';
 import ColorsField from './ColorsField';
 import PreferencesField from './PreferencesField';
 import { Fields, Season, Style, NumberOfOutfits, Colors, Preferences, Clothing } from '../Enums';
-import Wardrobe from '../Wardrobe';
+import Wardrobe from './Wardrobe';
 
 const server = "http://localhost:3000"
 

@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { CapsuleForm } from './Components/CapsuleForm';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <header className="App-header">
