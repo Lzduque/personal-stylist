@@ -37,30 +37,25 @@ export class CapsuleForm extends React.Component<{}, IState> {
 
       }
     }
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.submitForm = this.submitForm.bind(this);
   }
 
-  public handleChange(e: React.ChangeEvent<HTMLSelectElement>, field: Fields): void {
+  public handleChange = (e: React.ChangeEvent<HTMLSelectElement>, field: Fields): void => {
     e.preventDefault();
     console.log("event");
     console.log(e.target.value);
 
+    const capsule = { ...this.state.capsule }
+
     switch (field) {
       case Fields.Season:
-        var capsule = { ...this.state.capsule }
         capsule.season = e.target.value as Season
         this.setState({ capsule })
         break;
       case Fields.Style:
-        var capsule = { ...this.state.capsule }
         capsule.style = e.target.value as Style
         this.setState({ capsule })
         break;
       case Fields.NumberOfOutfits:
-        var capsule = { ...this.state.capsule }
         capsule.numberOfOutfits = e.target.value as NumberOfOutfits
         this.setState({ capsule })
         break;
@@ -68,12 +63,10 @@ export class CapsuleForm extends React.Component<{}, IState> {
         const colorClicked = e.target.value as Colors
         if (this.state.capsule.colors.includes(colorClicked)) {
           const newColors = this.state.capsule.colors.filter((color) => color !== colorClicked)
-          var capsule = { ...this.state.capsule }
-          capsule.colors = newColors
+            capsule.colors = newColors
           this.setState({ capsule })
         } else {
-          var capsule = { ...this.state.capsule }
-          capsule.colors = [...capsule.colors,
+            capsule.colors = [...capsule.colors,
           e.target.value as Colors]
           this.setState({ capsule })
         }
@@ -82,12 +75,10 @@ export class CapsuleForm extends React.Component<{}, IState> {
         const preferenceClicked = e.target.value as Preferences
         if (this.state.capsule.preferences.includes(preferenceClicked)) {
           const newPreferences = this.state.capsule.preferences.filter((preference) => preference !== preferenceClicked)
-          var capsule = { ...this.state.capsule }
-          capsule.preferences = newPreferences
+            capsule.preferences = newPreferences
           this.setState({ capsule })
         } else {
-          var capsule = { ...this.state.capsule }
-          capsule.preferences = [...capsule.preferences, e.target.value as Preferences]
+            capsule.preferences = [...capsule.preferences, e.target.value as Preferences]
           this.setState({ capsule })
         }
         break;
@@ -104,11 +95,11 @@ export class CapsuleForm extends React.Component<{}, IState> {
 
     console.log("state to submit");
     console.log(this.state.capsule);
-    this.setState({ wardrobe: null })
+    await this.setState({ wardrobe: null });
     await this.submitForm();
   }
 
-  private async submitForm(): Promise<boolean> {
+  private submitForm = async (): Promise<boolean> => {
     const encodedRequest = btoa(JSON.stringify(this.state.capsule)).replace(/\//g, '_').replace(/\+/g, '-')
     try {
       console.log("encodedRequest");
@@ -119,8 +110,8 @@ export class CapsuleForm extends React.Component<{}, IState> {
           Accept: "application/json"
         }),
       })
-      if (response.status === 400) {
-        console.log("Status 400");
+      if (response.status !== 200) {
+        console.log(`Status ${response.status}`);
         return false;
       }
       const responseBody = await response.text();
@@ -133,11 +124,10 @@ export class CapsuleForm extends React.Component<{}, IState> {
         console.log("JSON.parse(responseBody)");
         console.log(JSON.parse(responseBody));
 
-        this.setState({ wardrobe: JSON.parse(responseBody) });
-        this.setState({ error: "" });
+        await this.setState({ wardrobe: JSON.parse(responseBody), error: "" });
         return response.ok;
       } else {
-        this.setState({ error: JSON.parse(responseBody).message });
+        await this.setState({ error: JSON.parse(responseBody).message });
         return false;
       }
     } catch (ex) {
