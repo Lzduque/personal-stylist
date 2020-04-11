@@ -1,6 +1,7 @@
 import React from 'react';
 import { SeasonField } from './SeasonField';
 import { StyleField } from './StyleField';
+import { NumberOfOutfitsField } from './NumberOfOutfitsField';
 
 const server = "http://localhost:3000"
 
@@ -22,7 +23,7 @@ export enum Style {
   Office = "Office"
 }
 
-enum NumberOfOutfits {
+export enum NumberOfOutfits {
   From10to20 = "From 10 to 20",
   From21to30 = "From 21 to 30",
   From31to40 = "From 31 to 40",
@@ -223,17 +224,7 @@ export class CapsuleForm extends React.Component<{}, IState> {
           <br />
           <StyleField selectedStyle={this.state.capsule.style} onChange={(e) => this.handleChange(e, Fields.Style)} />
           <br />
-          <div className="numberOfOutfits">
-            <label>
-              Number of Outfits:
-              <br />
-              <select name="numberOfOutfits" value={this.state.capsule.numberOfOutfits} onChange={(e) => this.handleChange(e, Fields.NumberOfOutfits)} >
-                {Object.keys(NumberOfOutfits).map((k) =>
-                  <option key={"numberOfOutfits-" + (Math.random()).toString()} value={k}>{NumberOfOutfits[k as keyof typeof NumberOfOutfits]}</option>
-                )}
-              </select>
-            </label>
-          </div>
+          <NumberOfOutfitsField selectedNumberOfOutfits={this.state.capsule.numberOfOutfits} onChange={(e) => this.handleChange(e, Fields.NumberOfOutfits)} />
           <br />
           <div className="colors">
             <label>

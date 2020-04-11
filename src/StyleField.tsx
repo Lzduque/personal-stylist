@@ -4,7 +4,6 @@ import { Style } from './CapsuleForm';
 export class StyleField extends React.Component<{ selectedStyle: Style; onChange: (e: any) => void; }, {}> {
   render() {
     return (
-
       <div className="style">
         <label>
           Style:
