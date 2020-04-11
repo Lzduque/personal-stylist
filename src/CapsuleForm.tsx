@@ -169,7 +169,7 @@ export class CapsuleForm extends React.Component<{}, IState> {
 
     console.log("state to submit");
     console.log(this.state.capsule);
-
+    this.setState({ wardrobe: [] })
     await this.submitForm();
   }
 
