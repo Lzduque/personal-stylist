@@ -39,7 +39,7 @@ export class CapsuleForm extends React.Component<{}, IState> {
     }
   }
 
-  public handleChange = (e: React.ChangeEvent<HTMLSelectElement>, field: Fields): void => {
+  public handleChange = (field: Fields): any => (e: React.ChangeEvent<HTMLSelectElement>): void => {
     e.preventDefault();
     console.log("event");
     console.log(e.target.value);
@@ -140,15 +140,15 @@ export class CapsuleForm extends React.Component<{}, IState> {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <SeasonField selectedSeason={this.state.capsule.season} onChange={(e) => this.handleChange(e, Fields.Season)} />
+          <SeasonField selectedSeason={this.state.capsule.season} onChange={this.handleChange(Fields.Season)} />
           <br />
-          <StyleField selectedStyle={this.state.capsule.style} onChange={(e) => this.handleChange(e, Fields.Style)} />
+          <StyleField selectedStyle={this.state.capsule.style} onChange={this.handleChange(Fields.Style)} />
           <br />
-          <NumberOfOutfitsField selectedNumberOfOutfits={this.state.capsule.numberOfOutfits} onChange={(e) => this.handleChange(e, Fields.NumberOfOutfits)} />
+          <NumberOfOutfitsField selectedNumberOfOutfits={this.state.capsule.numberOfOutfits} onChange={this.handleChange(Fields.NumberOfOutfits)} />
           <br />
-          <ColorsField selectedColors={this.state.capsule.colors} onChange={(e) => this.handleChange(e, Fields.Colors)} />
+          <ColorsField selectedColors={this.state.capsule.colors} onChange={this.handleChange(Fields.Colors)} />
           <br />
-          <PreferencesField selectedPreferences={this.state.capsule.preferences} onChange={(e) => this.handleChange(e, Fields.Preferences)} />
+          <PreferencesField selectedPreferences={this.state.capsule.preferences} onChange={this.handleChange(Fields.Preferences)} />
           <br />
           <div className="error">
             {this.state.error}
