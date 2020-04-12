@@ -1,100 +1,118 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SeasonField from './SeasonField';
 import StyleField from './StyleField';
 import NumberOfOutfitsField from './NumberOfOutfitsField';
 import ColorsField from './ColorsField';
 import PreferencesField from './PreferencesField';
 import { Fields, Season, Style, NumberOfOutfits, Colors, Preferences, Clothing } from '../Enums';
-import Wardrobe from './Wardrobe';
+import CWardrobe from './Wardrobe';
 
 const server = "http://localhost:3000"
 
-interface IState {
-  error: string,
-  wardrobe: [[Clothing, number, [Colors]]] | null,
-  capsule: {
-    season: Season;
-    style: Style;
-    numberOfOutfits: NumberOfOutfits;
-    colors: Colors[];
-    preferences: Preferences[];
-  }
+interface Error {
+  error: string;
 }
 
-export class CapsuleForm extends React.Component<{}, IState> {
-  constructor(props: {}) {
-    super(props);
+// export interface Wardrobe {
+//   wardrobe: [[Clothing, number, [Colors]]] | undefined;
+// }
 
-    this.state = {
-      error: "",
-      wardrobe: null,
-      capsule: {
-        season: "AutumnWinter" as Season,
-        style: "Casual" as Style,
-        numberOfOutfits: "From10to20" as NumberOfOutfits,
-        colors: [],
-        preferences: []
+export type Wardrobe = [[Clothing, number, [Colors]]] | undefined;
 
-      }
-    }
-  }
+interface Capsule {
+  season: Season;
+  style: Style;
+  numberOfOutfits: NumberOfOutfits;
+  colors: Colors[];
+  preferences: Preferences[];
+}
 
-  public handleChange = (field: Fields): any => (e: React.ChangeEvent<HTMLSelectElement>): void => {
+const CapsuleForm = () => {
+
+  const [error, setError] = useState<Error>();
+  const [wardrobe, setWardrobe] = useState<Wardrobe>();
+  const [capsule, setCapsule] = useState<Capsule>({
+    season: "AutumnWinter" as Season,
+    style: "Casual" as Style,
+    numberOfOutfits: "From10to20" as NumberOfOutfits,
+    colors: [],
+    preferences: []
+  })
+
+  const handleChange = (field: Fields): any => (e: React.ChangeEvent<HTMLSelectElement>): void => {
     e.preventDefault();
     console.log("event");
     console.log(e.target.value);
 
-    const capsule = { ...this.state.capsule }
-
     switch (field) {
       case Fields.Season:
-        capsule.season = e.target.value as Season
+        setCapsule({
+          ...capsule,
+          season: e.target.value as Season
+        })
         break;
       case Fields.Style:
-        capsule.style = e.target.value as Style
+        setCapsule({
+          ...capsule,
+          style: e.target.value as Style
+        })
         break;
       case Fields.NumberOfOutfits:
-        capsule.numberOfOutfits = e.target.value as NumberOfOutfits
+        setCapsule({
+          ...capsule,
+          numberOfOutfits: e.target.value as NumberOfOutfits
+        })
         break;
       case Fields.Colors:
         const colorClicked = e.target.value as Colors
-        if (this.state.capsule.colors.includes(colorClicked)) {
-          const newColors = this.state.capsule.colors.filter((color) => color !== colorClicked)
-            capsule.colors = newColors
+        if (capsule.colors.includes(colorClicked)) {
+          const newColors = capsule.colors.filter((color) => color !== colorClicked)
+          setCapsule({
+            ...capsule,
+            colors: newColors
+          })
         } else {
-          capsule.colors = [...capsule.colors,
-          e.target.value as Colors]
+          setCapsule({
+            ...capsule,
+            colors: [...capsule.colors,
+            e.target.value as Colors]
+          })
         }
         break;
       case Fields.Preferences:
         const preferenceClicked = e.target.value as Preferences
-        if (this.state.capsule.preferences.includes(preferenceClicked)) {
-          const newPreferences = this.state.capsule.preferences.filter((preference) => preference !== preferenceClicked)
-            capsule.preferences = newPreferences
+        if (capsule.preferences.includes(preferenceClicked)) {
+          const newPreferences = capsule.preferences.filter((preference) => preference !== preferenceClicked)
+          setCapsule({
+            ...capsule,
+            preferences: newPreferences
+          })
         } else {
-          capsule.preferences = [...capsule.preferences, e.target.value as Preferences]
+          setCapsule({
+            ...capsule,
+            preferences: [...capsule.preferences,
+            e.target.value as Preferences]
+          })
         }
         break;
       default:
         return
     }
-    this.setState({ capsule });
-    console.log(this.state)
   }
 
-  public handleSubmit = async (
+  const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault();
 
     console.log("state to submit");
-    console.log(this.state.capsule);
-    await this.setState({ wardrobe: null });
-    await this.submitForm();
+    console.log(capsule);
+    await setWardrobe(undefined);
+    await submitForm();
   }
 
-  private submitForm = async (): Promise<boolean> => {
-    const encodedRequest = btoa(JSON.stringify(this.state.capsule)).replace(/\//g, '_').replace(/\+/g, '-')
+  const submitForm = async (): Promise<boolean> => {
+    const encodedRequest = btoa(JSON.stringify(capsule)).replace(/\//g, '_').replace(/\+/g, '-')
     try {
       console.log("encodedRequest");
       console.log(encodedRequest);
@@ -118,10 +136,11 @@ export class CapsuleForm extends React.Component<{}, IState> {
         console.log("JSON.parse(responseBody)");
         console.log(JSON.parse(responseBody));
 
-        await this.setState({ wardrobe: JSON.parse(responseBody), error: "" });
+        await setWardrobe(JSON.parse(responseBody))
+        await setError(undefined);
         return response.ok;
       } else {
-        await this.setState({ error: JSON.parse(responseBody).message });
+        await setError(JSON.parse(responseBody).message);
         return false;
       }
     } catch (ex) {
@@ -130,32 +149,32 @@ export class CapsuleForm extends React.Component<{}, IState> {
     }
   }
 
-  public render(): JSX.Element {
-    return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <SeasonField selectedSeason={this.state.capsule.season} onChange={this.handleChange(Fields.Season)} />
-          <br />
-          <StyleField selectedStyle={this.state.capsule.style} onChange={this.handleChange(Fields.Style)} />
-          <br />
-          <NumberOfOutfitsField selectedNumberOfOutfits={this.state.capsule.numberOfOutfits} onChange={this.handleChange(Fields.NumberOfOutfits)} />
-          <br />
-          <ColorsField selectedColors={this.state.capsule.colors} onChange={this.handleChange(Fields.Colors)} />
-          <br />
-          <PreferencesField selectedPreferences={this.state.capsule.preferences} onChange={this.handleChange(Fields.Preferences)} />
-          <br />
-          <div className="error">
-            {this.state.error}
-          </div>
-          <button type="submit">
-            Check your new Capsule Wardrobe!
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <SeasonField selectedSeason={capsule.season} onChange={handleChange(Fields.Season)} />
+        <br />
+        <StyleField selectedStyle={capsule.style} onChange={handleChange(Fields.Style)} />
+        <br />
+        <NumberOfOutfitsField selectedNumberOfOutfits={capsule.numberOfOutfits} onChange={handleChange(Fields.NumberOfOutfits)} />
+        <br />
+        <ColorsField selectedColors={capsule.colors} onChange={handleChange(Fields.Colors)} />
+        <br />
+        <PreferencesField selectedPreferences={capsule.preferences} onChange={handleChange(Fields.Preferences)} />
+        <br />
+        <div className="error">
+          {error}
+        </div>
+        <button type="submit">
+          Check your new Capsule Wardrobe!
           </button>
-        </form>
-        { this.state.wardrobe
-          ? <Wardrobe wardrobe={this.state.wardrobe} />
+      </form>
+        { wardrobe
+          ? <CWardrobe wardrobe={wardrobe} />
           : <br />
         }
       </div>
     )
   }
-}
+
+export default CapsuleForm;

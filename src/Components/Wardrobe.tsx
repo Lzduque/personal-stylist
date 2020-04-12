@@ -1,11 +1,12 @@
 import React from 'react';
 import { Colors, Clothing } from '../Enums';
+import { Wardrobe } from './CapsuleForm';
 
 interface IProps {
-  wardrobe: [[Clothing, number, [Colors]]] | null
+  wardrobe: Wardrobe
 }
 
-const Wardrobe = ({wardrobe}: IProps) => {
+const CWardrobe = ({ wardrobe }: IProps) => {
   return (
     <div className="wardrobe">
       {wardrobe!.map((clothe) =>
@@ -17,4 +18,4 @@ const Wardrobe = ({wardrobe}: IProps) => {
   )
 }
 
-export default Wardrobe;
+export default CWardrobe;

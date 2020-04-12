@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { CapsuleForm } from './Components/CapsuleForm';
+import CapsuleForm from './Components/CapsuleForm';
 
 const App = () => {
   return (
