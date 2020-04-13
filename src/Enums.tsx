@@ -51,7 +51,7 @@ export enum Colors {
   LightPink = "Light Pink",
   DarkRed = "Dark Red",
   LightRed = "Light Red",
-  DarkOrgange = "Dark Organge",
+  DarkOrange = "Dark Orange",
   LightOrange = "Light Orange",
   DarkPurple = "Dark Purple",
   LightPurple = "Light Purple"
