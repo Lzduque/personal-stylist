@@ -189,6 +189,7 @@ const CapsuleForm = () => {
           </button>
         </div>
       </form>
+      <br />
       {wardrobe
         ? <CWardrobe wardrobe={wardrobe} />
         : <br />
