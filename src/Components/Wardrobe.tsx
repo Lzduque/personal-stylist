@@ -16,7 +16,7 @@ const CWardrobe = ({ wardrobe }: IProps) => {
             {wardrobe!.map((clothe) =>
               <div key={"clothing-" + (Math.random()).toString()} className="mw9 center">
                 <div className="cf">
-                  <div className="fl w-100 w-20-ns pa2">
+                  <div className="fl w-100 w-15-ns pa2">
                     <div className="bg-white ">
                       {Clothing[clothe[0] as keyof typeof Clothing]}
                     </div>
@@ -26,7 +26,7 @@ const CWardrobe = ({ wardrobe }: IProps) => {
                       {clothe[1]}
                     </div>
                   </div>
-                  <div className="fl w-50 w-70-ns pa2 flex">
+                  <div className="fl w-50 w-75-ns pa2 flex">
                     {clothe[2].map(colors => 
                       <div className="bg-white w-20 mr2">
                       {Colors[colors as keyof typeof Colors] + ' '}
