@@ -152,29 +152,49 @@ const CapsuleForm = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <SeasonField selectedSeason={capsule.season} onChange={handleChange(Fields.Season)} />
-        <br />
-        <StyleField selectedStyle={capsule.style} onChange={handleChange(Fields.Style)} />
-        <br />
-        <NumberOfOutfitsField selectedNumberOfOutfits={capsule.numberOfOutfits} onChange={handleChange(Fields.NumberOfOutfits)} />
-        <br />
-        <ColorsField selectedColors={capsule.colors} onChange={handleChange(Fields.Colors)} />
-        <br />
-        <PreferencesField selectedPreferences={capsule.preferences} onChange={handleChange(Fields.Preferences)} />
-        <br />
-        <div className="error">
-          {error}
+        <div className="mw9 center ph3-ns" >
+          <div className="cf ph2-ns" >
+            <div className="fl w-100 w-40-ns pa2">
+              <div className="bg-white-40 pa4 br4 ">
+                <SeasonField selectedSeason={capsule.season} onChange={handleChange(Fields.Season)} />
+                <br />
+                <StyleField selectedStyle={capsule.style} onChange={handleChange(Fields.Style)} />
+                <br />
+                <NumberOfOutfitsField selectedNumberOfOutfits={capsule.numberOfOutfits} onChange={handleChange(Fields.NumberOfOutfits)} />
+                <br />
+                <div className="" >
+                  <PreferencesField selectedPreferences={capsule.preferences} onChange={handleChange(Fields.Preferences)} />
+                </div>
+              </div>
+            </div>
+            <div className="fl w-100 w-60-ns pa2">
+              <div className="bg-white-40 pa4 br4">
+                <ColorsField selectedColors={capsule.colors} onChange={handleChange(Fields.Colors)} />
+              </div>
+            </ div>
+          </div>
+        </ div>
+        <div className="tc">
+          {error
+            ? <div className="error tc ba b--dark-red bg-light-red white pv1 ph1 dib-ns ma3 center ">
+              {error}
+            </div >
+            : <br />
+          }
         </div>
-        <button type="submit">
-          Check your new Capsule Wardrobe!
+        <br />
+        <div className="tc" >
+          <button type="submit" className="bw0 br2 bg-blue pv2 ph3 washed-blue fw5 tc ttu tracked bg-animate hover-bg-dark-gray shadow-5">
+            Check your new Capsule Wardrobe!
           </button>
+        </div>
       </form>
-        { wardrobe
-          ? <CWardrobe wardrobe={wardrobe} />
-          : <br />
-        }
-      </div>
-    )
-  }
+      {wardrobe
+        ? <CWardrobe wardrobe={wardrobe} />
+        : <br />
+      }
+    </div>
+  )
+}
 
 export default CapsuleForm;

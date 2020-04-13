@@ -8,11 +8,10 @@ interface IProps {
 
 const NumberOfOutfitsField = ({selectedNumberOfOutfits, onChange}: IProps) => {
   return (
-    <div className="numberOfOutfits">
-      <label>
-        Number of Outfits:
-          <br />
-        <select name="numberOfOutfits" value={selectedNumberOfOutfits} onChange={onChange} >
+    <div className="numberOfOutfits mt0 mb3-ns">
+      <label className="fw7 f6" >
+        <h3 className="mt0" >Number of Outfits:</h3>
+        <select name="numberOfOutfits" className="w-100 f6 h2 bg-white ma1 b--silver" value={selectedNumberOfOutfits} onChange={onChange} >
           {Object.keys(NumberOfOutfits).map((k) =>
             <option key={"numberOfOutfits-" + (Math.random()).toString()} value={k}>{NumberOfOutfits[k as keyof typeof NumberOfOutfits]}</option>
           )}
