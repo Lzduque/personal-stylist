@@ -187,10 +187,12 @@ const CapsuleForm = () => {
         </div>
       </form>
       <br />
-      {wardrobe
+      <div className="container flex" >
+              {wardrobe
         ? <CWardrobe wardrobe={wardrobe} />
         : <br />
       }
+      </div>
     </div>
   )
 }
