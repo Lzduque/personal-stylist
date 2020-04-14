@@ -152,26 +152,23 @@ const CapsuleForm = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div className="mw9 center ph3-ns" >
-          <div className="cf ph2-ns" >
-            <div className="fl w-100 w-40-ns pa2">
-              <div className="bg-white-40 pa4 br4 ">
-                <SeasonField selectedSeason={capsule.season} onChange={handleChange(Fields.Season)} />
-                <br />
-                <StyleField selectedStyle={capsule.style} onChange={handleChange(Fields.Style)} />
-                <br />
-                <NumberOfOutfitsField selectedNumberOfOutfits={capsule.numberOfOutfits} onChange={handleChange(Fields.NumberOfOutfits)} />
-                <br />
-                <div className="" >
-                  <PreferencesField selectedPreferences={capsule.preferences} onChange={handleChange(Fields.Preferences)} />
-                </div>
-              </div>
+        <div className="container flex flex-row flex-wrap justify-around mw9 content-center center ph4-ns " >
+          <div className="box tc bg-white-40 w5 mw7 br4 pa4 ma2">
+            <SeasonField selectedSeason={capsule.season} onChange={handleChange(Fields.Season)} />
             </div>
-            <div className="fl w-100 w-60-ns pa2">
-              <div className="bg-white-40 pa4 br4">
-                <ColorsField selectedColors={capsule.colors} onChange={handleChange(Fields.Colors)} />
-              </div>
-            </ div>
+          <div className="box tc bg-white-40 w5 mw7 br4 pa4 ma2">
+            <StyleField selectedStyle={capsule.style} onChange={handleChange(Fields.Style)} />
+          </div>
+          <div className="box tc bg-white-40 w5 mw7 br4 pa4 ma2">
+            <NumberOfOutfitsField selectedNumberOfOutfits={capsule.numberOfOutfits} onChange={handleChange(Fields.NumberOfOutfits)} />
+          </div>
+          <div className="box tc bg-white-40 w5 mw7 br4 pa4 ma2">
+            <div className="" >
+              <PreferencesField selectedPreferences={capsule.preferences} onChange={handleChange(Fields.Preferences)} />
+            </div>
+          </div>
+          <div className="box tc bg-white-40 w7 mw7 br4 pa4 ma2">
+            <ColorsField selectedColors={capsule.colors} onChange={handleChange(Fields.Colors)} />
           </div>
         </ div>
         <div className="tc">

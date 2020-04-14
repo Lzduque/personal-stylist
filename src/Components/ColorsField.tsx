@@ -19,7 +19,7 @@ const ColorsField = ({selectedColors, onChange}: IProps) => {
           <li>Neutrals: 1 - 3</li>
           <li>Accent colours: 2 - 5</li>
         </ul>
-        <select name="colors" className="bg-white ma1 b--silver w-100 h5-ns ph3 pv2 " multiple={true} value={selectedColors} onChange={onChange} >
+        <select name="colors" className="bg-white ma1 b--silver w-100 h4-ns ph3 pv2 " multiple={true} value={selectedColors} onChange={onChange} >
           {Object.keys(Colors).map(
             (k) =>
               <option key={"color-neutrals-" + (Math.random()).toString()} value={k}>{Colors[k as keyof typeof Colors]}</option>
