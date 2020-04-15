@@ -1,22 +1,35 @@
-import React from 'react';
-import { NumberOfOutfits } from '../Enums';
+import React, { useEffect } from 'react';
+import { NumberOfOutfits, Fields } from '../Enums';
+import Select from 'react-select';
 
 interface IProps {
   selectedNumberOfOutfits: NumberOfOutfits,
-  onChange: any
+  updateField: any
 }
 
-const NumberOfOutfitsField = ({selectedNumberOfOutfits, onChange}: IProps) => {
+const options = Object.keys(NumberOfOutfits).map((k) =>
+  ({ label: NumberOfOutfits[k as keyof typeof NumberOfOutfits], value: k })
+)
+const NumberOfOutfitsField = ({ selectedNumberOfOutfits, updateField}: IProps) => {
+  const handleChange = (selectedOption: any) => {
+    updateField(Fields.NumberOfOutfits, selectedOption.value);
+    console.log(`Option selected:`, selectedOption);
+  };
+
+  const value = { label: NumberOfOutfits[selectedNumberOfOutfits as string as keyof typeof NumberOfOutfits], value: selectedNumberOfOutfits as string };
+
+  useEffect(() => {
+    console.log(selectedNumberOfOutfits)
+  }, [selectedNumberOfOutfits])
+
   return (
     <div className="numberOfOutfits mt0 mb3-ns">
-      <label className="fw7 f6" >
-        <h3 className="mt0" >Number of Outfits:</h3>
-        <select name="numberOfOutfits" className="w-100 f6 h2 bg-white ma1 b--silver" value={selectedNumberOfOutfits} onChange={onChange} >
-          {Object.keys(NumberOfOutfits).map((k) =>
-            <option key={"numberOfOutfits-" + (Math.random()).toString()} value={k}>{NumberOfOutfits[k as keyof typeof NumberOfOutfits]}</option>
-          )}
-        </select>
-      </label>
+      <h3 className="mt0" >Number of Outfits:</h3>
+      <Select
+        value={value}
+        onChange={handleChange}
+        options={options}
+      />
     </div>
   )
 }

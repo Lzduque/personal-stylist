@@ -39,32 +39,31 @@ const CapsuleForm = () => {
     preferences: []
   })
 
-  const handleChange = (field: Fields): any => (e: React.ChangeEvent<HTMLSelectElement>): void => {
-    e.preventDefault();
-    console.log("event");
-    console.log(e.target.value);
+  const updateField = (field: Fields, value: any): any => {
+    console.log("value");
+    console.log(value);
 
     switch (field) {
       case Fields.Season:
         setCapsule({
           ...capsule,
-          season: e.target.value as Season
+          season: value as Season
         })
         break;
       case Fields.Style:
         setCapsule({
           ...capsule,
-          style: e.target.value as Style
+          style: value as Style
         })
         break;
       case Fields.NumberOfOutfits:
         setCapsule({
           ...capsule,
-          numberOfOutfits: e.target.value as NumberOfOutfits
+          numberOfOutfits: value as NumberOfOutfits
         })
         break;
       case Fields.Colors:
-        const colorClicked = e.target.value as Colors
+        const colorClicked = value as Colors
         if (capsule.colors.includes(colorClicked)) {
           const newColors = capsule.colors.filter((color) => color !== colorClicked)
           setCapsule({
@@ -75,12 +74,12 @@ const CapsuleForm = () => {
           setCapsule({
             ...capsule,
             colors: [...capsule.colors,
-            e.target.value as Colors]
+            value as Colors]
           })
         }
         break;
       case Fields.Preferences:
-        const preferenceClicked = e.target.value as Preferences
+        const preferenceClicked = value as Preferences
         if (capsule.preferences.includes(preferenceClicked)) {
           const newPreferences = capsule.preferences.filter((preference) => preference !== preferenceClicked)
           setCapsule({
@@ -91,7 +90,7 @@ const CapsuleForm = () => {
           setCapsule({
             ...capsule,
             preferences: [...capsule.preferences,
-            e.target.value as Preferences]
+            value as Preferences]
           })
         }
         break;
@@ -154,21 +153,21 @@ const CapsuleForm = () => {
       <form onSubmit={handleSubmit}>
         <div className="container flex flex-row flex-wrap justify-around mw9 content-center center ph4-ns " >
           <div className="box tc bg-white-40 w5 mw7 br4 pa4 ma2">
-            <SeasonField selectedSeason={capsule.season} onChange={handleChange(Fields.Season)} />
+            <SeasonField selectedSeason={capsule.season} updateField={updateField} />
             </div>
           <div className="box tc bg-white-40 w5 mw7 br4 pa4 ma2">
-            <StyleField selectedStyle={capsule.style} onChange={handleChange(Fields.Style)} />
+            <StyleField selectedStyle={capsule.style} updateField={updateField} />
           </div>
           <div className="box tc bg-white-40 w5 mw7 br4 pa4 ma2">
-            <NumberOfOutfitsField selectedNumberOfOutfits={capsule.numberOfOutfits} onChange={handleChange(Fields.NumberOfOutfits)} />
+            <NumberOfOutfitsField selectedNumberOfOutfits={capsule.numberOfOutfits} updateField={updateField} />
           </div>
           <div className="box tc bg-white-40 w5 mw7 br4 pa4 ma2">
             <div className="" >
-              <PreferencesField selectedPreferences={capsule.preferences} onChange={handleChange(Fields.Preferences)} />
+              <PreferencesField selectedPreferences={capsule.preferences} updateField={updateField} />
             </div>
           </div>
           <div className="box tc bg-white-40 w7 mw7 br4 pa4 ma2">
-            <ColorsField selectedColors={capsule.colors} onChange={handleChange(Fields.Colors)} />
+            <ColorsField selectedColors={capsule.colors} updateField={updateField} />
           </div>
         </ div>
         <div className="tc">
