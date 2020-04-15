@@ -63,36 +63,16 @@ const CapsuleForm = () => {
         })
         break;
       case Fields.Colors:
-        const colorClicked = value as Colors
-        if (capsule.colors.includes(colorClicked)) {
-          const newColors = capsule.colors.filter((color) => color !== colorClicked)
-          setCapsule({
-            ...capsule,
-            colors: newColors
-          })
-        } else {
-          setCapsule({
-            ...capsule,
-            colors: [...capsule.colors,
-            value as Colors]
-          })
-        }
+        setCapsule({
+          ...capsule,
+          colors: value as Colors[]
+        })
         break;
       case Fields.Preferences:
-        const preferenceClicked = value as Preferences
-        if (capsule.preferences.includes(preferenceClicked)) {
-          const newPreferences = capsule.preferences.filter((preference) => preference !== preferenceClicked)
-          setCapsule({
-            ...capsule,
-            preferences: newPreferences
-          })
-        } else {
-          setCapsule({
-            ...capsule,
-            preferences: [...capsule.preferences,
-            value as Preferences]
-          })
-        }
+        setCapsule({
+          ...capsule,
+          preferences: value as Preferences[]
+        })
         break;
       default:
         return

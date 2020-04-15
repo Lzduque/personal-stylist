@@ -1,23 +1,41 @@
-import React from 'react';
-import { Preferences } from '../Enums';
+import React, { useEffect } from 'react';
+import { Preferences, Fields } from '../Enums';
+import Select from 'react-select';
 
 interface IProps {
   selectedPreferences: Preferences[],
   updateField: any
 }
 
+const options = Object.keys(Preferences).map((k) =>
+  ({ label: Preferences[k as keyof typeof Preferences], value: k })
+)
+
 const PreferencesField = ({ selectedPreferences, updateField}: IProps) => {
+  const handleChange = (selectedOption: any) => {
+    updateField(Fields.Preferences, selectedOption.map((x: any) => x.value));
+    console.log(`Option selected:`, selectedOption);
+  };
+
+  const value = selectedPreferences.map((selected) => 
+    ({ label: Preferences[selected as string as keyof typeof Preferences], value: selected as string })
+  );
+
+  useEffect(() => {
+    console.log(selectedPreferences)
+  }, [selectedPreferences])
+
   return (
     <div className="preferences mt0 mb3-ns">
-      <label className="fw7 f6" >
-        <h3 className="mt0" >Preferences:</h3>
-        <select name="preferences" className="bg-white ma1 b--silver w-100 h3 h4-ns ph3 pv2 " multiple={true} value={selectedPreferences} onChange={updateField} >
-          {Object.keys(Preferences).map(
-            (k) =>
-              <option key={"preferences-" + (Math.random()).toString()} value={k}>{Preferences[k as keyof typeof Preferences]}</option>
-          )}
-        </select>
-      </label>
+      <h3 className="mt0" >Preferences:</h3>
+      <Select
+        closeMenuOnSelect={false}
+        value={value}
+        onChange={handleChange}
+        isClearable
+        isMulti
+        options={options}
+      />
     </div>
   )
 }
