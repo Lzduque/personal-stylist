@@ -132,21 +132,21 @@ const CapsuleForm = () => {
     <div>
       <form onSubmit={handleSubmit}>
         <div className="container flex flex-row flex-wrap justify-around mw9 content-center center ph4-ns " >
-          <div className="box tc bg-white-40 w5 mw7 br4 pa4 ma2">
+          <div className="box tc bg-white-40 w-100 w-30-l br4 pa4 ma2">
             <SeasonField selectedSeason={capsule.season} updateField={updateField} />
             </div>
-          <div className="box tc bg-white-40 w5 mw7 br4 pa4 ma2">
+          <div className="box tc bg-white-40 w-100 w-30-l br4 pa4 ma2">
             <StyleField selectedStyle={capsule.style} updateField={updateField} />
           </div>
-          <div className="box tc bg-white-40 w5 mw7 br4 pa4 ma2">
+          <div className="box tc bg-white-40 w-100 w-30-l br4 pa4 ma2">
             <NumberOfOutfitsField selectedNumberOfOutfits={capsule.numberOfOutfits} updateField={updateField} />
           </div>
-          <div className="box tc bg-white-40 w5 mw7 br4 pa4 ma2">
+          <div className="box tc bg-white-40 w-100 w-30-l br4 pa4 ma2">
             <div className="" >
               <PreferencesField selectedPreferences={capsule.preferences} updateField={updateField} />
             </div>
           </div>
-          <div className="box tc bg-white-40 w7 mw7 br4 pa4 ma2">
+          <div className="box tc bg-white-40 w-100 w-60-l  br4 pa4 ma2">
             <ColorsField selectedColors={capsule.colors} updateField={updateField} />
           </div>
         </ div>
