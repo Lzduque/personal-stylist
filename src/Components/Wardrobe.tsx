@@ -16,25 +16,25 @@ const CWardrobe = ({ wardrobe }: IProps) => {
         </p>
         <table className="center">
           <tr>
-            <th className="tl pa2 bg-white-20" >
+            <th className="tl white pa2 bg-white-20" >
               Clothes
             </th>
-            <th className="mh2 pa2 bg-white-20">
+            <th className="mh2 white pa2 bg-white-20">
               #
             </th>
-            <th className="flex flex-row flex-wrap pa2 bg-white-20" >
+            <th className="flex white flex-row flex-wrap pa2 bg-white-20" >
               Colors
             </th>
           </tr>
           {wardrobe!.map((clothe) =>
             <tr key={"clothing-" + (Math.random()).toString()} className="">
-              <td className="pa2 bg-white-20">
+              <td className="white pa2 bg-white-20">
                 {Clothing[clothe[0] as keyof typeof Clothing]}
               </td>
-              <td className="mh2 pa2 bg-white-20">
+              <td className="white mh2 pa2 bg-white-20">
                 {clothe[1]}
               </td>
-              <td className="flex flex-row flex-wrap pa2 bg-white-20" >
+              <td className="flex flex-row flex-wrap white pa2 bg-white-20" >
                 {clothe[2].map(colors =>
                   <div className="mr2">
                     {Colors[colors as keyof typeof Colors] + ' '}
