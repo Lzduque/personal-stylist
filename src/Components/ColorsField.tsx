@@ -66,8 +66,10 @@ const colourStyles = {
 
 const ColorsField = ({ selectedColors, updateField }: IProps) => {
   const handleChange = (selectedOption: any) => {
-    updateField(Fields.Colors, selectedOption.map((x: any) => x.value));
-    console.log(`Option selected:`, selectedOption);
+    const selectedColors = selectedOption 
+                            ? selectedOption.map((x: any) => x.value)
+                            : null;
+    updateField(Fields.Colors, selectedColors);
   };
 
   const value = selectedColors.map((selected) =>

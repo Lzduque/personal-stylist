@@ -13,13 +13,17 @@ const options = Object.keys(Preferences).map((k) =>
 
 const PreferencesField = ({ selectedPreferences, updateField}: IProps) => {
   const handleChange = (selectedOption: any) => {
-    updateField(Fields.Preferences, selectedOption.map((x: any) => x.value));
-    console.log(`Option selected:`, selectedOption);
+    const preferences = selectedOption
+                        ? selectedOption.map((x: any) => x.value)
+                        : null;
+    updateField(Fields.Preferences, preferences);
   };
 
-  const value = selectedPreferences.map((selected) => 
-    ({ label: Preferences[selected as string as keyof typeof Preferences], value: selected as string })
-  );
+  const value = selectedPreferences
+                ? selectedPreferences.map((selected) => 
+                ({ label: Preferences[selected as string as keyof typeof Preferences], value: selected as string })
+                ) 
+                : null;
 
   useEffect(() => {
     console.log(selectedPreferences)
