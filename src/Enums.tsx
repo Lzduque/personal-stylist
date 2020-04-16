@@ -57,6 +57,29 @@ export enum Colors {
   LightPurple = "Light Purple"
 }
 
+export enum HexColor {
+  White = "#fff",
+  OffWhite = "#f5f5f5",
+  Beige = "#f5f0da",
+  Brown = "#5e3200",
+  Black = "#000",
+  Navy = "#000645",
+  Blue = "#000ea1",
+  LightBlue = "#63c1ff",
+  DarkGreen = "#005c03",
+  LightGreen = "#b6ffa3",
+  DarkYellow = "#ada800",
+  LightYellow = "#fffca3",
+  DarkPink = "#940060",
+  LightPink = "#ff82d3",
+  DarkRed = "#6b0000",
+  LightRed = "#ff8282",
+  DarkOrange = "#a84600",
+  LightOrange = "#ffac70",
+  DarkPurple = "#45006e",
+  LightPurple = "#d387ff"
+}
+
 export enum Preferences {
   Skirts = "Skirts",
   Dresses = "Dresses",
@@ -64,6 +87,7 @@ export enum Preferences {
   HighHeels = "High Heels",
   LeggingsPants = "Leggings"
 }
+
 export enum Clothing {
   Shirt = "Shirt",
   TankTop = "Tank Top",
