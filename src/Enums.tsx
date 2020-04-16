@@ -69,8 +69,8 @@ export enum Colors {
 }
 
 export enum HexColor {
-  White = "#bdbdbd",
-  OffWhite = "#a6a6a6",
+  White = "#fff",
+  OffWhite = "#f0f0f0",
   Gray = "#616161",
   Black = "#000",
   Beige = "#bab393",

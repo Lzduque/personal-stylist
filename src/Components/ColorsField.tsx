@@ -16,26 +16,33 @@ const colourStyles = {
   control: (styles: any) => ({ ...styles, backgroundColor: 'white' }),
   option: (styles: { [x: string]: any; }, { data, isDisabled, isFocused, isSelected }: any) => {
     const color = chroma(data.color);
+    const textColor = chroma.contrast('white', color) >= 4.5
+      ? 'white'
+      : 'black';
     return {
       ...styles,
+      // color of the background of the option - isFocused when hover, then the normal background
       backgroundColor: isDisabled
         ? null
         : isSelected
           ? data.color
           : isFocused
-            ? color.alpha(0.2).css()
-            : null,
+            ? data.color
+            : color.alpha(0.5).css(),
+      // color of the color of text of the option - isFocused when hover
       color: isDisabled
         ? '#ccc'
         : isSelected
-          ? chroma.contrast(color, 'white') >= 4.5
+          ? chroma.contrast('white', color) >= 4.5
             ? 'white'
             : 'black'
-          : data.color,
+          : isFocused
+            ? textColor
+            : data.color,
       cursor: isDisabled ? 'not-allowed' : 'default',
       ':active': {
         ...styles[':active'],
-        backgroundColor: !isDisabled && (isSelected ? data.color : color.alpha(0.5).css()),
+        backgroundColor: !isDisabled && (isSelected ? data.color : color.alpha(0.7).css()),
       },
     };
   },
@@ -43,21 +50,31 @@ const colourStyles = {
     const color: any = chroma(data.color);
     return {
       ...styles,
-      backgroundColor: color.alpha(0.1).css(),
+      backgroundColor: color.css(),
     };
   },
-  multiValueLabel: (styles: any, { data }: any) => ({
+  multiValueLabel: (styles: any, { data }: any) => {
+    const textColor = chroma.contrast('white', data.color) >= 4.5
+      ? 'white'
+      : 'black';
+    return {
     ...styles,
-    color: data.color,
-  }),
-  multiValueRemove: (styles: any, { data }: any) => ({
+      color: textColor,
+    };
+  },
+  multiValueRemove: (styles: any, { data }: any) => {
+    const textColor = chroma.contrast('white', data.color) >= 4.5
+      ? 'white'
+      : 'black';
+    return {
     ...styles,
-    color: data.color,
+      color: textColor,
     ':hover': {
       backgroundColor: data.color,
       color: 'white',
-    },
-  }),
+      },
+    };
+  },
 };
 
 const ColorsField = ({ selectedColors, updateField }: IProps) => {
