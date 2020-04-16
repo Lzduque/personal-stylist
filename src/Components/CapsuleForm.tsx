@@ -13,10 +13,6 @@ interface Error {
   error: string;
 }
 
-// export interface Wardrobe {
-//   wardrobe: [[Clothing, number, [Colors]]] | undefined;
-// }
-
 export type Wardrobe = [[Clothing, number, [Colors]]] | undefined;
 
 interface Capsule {

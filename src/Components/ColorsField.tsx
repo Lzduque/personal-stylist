@@ -84,7 +84,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
       <p className="fw4 tl">
         Select the colors you want in you capsule wardrobe. Select from 6 to 12 diferent colors. Keep in mind that, to work well, the colors should be distributed like this, in this order:
         </p>
-      <ul className="fw4 tl">
+      <ul className="fw4 tl pl3">
         <li>Main colours: 3 - 4</li>
         <li>Neutrals: 1 - 3</li>
         <li>Accent colours: 2 - 5</li>
