@@ -132,21 +132,19 @@ const CapsuleForm = () => {
     <div>
       <form onSubmit={handleSubmit}>
         <div className="container flex flex-row flex-wrap justify-around mw9 content-center center ph4-ns " >
-          <div className="box tc bg-white-40 w-100 w-30-l br4 pa4 ma2">
+          <div className="box ba tc bg-black-10 w-100 w-30-l br4 pa4 ma2">
             <SeasonField selectedSeason={capsule.season} updateField={updateField} />
             </div>
-          <div className="box tc bg-white-40 w-100 w-30-l br4 pa4 ma2">
+          <div className="box ba tc bg-black-10 w-100 w-30-l br4 pa4 ma2">
             <StyleField selectedStyle={capsule.style} updateField={updateField} />
           </div>
-          <div className="box tc bg-white-40 w-100 w-30-l br4 pa4 ma2">
+          <div className="box ba tc bg-black-10 w-100 w-30-l br4 pa4 ma2">
             <NumberOfOutfitsField selectedNumberOfOutfits={capsule.numberOfOutfits} updateField={updateField} />
           </div>
-          <div className="box tc bg-white-40 w-100 w-30-l br4 pa4 ma2">
-            <div className="" >
+          <div className="box ba tc bg-black-10 w-100 w-30-l br4 pa4 ma2">
               <PreferencesField selectedPreferences={capsule.preferences} updateField={updateField} />
-            </div>
           </div>
-          <div className="box tc bg-white-40 w-100 w-60-l  br4 pa4 ma2">
+          <div className="box ba tc bg-black-10 w-100 w-60-l  br4 pa4 ma2">
             <ColorsField selectedColors={capsule.colors} updateField={updateField} />
           </div>
         </ div>
@@ -160,7 +158,7 @@ const CapsuleForm = () => {
         </div>
         <br />
         <div className="tc" >
-          <button type="submit" className="bw0 br2 bg-blue pv2 ph3 washed-blue fw5 tc ttu tracked bg-animate hover-bg-dark-gray shadow-5">
+          <button type="submit" className="bw0 br2 bg-gray pv2 ph3 white fw5 tc ttu tracked bg-animate hover-bg-dark-gray shadow-5">
             Check your new Capsule Wardrobe!
           </button>
         </div>
