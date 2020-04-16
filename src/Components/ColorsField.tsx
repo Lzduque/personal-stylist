@@ -50,7 +50,7 @@ const colourStyles = {
     const color: any = chroma(data.color);
     return {
       ...styles,
-      backgroundColor: color.css(),
+      backgroundColor: color.alpha(0.5).css(),
     };
   },
   multiValueLabel: (styles: any, { data }: any) => {
@@ -71,7 +71,7 @@ const colourStyles = {
       color: textColor,
     ':hover': {
       backgroundColor: data.color,
-      color: 'white',
+      color: textColor,
       },
     };
   },
