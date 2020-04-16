@@ -1,5 +1,5 @@
 import React from 'react';
-import { Colors, Clothing } from '../Enums';
+import { Colors, Clothing, HexColor } from '../Enums';
 import { Wardrobe } from './CapsuleForm';
 
 interface IProps {
@@ -36,8 +36,7 @@ const CWardrobe = ({ wardrobe }: IProps) => {
               </td>
               <td className="flex flex-row flex-wrap white pa2 bg-white-20" >
                 {clothe[2].map(colors =>
-                  <div className="mr2">
-                    {Colors[colors as keyof typeof Colors] + ' '}
+                    <div style={{ backgroundColor: HexColor[colors as keyof typeof HexColor] }} className="mr2 pv3 w2" >
                   </div>
                 )}
               </td>
