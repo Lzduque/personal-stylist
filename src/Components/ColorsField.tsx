@@ -82,7 +82,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
     <div className="colors mt0 mb3-ns">
       <h3 className="mt0" >Colors:</h3>
       <p className="fw4 tl">
-        Select the colors you want in you capsule wardrobe. Select from 6 to 12 diferent colors. Keep in mind that, to work well, the colors should be distributed like this:
+        Select the colors you want in you capsule wardrobe. Select from 6 to 12 diferent colors. Keep in mind that, to work well, the colors should be distributed like this, in this order:
         </p>
       <ul className="fw4 tl">
         <li>Main colours: 3 - 4</li>

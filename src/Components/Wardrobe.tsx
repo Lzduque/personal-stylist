@@ -14,27 +14,27 @@ const CWardrobe = ({ wardrobe }: IProps) => {
         <p className="fw4">
           Here are the pieces you are going to need if you want this capsule wardrobe. The quantity and colors you'll need for each piece of clothing are listed below! 
         </p>
-        <table className="center">
-          <tr>
-            <th className="tl white pa2 bg-white-20" >
+        <table className="center collapse">
+          <tr className="bg-blue white" >
+            <th className="tl pa2 bg-white-30" >
               Clothes
             </th>
-            <th className="mh2 white pa2 bg-white-20">
+            <th className="pa2 bg-white-30">
               #
             </th>
-            <th className="flex white flex-row flex-wrap pa2 bg-white-20" >
+            <th className="flex flex-row flex-wrap pa2 bg-white-30" >
               Colors
             </th>
           </tr>
           {wardrobe!.map((clothe) =>
             <tr key={"clothing-" + (Math.random()).toString()} className="">
-              <td className="white pa2 bg-white-20">
+              <td className="pa2 bg-white-30 tl">
                 {Clothing[clothe[0] as keyof typeof Clothing]}
               </td>
-              <td className="white mh2 pa2 bg-white-20">
+              <td className="pa2 bg-white-30">
                 {clothe[1]}
               </td>
-              <td className="flex flex-row flex-wrap white pa2 bg-white-20" >
+              <td className="flex flex-row flex-wrap pa2 bg-white-30" >
                 {clothe[2].map(colors =>
                     <div style={{ backgroundColor: HexColor[colors as keyof typeof HexColor] }} className="mr2 pv3 w2" >
                   </div>
