@@ -36,9 +36,6 @@ const CapsuleForm = () => {
   })
 
   const updateField = (field: Fields, value: any): any => {
-    console.log("value");
-    console.log(value);
-
     switch (field) {
       case Fields.Season:
         setCapsule({
@@ -80,8 +77,6 @@ const CapsuleForm = () => {
   ): Promise<void> => {
     e.preventDefault();
 
-    console.log("state to submit");
-    console.log(capsule);
     await setWardrobe(undefined);
     await submitForm();
   }
@@ -89,8 +84,6 @@ const CapsuleForm = () => {
   const submitForm = async (): Promise<boolean> => {
     const encodedRequest = btoa(JSON.stringify(capsule)).replace(/\//g, '_').replace(/\+/g, '-')
     try {
-      console.log("encodedRequest");
-      console.log(encodedRequest);
       const response = await fetch(`${server}/capsule/${encodedRequest}`, {
         method: "GET",
         headers: new Headers({
@@ -102,15 +95,7 @@ const CapsuleForm = () => {
         return false;
       }
       const responseBody = await response.text();
-      console.log("response");
-      console.log(response);
-      console.log("responseBody");
-      console.log(responseBody);
-
       if (!JSON.parse(responseBody).error) {
-        console.log("JSON.parse(responseBody)");
-        console.log(JSON.parse(responseBody));
-
         await setWardrobe(JSON.parse(responseBody))
         await setError(undefined);
         return response.ok;
@@ -119,7 +104,6 @@ const CapsuleForm = () => {
         return false;
       }
     } catch (ex) {
-      console.log("error: " + ex)
       return false;
     }
   }

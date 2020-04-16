@@ -15,8 +15,6 @@ const options = Object.keys(Colors).map((k) =>
 const colourStyles = {
   control: (styles: any) => ({ ...styles, backgroundColor: 'white' }),
   option: (styles: { [x: string]: any; }, { data, isDisabled, isFocused, isSelected }: any) => {
-    console.log("data option", data);
-    console.log("data.color option", data.color);
     const color = chroma(data.color);
     return {
       ...styles,
@@ -42,8 +40,6 @@ const colourStyles = {
     };
   },
   multiValue: (styles: any, { data }: any): any => {
-    console.log("data multivalue", data);
-    console.log("data.color multivalue", data.color);
     const color: any = chroma(data.color);
     return {
       ...styles,
@@ -71,10 +67,6 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
                             : null;
     updateField(Fields.Colors, selectedColors);
   };
-
-  const value = selectedColors.map((selected) =>
-    ({ label: Colors[selected as string as keyof typeof Colors], value: selected as string })
-  );
 
   useEffect(() => {
     console.log(selectedColors)

@@ -14,7 +14,6 @@ const options = Object.keys(Season).map((k) =>
 const SeasonField = ({ selectedSeason, updateField}: IProps) => {
   const handleChange = (selectedOption: any) => {
     updateField(Fields.Season, selectedOption.value);
-    console.log(`Option selected:`, selectedOption);
   };
 
   const value = { label: Season[selectedSeason as string as keyof typeof Season], value: selectedSeason as string };

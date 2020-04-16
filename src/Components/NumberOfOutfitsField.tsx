@@ -13,7 +13,6 @@ const options = Object.keys(NumberOfOutfits).map((k) =>
 const NumberOfOutfitsField = ({ selectedNumberOfOutfits, updateField}: IProps) => {
   const handleChange = (selectedOption: any) => {
     updateField(Fields.NumberOfOutfits, selectedOption.value);
-    console.log(`Option selected:`, selectedOption);
   };
 
   const value = { label: NumberOfOutfits[selectedNumberOfOutfits as string as keyof typeof NumberOfOutfits], value: selectedNumberOfOutfits as string };

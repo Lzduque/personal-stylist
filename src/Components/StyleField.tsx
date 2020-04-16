@@ -13,7 +13,6 @@ const options = Object.keys(Style).map((k) =>
 const StyleField = ({ selectedStyle, updateField}: IProps) => {
   const handleChange = (selectedOption: any) => {
     updateField(Fields.Style, selectedOption.value);
-    console.log(`Option selected:`, selectedOption);
   };
 
   const value = { label: Style[selectedStyle as string as keyof typeof Style], value: selectedStyle as string };
