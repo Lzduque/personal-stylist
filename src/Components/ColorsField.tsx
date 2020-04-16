@@ -25,19 +25,19 @@ const colourStyles = {
         : isSelected
           ? data.color
           : isFocused
-            ? color.alpha(0.1).css()
+            ? color.alpha(0.2).css()
             : null,
       color: isDisabled
         ? '#ccc'
         : isSelected
-          ? chroma.contrast(color, 'white') > 2
+          ? chroma.contrast(color, 'white') >= 4.5
             ? 'white'
             : 'black'
           : data.color,
       cursor: isDisabled ? 'not-allowed' : 'default',
       ':active': {
         ...styles[':active'],
-        backgroundColor: !isDisabled && (isSelected ? data.color : color.alpha(0.3).css()),
+        backgroundColor: !isDisabled && (isSelected ? data.color : color.alpha(0.5).css()),
       },
     };
   },
