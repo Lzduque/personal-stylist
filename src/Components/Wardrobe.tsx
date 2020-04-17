@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect }  from 'react';
 import { Clothing, HexColor } from '../Enums';
 import { Wardrobe } from './CapsuleForm';
 
@@ -6,7 +6,15 @@ interface IProps {
   wardrobe: Wardrobe
 }
 
+
 const CWardrobe = ({ wardrobe }: IProps) => {
+  const [textCopied, setTextCopied] = useState<boolean>(false);
+
+  useEffect(() => {
+    setTextCopied(false);
+  }, [window.location])
+
+
   return (
     <div className="wardrobe box mw9 flex justify-center center ph4-ns cf fl w-100 w-100-ns pa2">
       <div className="ba bg-black-10 pa4 br4 tc ">
@@ -45,6 +53,14 @@ const CWardrobe = ({ wardrobe }: IProps) => {
           )}
           </tbody>
         </table>
+        <div className="tc mt4" >
+          <button onClick={() => { 
+            setTextCopied(true);
+            navigator.clipboard.writeText(window.location.toString()) 
+            }} className="bw0 br2 bg-gray pv2 ph3 white fw5 tc ttu tracked bg-animate hover-bg-dark-gray shadow-5" >
+            {textCopied == true? 'URL copied!' : 'Share your Capsule Wardrobe!'}
+          </button>
+        </div>
       </div>
     </div>
   )
