@@ -18,7 +18,7 @@ const StyleField = ({ selectedStyle, updateField}: IProps) => {
   const value = { label: Style[selectedStyle as string as keyof typeof Style], value: selectedStyle as string };
 
   useEffect(() => {
-    console.log(selectedStyle)
+    console.log("selectedStyle: ", selectedStyle);
   }, [selectedStyle])
 
   return (

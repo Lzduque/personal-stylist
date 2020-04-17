@@ -19,7 +19,7 @@ const SeasonField = ({ selectedSeason, updateField}: IProps) => {
   const value = { label: Season[selectedSeason as string as keyof typeof Season], value: selectedSeason as string };
 
   useEffect(() => {
-    console.log(selectedSeason)
+    console.log("selectedSeason: ", selectedSeason);
   }, [selectedSeason])
 
   return (

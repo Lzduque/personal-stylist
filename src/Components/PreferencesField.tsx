@@ -26,7 +26,7 @@ const PreferencesField = ({ selectedPreferences, updateField}: IProps) => {
                 : null;
 
   useEffect(() => {
-    console.log(selectedPreferences)
+    console.log("selectedPreferences: ", selectedPreferences);
   }, [selectedPreferences])
 
   return (

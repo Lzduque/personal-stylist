@@ -1,5 +1,5 @@
 import React from 'react';
-import { Colors, Clothing, HexColor } from '../Enums';
+import { Clothing, HexColor } from '../Enums';
 import { Wardrobe } from './CapsuleForm';
 
 interface IProps {

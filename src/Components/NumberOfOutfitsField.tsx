@@ -18,7 +18,7 @@ const NumberOfOutfitsField = ({ selectedNumberOfOutfits, updateField}: IProps) =
   const value = { label: NumberOfOutfits[selectedNumberOfOutfits as string as keyof typeof NumberOfOutfits], value: selectedNumberOfOutfits as string };
 
   useEffect(() => {
-    console.log(selectedNumberOfOutfits)
+    console.log("selectedNumberOfOutfits: ", selectedNumberOfOutfits);
   }, [selectedNumberOfOutfits])
 
   return (

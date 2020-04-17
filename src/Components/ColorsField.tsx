@@ -86,7 +86,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
   };
 
   useEffect(() => {
-    console.log(selectedColors)
+    console.log("selectedColors: ", selectedColors);
   }, [selectedColors])
 
   return (

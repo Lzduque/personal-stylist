@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SeasonField from './SeasonField';
 import StyleField from './StyleField';
 import NumberOfOutfitsField from './NumberOfOutfitsField';
@@ -8,6 +8,7 @@ import { Fields, Season, Style, NumberOfOutfits, Colors, Preferences, Clothing }
 import CWardrobe from './Wardrobe';
 
 const server = "http://localhost:3000"
+const frontEnd = "http://localhost:2000"
 
 interface Error {
   error: string;
@@ -25,8 +26,9 @@ interface Capsule {
 
 const CapsuleForm = () => {
 
-  const [error, setError] = useState<Error>();
-  const [wardrobe, setWardrobe] = useState<Wardrobe>();
+  const [error, setError] = useState<Error | null>(null);
+  const [wardrobe, setWardrobe] = useState<Wardrobe | null>(null);
+  const [capsuleReady, setCapsuleReady] = useState<boolean>(false);
   const [capsule, setCapsule] = useState<Capsule>({
     season: "AutumnWinter" as Season,
     style: "Casual" as Style,
@@ -34,6 +36,48 @@ const CapsuleForm = () => {
     colors: [],
     preferences: []
   })
+
+  useEffect(() => {
+    console.log("useEffect");
+    checkURl(window.location);
+  }, [])
+
+  useEffect(() => {
+    if (capsuleReady) {
+      sendForm();
+      setCapsuleReady(false);
+    }
+  }, [capsuleReady])
+
+  const sendForm = async () => {
+    const encodedRequest = btoa(JSON.stringify(capsule)).replace(/\//g, '_').replace(/\+/g, '-')
+    const newWebPage: string = `${frontEnd}/#/${encodedRequest}`;
+
+    try {
+      const response = await fetch(`${server}/capsule/${encodedRequest}`, {
+        method: "GET",
+        headers: new Headers({
+          Accept: "application/json"
+        }),
+      })
+      if (response.status !== 200) {
+        console.log(`Status ${response.status}`);
+        return false;
+      }
+      const responseBody = await response.text();
+      if (!JSON.parse(responseBody).error) {
+        window.location.replace(newWebPage);
+        setWardrobe(JSON.parse(responseBody))
+        setError(null);
+        return response.ok;
+      } else {
+        setError(JSON.parse(responseBody).message);
+        return false;
+      }
+    } catch (ex) {
+      return false;
+    }
+  }
 
   const updateField = (field: Fields, value: any): any => {
     switch (field) {
@@ -77,34 +121,18 @@ const CapsuleForm = () => {
   ): Promise<void> => {
     e.preventDefault();
 
-    await setWardrobe(undefined);
-    await submitForm();
+    setWardrobe(null);
+    setCapsuleReady(true);
   }
 
-  const submitForm = async (): Promise<boolean> => {
-    const encodedRequest = btoa(JSON.stringify(capsule)).replace(/\//g, '_').replace(/\+/g, '-')
-    try {
-      const response = await fetch(`${server}/capsule/${encodedRequest}`, {
-        method: "GET",
-        headers: new Headers({
-          Accept: "application/json"
-        }),
-      })
-      if (response.status !== 200) {
-        console.log(`Status ${response.status}`);
-        return false;
-      }
-      const responseBody = await response.text();
-      if (!JSON.parse(responseBody).error) {
-        await setWardrobe(JSON.parse(responseBody))
-        await setError(undefined);
-        return response.ok;
-      } else {
-        await setError(JSON.parse(responseBody).message);
-        return false;
-      }
-    } catch (ex) {
-      return false;
+  const checkURl = async (webPage: any) => {
+    const encodedCapsule = webPage.hash.slice(2);
+    if (encodedCapsule.length > 0) {
+      const decodedCapsule = JSON.parse(atob(encodedCapsule.replace(/_/g, '/').replace(/-/g, '+')));
+      setCapsule(decodedCapsule);
+      console.log("decodedCapsule: ", decodedCapsule);
+      console.log("capsule before submitting", capsule);
+      setCapsuleReady(true);
     }
   }
 
