@@ -11,7 +11,7 @@ const options = Object.keys(Preferences).map((k) =>
   ({ label: Preferences[k as keyof typeof Preferences], value: k })
 )
 
-const PreferencesField = ({ selectedPreferences, updateField}: IProps) => {
+const PreferencesField = ({ selectedPreferences, updateField }: IProps) => {
   const handleChange = (selectedOption: any) => {
     const preferences = selectedOption
                         ? selectedOption.map((x: any) => x.value)

@@ -79,15 +79,21 @@ const colourStyles = {
 
 const ColorsField = ({ selectedColors, updateField }: IProps) => {
   const handleChange = (selectedOption: any) => {
-    const selectedColors = selectedOption 
-                            ? selectedOption.map((x: any) => x.value)
-                            : null;
-    updateField(Fields.Colors, selectedColors);
+    const colors = selectedOption 
+                  ? selectedOption.map((x: any) => x.value)
+                  : null;
+    updateField(Fields.Colors, colors);
   };
 
   useEffect(() => {
     console.log("selectedColors: ", selectedColors);
   }, [selectedColors])
+
+  const value = selectedColors
+    ? selectedColors.map((selected) =>
+      ({ label: Colors[selected as keyof typeof Colors], value: selected, color: HexColor[selected as keyof typeof HexColor] })
+    )
+    : null;
 
   return (
     <div className="colors mt0 mb3-ns">
@@ -102,6 +108,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
       </ul>
       <Select
         closeMenuOnSelect={false}
+        value={value}
         onChange={handleChange}
         isClearable
         isMulti
