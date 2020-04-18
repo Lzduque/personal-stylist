@@ -58,7 +58,7 @@ const CWardrobe = ({ wardrobe }: IProps) => {
             setTextCopied(true);
             navigator.clipboard.writeText(window.location.toString()) 
             }} className="bw0 br2 bg-gray pv2 ph3 white fw5 tc ttu tracked bg-animate hover-bg-dark-gray shadow-5" >
-            {textCopied == true? 'Link copied!' : 'Share your Capsule Wardrobe!'}
+            {textCopied === true? 'Link copied!' : 'Share your Capsule Wardrobe!'}
           </button>
         </div>
       </div>

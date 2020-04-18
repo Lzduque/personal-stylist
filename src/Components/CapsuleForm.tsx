@@ -7,8 +7,8 @@ import PreferencesField from './PreferencesField';
 import { Fields, Season, Style, NumberOfOutfits, Colors, Preferences, Clothing } from '../Enums';
 import CWardrobe from './Wardrobe';
 
-const server = "http://localhost:3000"
-const frontEnd = "http://localhost:2000"
+const server = process.env.SERVER || "http://localhost:3000" 
+const frontEnd = window.location.origin
 
 interface Error {
   error: string;
