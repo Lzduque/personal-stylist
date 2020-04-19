@@ -7,7 +7,7 @@ import PreferencesField from './PreferencesField';
 import { Fields, Season, Style, NumberOfOutfits, Colors, Preferences, Clothing } from '../Enums';
 import CWardrobe from './Wardrobe';
 
-const server = "https://back-personal-stylist.herokuapp.com/" || "http://localhost:3000" 
+const server = process.env.PERSONAL_STYLIST_SERVER || "http://localhost:3000" 
 const frontEnd = window.location.origin
 
 interface Error {
