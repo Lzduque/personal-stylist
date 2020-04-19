@@ -9,12 +9,12 @@ import CWardrobe from './Wardrobe';
 
 const server = 
   process.env.NODE_ENV === "production" 
-  ? "https://back-personal-stylist.herokuapp.com" 
+  ? "https://personal-stylist-api.herokuapp.com" 
   : "http://localhost:3000" 
 
 const frontEnd = 
   process.env.NODE_ENV === "production" 
-  ? "https://lzduque.github.io/personal-stylist-web" 
+  ? "https://lzduque.github.io/personal-stylist" 
   : "http://localhost:2000"
 
 interface Error {
