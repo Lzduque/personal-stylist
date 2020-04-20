@@ -4,6 +4,11 @@ The Personal Stylist website was created to help women that want a personalized 
 
 This project has as objective learning haskell and applying it to the Backend in a format closer to an API as well as practicing React, Hooks and Typescript in te Frontend. Another personal goal achieed witht his project is working with UI styling and functional css, in this case Tachyons.
 
+## Functionalities
+
+- Generate a Capsule Wardrobe based on user input, with the number of pieces needed and suggested colors for each one.
+- If the user wants, it's possible to bookmark the capsule wardrobe or share it copying and pasting the url.
+
 ## Contributors
 
 [Leticia Duque](https://github.com/Lzduque) 
