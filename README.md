@@ -2,7 +2,7 @@
 
 The Personal Stylist website was created to help women that want a personalized capsule wardrobe and don't know where to start!
 
-This project has as objective learning haskell and applying it to the back-end in a format closer to an API as well as practicing React, Hooks and Typescript in te front-end. Another personal goal achieed witht his project is working with UI styling and functional css, in this case Tachyons.
+This project has as objective learning haskell and applying it to the Backend in a format closer to an API as well as practicing React, Hooks and Typescript in te Frontend. Another personal goal achieed witht his project is working with UI styling and functional css, in this case Tachyons.
 
 ## Contributors
 
@@ -10,7 +10,7 @@ This project has as objective learning haskell and applying it to the back-end i
 
 ## Getting Started
 
-If you want to clone both repos locally and test them, this is the front-end repo, and the back-end repo is [here](https://github.com/Lzduque/personal-stylist-api).
+If you want to clone both repos locally and test them, this is the Frontend repo, and the Backend repo is [here](https://github.com/Lzduque/personal-stylist-api).
 
 1. Install Frontend dependencies using the `yarn install` command.
 2. Install Backend dependencies using the `stack install` command.
