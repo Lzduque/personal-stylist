@@ -57,4 +57,4 @@ This Website can also be used as an app since it is a progressive web app:
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Icon made by <a className="white " href="https://www.flaticon.com/authors/freepik" >Freepik</a> from <a className="white"href="https://www.flaticon.com">www.flaticon.com</a>
+Icon made by Freepik from www.flaticon.com.
