@@ -2,7 +2,9 @@ export enum Fields {
   Season = "season",
   Style = "style",
   NumberOfOutfits = "numberOfOutfits",
-  Colors = "colors",
+  MainColors = "mainColors",
+  NeutralColors = "neutralColors",
+  AccentColors = "accentColors",
   Preferences = "preferences"
 }
 

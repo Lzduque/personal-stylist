@@ -4,7 +4,11 @@ import Select from 'react-select';
 import chroma from 'chroma-js';
 
 interface IProps {
-  selectedColors: Colors[],
+  selectedColors: {
+    mains: Colors[],
+    neutrals: Colors[],
+    accents: Colors[]
+  },
   updateField: any
 }
 
@@ -78,19 +82,45 @@ const colourStyles = {
 };
 
 const ColorsField = ({ selectedColors, updateField }: IProps) => {
-  const handleChange = (selectedOption: any) => {
+  const handleChangeMains = (selectedOption: any) => {
     const colors = selectedOption 
                   ? selectedOption.map((x: any) => x.value)
                   : null;
-    updateField(Fields.Colors, colors);
+    updateField(Fields.MainColors, colors);
+  };
+
+  const handleChangeNeutrals = (selectedOption: any) => {
+    const colors = selectedOption
+      ? selectedOption.map((x: any) => x.value)
+      : null;
+    updateField(Fields.NeutralColors, colors);
+  };
+
+  const handleChangeAccents = (selectedOption: any) => {
+    const colors = selectedOption
+      ? selectedOption.map((x: any) => x.value)
+      : null;
+    updateField(Fields.AccentColors, colors);
   };
 
   useEffect(() => {
     console.log("selectedColors: ", selectedColors);
   }, [selectedColors])
 
-  const value = selectedColors
-    ? selectedColors.map((selected) =>
+  const valueMains = selectedColors.mains
+    ? selectedColors.mains.map((selected) =>
+      ({ label: Colors[selected as keyof typeof Colors], value: selected, color: HexColor[selected as keyof typeof HexColor] })
+    )
+    : null;
+
+  const valueNeutrals = selectedColors.neutrals
+    ? selectedColors.neutrals.map((selected) =>
+      ({ label: Colors[selected as keyof typeof Colors], value: selected, color: HexColor[selected as keyof typeof HexColor] })
+    )
+    : null;
+
+  const valueAccents = selectedColors.accents
+    ? selectedColors.accents.map((selected) =>
       ({ label: Colors[selected as keyof typeof Colors], value: selected, color: HexColor[selected as keyof typeof HexColor] })
     )
     : null;
@@ -102,21 +132,46 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
         Select the colors you want in your capsule wardrobe. Select from 6 to 12 different colors. Keep in mind that, to work well, the colors should be distributed like this, in this order:
         </p>
       <ul className="fw4 tl pl3">
-        <li>Main colours: 3 - 4</li>
-        <li>Neutrals: 1 - 3</li>
-        <li>Accent colours: 2 - 5</li>
+        <li className="pt2">Main colours: 3 - 4</li>
+        <Select
+          className="pa2"
+          isSearchable={false}
+          closeMenuOnSelect={false}
+          blurInputOnSelect={false}
+          value={valueMains}
+          onChange={handleChangeMains}
+          isClearable
+          isMulti
+          options={options}
+          styles={colourStyles}
+        />
+        <li className="pt2">Neutrals: 1 - 3</li>
+        <Select
+          className="pa2"
+          isSearchable={false}
+          closeMenuOnSelect={false}
+          blurInputOnSelect={false}
+          value={valueNeutrals}
+          onChange={handleChangeNeutrals}
+          isClearable
+          isMulti
+          options={options}
+          styles={colourStyles}
+        />
+        <li className="pt2">Accent colours: 2 - 5</li>
+        <Select
+          className="pa2 pb0"
+          isSearchable={false}
+          closeMenuOnSelect={false}
+          blurInputOnSelect={false}
+          value={valueAccents}
+          onChange={handleChangeAccents}
+          isClearable
+          isMulti
+          options={options}
+          styles={colourStyles}
+        />
       </ul>
-      <Select
-        isSearchable={false}
-        closeMenuOnSelect={false}
-        blurInputOnSelect={false}
-        value={value}
-        onChange={handleChange}
-        isClearable
-        isMulti
-        options={options}
-        styles={colourStyles}
-      />
     </div >
   )
 }

@@ -27,7 +27,11 @@ interface Capsule {
   season: Season;
   style: Style;
   numberOfOutfits: NumberOfOutfits;
-  colors: Colors[];
+  colors: {
+    mains: Colors[];
+    neutrals: Colors[];
+    accents: Colors[]
+  };
   preferences: Preferences[];
 }
 
@@ -40,7 +44,11 @@ const CapsuleForm = () => {
     season: "AutumnWinter" as Season,
     style: "Casual" as Style,
     numberOfOutfits: "From10to20" as NumberOfOutfits,
-    colors: [],
+    colors: {
+      mains: [],
+      neutrals: [],
+      accents: []
+    },
     preferences: []
   })
 
@@ -106,10 +114,34 @@ const CapsuleForm = () => {
           numberOfOutfits: value as NumberOfOutfits
         })
         break;
-      case Fields.Colors:
+      case Fields.MainColors:
         setCapsule({
           ...capsule,
-          colors: value as Colors[]
+          colors: {
+            mains: value as Colors[],
+            neutrals: [...capsule.colors.neutrals],
+            accents: [...capsule.colors.accents]
+          }
+        })
+        break;
+      case Fields.NeutralColors:
+        setCapsule({
+          ...capsule,
+          colors: {
+            mains: [...capsule.colors.mains],
+            neutrals: value as Colors[],
+            accents: [...capsule.colors.accents]
+          }
+        })
+        break;
+      case Fields.AccentColors:
+        setCapsule({
+          ...capsule,
+          colors: {
+            mains: [...capsule.colors.mains],
+            neutrals: [...capsule.colors.neutrals],
+            accents: value as Colors[]
+          }
         })
         break;
       case Fields.Preferences:
