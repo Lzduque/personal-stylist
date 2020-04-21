@@ -25,6 +25,7 @@ const StyleField = ({ selectedStyle, updateField}: IProps) => {
     <div className="style mt0 mb3-ns">
       <h3 className="mt0" >Style:</h3>
       <Select
+        isSearchable={false}
         value={value}
         onChange={handleChange}
         options={options}

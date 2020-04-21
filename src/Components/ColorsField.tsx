@@ -107,6 +107,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
         <li>Accent colours: 2 - 5</li>
       </ul>
       <Select
+        isSearchable={false}
         closeMenuOnSelect={false}
         value={value}
         onChange={handleChange}

@@ -18,7 +18,7 @@ const App = () => {
         </div>
       </section>
       <footer className="bg-black-20 fw4 pa3 mt3 white flex justify-between">
-        <div className="tl w-25">
+        <div className="tl w-50">
           <h4 className="ma1">Do you like it? Contact Me:</h4>
           <ul className="icons list mb1 pl1">
             <li className="pb1" ><a href="https://github.com/Lzduque"><i className="fab fa-github-alt fa-1x white ph2" ></i></a>  Lzduque</li>
@@ -27,7 +27,7 @@ const App = () => {
             <li ><i className="fas fa-paper-plane fa-1x ph2"></i>   lzduque@hotmail.com</li>
           </ul>
         </div>
-        <div className="tr w-25 f6 self-end">
+        <div className="tr w-50 f6 self-end">
           Icon made by <a className="white " href="https://www.flaticon.com/authors/freepik" >Freepik</a> from <a className="white"href="https://www.flaticon.com">www.flaticon.com</a>
         </div>
       </footer>

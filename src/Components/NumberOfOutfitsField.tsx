@@ -25,6 +25,7 @@ const NumberOfOutfitsField = ({ selectedNumberOfOutfits, updateField}: IProps) =
     <div className="numberOfOutfits mt0 mb3-ns">
       <h3 className="mt0" >Number of Outfits:</h3>
       <Select
+        isSearchable={false}
         value={value}
         onChange={handleChange}
         options={options}
