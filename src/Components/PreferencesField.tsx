@@ -35,6 +35,7 @@ const PreferencesField = ({ selectedPreferences, updateField }: IProps) => {
       <Select
         isSearchable={false}
         closeMenuOnSelect={false}
+        blurInputOnSelect={false}
         value={value}
         onChange={handleChange}
         isClearable

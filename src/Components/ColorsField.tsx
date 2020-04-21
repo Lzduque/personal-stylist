@@ -109,6 +109,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
       <Select
         isSearchable={false}
         closeMenuOnSelect={false}
+        blurInputOnSelect={false}
         value={value}
         onChange={handleChange}
         isClearable
