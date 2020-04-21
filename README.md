@@ -18,10 +18,10 @@ The objective of this project was to practice Haskell by building an API as well
 If you want to clone both repos locally and test them, this is the Frontend repo, and the Backend repo is [here](https://github.com/Lzduque/personal-stylist-api).
 
 1. Install Frontend dependencies using the `yarn install` command.
-2. Install Backend dependencies using the `stack install` command.
-3. Start Frontend using the `yarn start` command and `stack build && stack exec personal-stylist-exe\` for the Backend. The app will be served at <http://localhost:3000/> and the client at <http://localhost:2000/>.
+2. Start Frontend using the `yarn start` command and the client will be served at <http://localhost:2000/>.
 
-If you want to use the deployed version of the app, go to <https://lzduque.github.io/personal-stylist/>. The instructions to use the Backend API are in [here](https://github.com/Lzduque/personal-stylist-api).
+If you want to use the deployed version of the app, go to <https://lzduque.github.io/personal-stylist/>.
+The instructions to use the Backend API are in [here](https://github.com/Lzduque/personal-stylist-api).
 
 This Website can also be used as an app since it is a progressive web app:
 
