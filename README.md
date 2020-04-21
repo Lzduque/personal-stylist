@@ -2,12 +2,12 @@
 
 The Personal Stylist website was created to help women that want a personalized capsule wardrobe and don't know where to start!
 
-This project has as objective learning haskell and applying it to the Backend in a format closer to an API as well as practicing React, Hooks and Typescript in te Frontend. Another personal goal achieed witht his project is working with UI styling and functional css, in this case Tachyons.
+The objective of this project was to practice Haskell by building an API as well as practicing React, Hooks, and Typescript in the Frontend. Another personal goal achieved with his project is working with UI styling and functional CSS, in this case, Tachyons.
 
 ## Functionalities
 
 - Generate a Capsule Wardrobe based on user input, with the number of pieces needed and suggested colors for each one.
-- If the user wants, it's possible to bookmark the capsule wardrobe or share it copying and pasting the url.
+- If the user wants, it's possible to bookmark the capsule wardrobe or share it copying and pasting the URL.
 
 ## Contributors
 
@@ -19,35 +19,23 @@ If you want to clone both repos locally and test them, this is the Frontend repo
 
 1. Install Frontend dependencies using the `yarn install` command.
 2. Install Backend dependencies using the `stack install` command.
-3. Start Frontend using the `yarn start` command and `stack build && stack exec personal-stylist-exe\` for the Backend. The app will be served at <http://localhost:3000/> and the client at <http://localhost:3001/>.
-4. Go to <http://localhost:2000/> in your browser.
+3. Start Frontend using the `yarn start` command and `stack build && stack exec personal-stylist-exe\` for the Backend. The app will be served at <http://localhost:3000/> and the client at <http://localhost:2000/>.
 
 If you want to use the deployed version of the app, go to <https://lzduque.github.io/personal-stylist/>. The instructions to use the Backend API are in [here](https://github.com/Lzduque/personal-stylist-api).
 
-This Website can also be used as an app, since it is an progressive web app:
+This Website can also be used as an app since it is a progressive web app:
 
-1. Go to your browser and access the website [home page](https://lzduque.github.io/personal-stylist/) in your cellphone.
+1. Go to your browser and access the website [home page](https://lzduque.github.io/personal-stylist/) on your cellphone.
 2. Click on the "share" or "options" button, whatever appears in your menu.
 3. Then, click on "Add to Home Screen", 
-4. And finally click on "Add". The app should be saved on your home screen now, like other apps.
+4. And finally, click on "Add". The app should be saved on your home screen now, like other apps.
 
 ## Dependencies
 
-- @testing-library/jest-dom": ^4.2.4,
-- @testing-library/react: ^9.3.2,
-- @testing-library/user-event: ^7.1.2,
-- @types/chroma-js: ^2.0.0,
-- @types/jest: ^24.0.0,
-- @types/node: ^12.0.0,
-- @types/react-select: ^3.0.11,
-- chroma-js: ^2.1.0,
-- react: ^16.13.1,
-- react-dom: ^16.13.1,
-- react-scripts: 3.4.1,
-- react-select: ^3.1.0,
-- typescript: ~3.7.
-- gh-pages: ^2.2.0,
-- tachyons: ^4.10.0
+- react
+- typescript
+- tachyons
+- for a complete list check the "package.json" file.
 
 ## Final Product Screenshots
 
@@ -61,10 +49,10 @@ This Website can also be used as an app, since it is an progressive web app:
 !["Wardrobe Generator"](https://github.com/Lzduque/personal-stylist/blob/master/public/APP_WARDROBE.png?raw=true)
 
 
-## Additonal Features to come
+## Additional Features to come
 
-- UI style theme change when click in a button.
-- Show images that represent possible combination of clothes.
+- UI style theme changes when clicking a button.
+- Show images that represent a possible combination of clothes.
 - Show color palette when colors are selected.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
