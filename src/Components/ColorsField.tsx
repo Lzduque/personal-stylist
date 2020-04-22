@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, createRef } from 'react';
 import { Colors, Fields, HexColor } from '../Enums';
 import Select from 'react-select';
 import chroma from 'chroma-js';
@@ -82,7 +82,17 @@ const colourStyles = {
 };
 
 const ColorsField = ({ selectedColors, updateField }: IProps) => {
+  const updateOptions = () => {
+    // Rebuild all the select options
+    selectMains.current.select.buildMenuOptions({ options: [] }, []);
+    selectNeutrals.current.select.buildMenuOptions({ options: [] }, []);
+    selectAccents.current.select.buildMenuOptions({ options: [] }, []);
+  }
+
   const handleChangeMains = (selectedOption: any) => {
+    console.log("handleChangeMains");
+    updateOptions();
+    
     const colors = selectedOption 
                   ? selectedOption.map((x: any) => x.value)
                   : null;
@@ -90,6 +100,9 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
   };
 
   const handleChangeNeutrals = (selectedOption: any) => {
+    console.log("handleChangeNeutrals");
+    updateOptions();
+
     const colors = selectedOption
       ? selectedOption.map((x: any) => x.value)
       : null;
@@ -97,6 +110,9 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
   };
 
   const handleChangeAccents = (selectedOption: any) => {
+    console.log("handleChangeAccents");
+    updateOptions();
+    
     const colors = selectedOption
       ? selectedOption.map((x: any) => x.value)
       : null;
@@ -111,19 +127,32 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
     ? selectedColors.mains.map((selected) =>
       ({ label: Colors[selected as keyof typeof Colors], value: selected, color: HexColor[selected as keyof typeof HexColor] })
     )
-    : null;
+    : [];
 
   const valueNeutrals = selectedColors.neutrals
     ? selectedColors.neutrals.map((selected) =>
       ({ label: Colors[selected as keyof typeof Colors], value: selected, color: HexColor[selected as keyof typeof HexColor] })
     )
-    : null;
+    : [];
 
   const valueAccents = selectedColors.accents
     ? selectedColors.accents.map((selected) =>
       ({ label: Colors[selected as keyof typeof Colors], value: selected, color: HexColor[selected as keyof typeof HexColor] })
     )
-    : null;
+    : [];
+
+  // Make refs to each select
+  const selectMains: any = createRef();
+  const selectNeutrals: any = createRef();
+  const selectAccents: any = createRef();
+
+  const isOptionSelected = (o: any, opts: any): boolean => {
+    return [...valueMains,
+     ...valueNeutrals,
+     ...valueAccents,
+     ...opts]
+     .some((opt: any): boolean => opt.value === o.value);
+  }
 
   return (
     <div className="colors mt0 mb3-ns">
@@ -134,6 +163,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
       <ul className="fw4 tl pl3">
         <li className="pt2">Main colours: 3 - 4</li>
         <Select
+          ref={selectMains}
           className="pa2"
           isSearchable={false}
           closeMenuOnSelect={false}
@@ -144,9 +174,11 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
           isMulti
           options={options}
           styles={colourStyles}
+          isOptionSelected={isOptionSelected}
         />
         <li className="pt2">Neutrals: 1 - 3</li>
         <Select
+          ref={selectNeutrals}
           className="pa2"
           isSearchable={false}
           closeMenuOnSelect={false}
@@ -157,9 +189,11 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
           isMulti
           options={options}
           styles={colourStyles}
+          isOptionSelected={isOptionSelected}
         />
         <li className="pt2">Accent colours: 2 - 5</li>
         <Select
+          ref={selectAccents}
           className="pa2 pb0"
           isSearchable={false}
           closeMenuOnSelect={false}
@@ -170,6 +204,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
           isMulti
           options={options}
           styles={colourStyles}
+          isOptionSelected={isOptionSelected}
         />
       </ul>
     </div >
