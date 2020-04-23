@@ -24,7 +24,7 @@ const CWardrobe = ({ wardrobe }: IProps) => {
         </p>
         <table className="center collapse">
           <tbody>
-          <tr className="bg-dark-gray white" >
+            <tr className="bg-black-20 white" >
             <th className="tl pa2 bg-black-20" >
               Clothes
             </th>
@@ -37,10 +37,10 @@ const CWardrobe = ({ wardrobe }: IProps) => {
           </tr>
           {wardrobe!.map((clothe) =>
             <tr key={"clothing-" + (Math.random()).toString()} className="">
-              <td className="pa2 bg-white-50 tl">
+              <td className="pa2 bg-white-50 tl black ">
                 {Clothing[clothe[0] as keyof typeof Clothing]}
               </td>
-              <td className="pa2 bg-white-50">
+              <td className="pa2 bg-white-50 black">
                 {clothe[1]}
               </td>
               <td className="flex flex-row flex-wrap pa2 bg-white-50" >
