@@ -6,6 +6,7 @@ import ColorsField from './ColorsField';
 import PreferencesField from './PreferencesField';
 import { Fields, Season, Style, NumberOfOutfits, Colors, Preferences } from '../Enums';
 import CWardrobe from './Wardrobe';
+import Palette from './Palette';
 import { Capsule, Wardrobe } from '../types';
 
 const server = 
@@ -188,10 +189,16 @@ const CapsuleForm = ({ capsule, setCapsule }: IProps) => {
       </form>
       <br />
       <div className="container flex" >
-              {wardrobe
-        ? <CWardrobe wardrobe={wardrobe} />
-        : <br />
-      }
+        {wardrobe
+          ? <Palette colors={capsule.colors} />
+          : <br />
+        }
+      </div>
+      <div className="container flex" >
+        {wardrobe
+          ? <CWardrobe wardrobe={wardrobe} />
+          : <br />
+        }
       </div>
     </div>
   )
