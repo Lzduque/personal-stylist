@@ -170,7 +170,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
           blurInputOnSelect={false}
           value={valueMains}
           onChange={handleChangeMains}
-          isClearable
+          // isClearable
           isMulti
           options={options}
           styles={colourStyles}
@@ -185,7 +185,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
           blurInputOnSelect={false}
           value={valueNeutrals}
           onChange={handleChangeNeutrals}
-          isClearable
+          // isClearable
           isMulti
           options={options}
           styles={colourStyles}
@@ -200,7 +200,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
           blurInputOnSelect={false}
           value={valueAccents}
           onChange={handleChangeAccents}
-          isClearable
+          // isClearable
           isMulti
           options={options}
           styles={colourStyles}
