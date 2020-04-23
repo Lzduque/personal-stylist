@@ -33,6 +33,7 @@ const PreferencesField = ({ selectedPreferences, updateField }: IProps) => {
     <div className="preferences mt0 mb3-ns">
       <h3 className="mt0" >Preferences:</h3>
       <Select
+        className="select"
         isSearchable={false}
         closeMenuOnSelect={false}
         blurInputOnSelect={false}

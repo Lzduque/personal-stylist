@@ -164,7 +164,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
         <li className="pt2">Main colours: 3 - 4</li>
         <Select
           ref={selectMains}
-          className="pa2"
+          className="select pa2"
           isSearchable={false}
           closeMenuOnSelect={false}
           blurInputOnSelect={false}
@@ -179,7 +179,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
         <li className="pt2">Neutrals: 1 - 3</li>
         <Select
           ref={selectNeutrals}
-          className="pa2"
+          className="select pa2"
           isSearchable={false}
           closeMenuOnSelect={false}
           blurInputOnSelect={false}
@@ -194,7 +194,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
         <li className="pt2">Accent colours: 2 - 5</li>
         <Select
           ref={selectAccents}
-          className="pa2 pb0"
+          className="select pa2 pb0"
           isSearchable={false}
           closeMenuOnSelect={false}
           blurInputOnSelect={false}

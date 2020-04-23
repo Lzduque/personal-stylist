@@ -27,6 +27,7 @@ const SeasonField = ({ selectedSeason, updateField}: IProps) => {
       {/* <label className="fw7 f6" > */}
       <h3 className="mt0" >Season:</h3>
       <Select
+        className="select"
         isSearchable={false}
         value={value}
         onChange={handleChange}
