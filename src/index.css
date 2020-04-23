@@ -1,5 +1,21 @@
-    body {
-        width: 100%;
-        height: vh-100;
-        margin: 3em auto;
-    }
+body {
+    width: 100%;
+    height: vh-100;
+    margin: 3em auto;
+    color: white;
+}
+
+#call {
+    color: white;
+    text-shadow: 0 1px 0px #7a7a7a, 1px 0 0px #9c9c9c, 1px 2px 1px #7a7a7a, 2px 1px 1px #9c9c9c, 2px 3px 2px #7a7a7a, 3px 2px 2px #9c9c9c, 3px 4px 2px #7a7a7a, 4px 3px 3px #9c9c9c, 4px 5px 3px #7a7a7a, 5px 4px 2px #9c9c9c, 5px 6px 2px #7a7a7a, 6px 5px 2px #9c9c9c, 6px 7px 1px #7a7a7a, 7px 6px 1px #9c9c9c, 7px 8px 0px #7a7a7a, 8px 7px 0px #9c9c9c;
+}
+
+
+/* .App {
+    text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
+} */
+
+.select>div>div {
+    /* text-shadow: none; */
+    color: black
+}
