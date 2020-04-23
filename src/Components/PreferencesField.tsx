@@ -15,7 +15,7 @@ const PreferencesField = ({ selectedPreferences, updateField }: IProps) => {
   const handleChange = (selectedOption: any) => {
     const preferences = selectedOption
                         ? selectedOption.map((x: any) => x.value)
-                        : null;
+                        : [];
     updateField(Fields.Preferences, preferences);
   };
 
@@ -23,7 +23,7 @@ const PreferencesField = ({ selectedPreferences, updateField }: IProps) => {
                 ? selectedPreferences.map((selected) => 
                 ({ label: Preferences[selected as string as keyof typeof Preferences], value: selected as string })
                 ) 
-                : null;
+                : [];
 
   useEffect(() => {
     console.log("selectedPreferences: ", selectedPreferences);

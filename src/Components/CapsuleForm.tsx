@@ -168,13 +168,13 @@ const CapsuleForm = ({ capsule, setCapsule }: IProps) => {
           <div className="box ba tc bg-black-20 w-100 w-30-l br4 pa4 ma2">
               <PreferencesField selectedPreferences={capsule.preferences} updateField={updateField} />
           </div>
-          <div className="box ba tc bg-black-20 w-100 w-60-l  br4 pa4 ma2">
+          <div className="box ba tc bg-black-20 w-100 w-60-l br4 pa4 ma2">
             <ColorsField selectedColors={capsule.colors} updateField={updateField} />
           </div>
         </ div>
         <div className="tc">
           {error
-            ? <div className="error tc ba b--dark-red bg-light-red white pv1 ph1 dib-ns ma3 center ">
+            ? <div className="error tc bg-black ba pa3 dib-ns ma3 center ">
               {error}
             </div >
             : <br />
