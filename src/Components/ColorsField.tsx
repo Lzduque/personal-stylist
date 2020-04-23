@@ -95,7 +95,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
     
     const colors = selectedOption 
                   ? selectedOption.map((x: any) => x.value)
-                  : null;
+                  : [];
     updateField(Fields.MainColors, colors);
   };
 
@@ -105,7 +105,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
 
     const colors = selectedOption
       ? selectedOption.map((x: any) => x.value)
-      : null;
+      : [];
     updateField(Fields.NeutralColors, colors);
   };
 
@@ -115,7 +115,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
     
     const colors = selectedOption
       ? selectedOption.map((x: any) => x.value)
-      : null;
+      : [];
     updateField(Fields.AccentColors, colors);
   };
 
@@ -156,10 +156,10 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
 
   return (
     <div className="colors mt0 mb3-ns">
-      <h3 className="mt0" >Colors:</h3>
+      <h3 className="mt0" >Colors</h3>
       <p className="fw4 tl">
-        Select the colors you want in your capsule wardrobe. Select from 6 to 12 different colors. Keep in mind that, to work well, the colors should be distributed like this, in this order:
-        </p>
+        Select the colors you want in your capsule wardrobe. If you don't know how to choose your colors, read <a href="https://anuschkarees.com/blog/2014/08/25/how-to-choose-a-versatile-colour-palette-for-your-wardrobe-incl-36-sample-colour-palettes" target="_blank">this before</a>, or just give it a try:
+      </p>
       <ul className="fw4 tl pl3">
         <li className="pt2">Main colours: 3 - 4</li>
         <Select

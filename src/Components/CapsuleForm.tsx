@@ -188,7 +188,7 @@ const CapsuleForm = ({ capsule, setCapsule }: IProps) => {
         </div>
       </form>
       <br />
-      <div className="container flex" >
+      <div className="container flex " >
         {wardrobe
           ? <Palette colors={capsule.colors} />
           : <br />

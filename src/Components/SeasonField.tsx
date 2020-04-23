@@ -24,8 +24,10 @@ const SeasonField = ({ selectedSeason, updateField}: IProps) => {
 
   return (
     <div className="season mt0 mb3-ns" >
-      {/* <label className="fw7 f6" > */}
-      <h3 className="mt0" >Season:</h3>
+      <h3 className="mt0" >Season</h3>
+      <p className="fw4 tl">
+        Season in which you are planning to use your capsule wardrobe:
+      </p>
       <Select
         className="select"
         isSearchable={false}

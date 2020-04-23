@@ -12,11 +12,8 @@ interface IProps {
 const Palette = ({ colors }: IProps) => {
   return (
     <div className="wardrobe box mw9 flex justify-center center ph4-ns cf fl w-100 w-100-ns pa2">
-      <div className="ba bg-black-10 pa4 br4 tc ">
+      <div className="ba bg-black-10 w-100 mw7-l pa4 br4 tc ">
         <h3 className="mt0" >This is the Palette you created!!</h3>
-        <p className="fw4">
-          Here are the pieces you are going to need if you want this capsule wardrobe.
-        </p>
         <div className="paletteContainer bg-white-50 ">
           <div className="mainPalette flex flex-row mv2 mr2">
             {colors.mains.map(colors =>

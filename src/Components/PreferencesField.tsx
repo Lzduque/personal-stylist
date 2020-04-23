@@ -31,7 +31,10 @@ const PreferencesField = ({ selectedPreferences, updateField }: IProps) => {
 
   return (
     <div className="preferences mt0 mb3-ns">
-      <h3 className="mt0" >Preferences:</h3>
+      <h3 className="mt0" >Preferences</h3>
+      <p className="fw4 tl">
+        The types of clothing you would like to have in your capsule wardrobe:
+      </p>
       <Select
         className="select"
         isSearchable={false}
