@@ -7,7 +7,7 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <h1 className="bw0 bg-dark-gray white pv2 ph3 fw8 tc ttu tracked">
+        <h1 className="bw0 bg-dark-gray white pv2 ph3 ma0 fw8 tc ttu tracked">
           Personal Stylist
         </h1>
         <h2 className="bw0 br2 pv2 ph3 fw5 tc tracked" >
