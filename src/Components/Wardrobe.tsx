@@ -1,6 +1,6 @@
 import React, { useState, useEffect }  from 'react';
 import { Clothing, HexColor } from '../Enums';
-import { Wardrobe } from './CapsuleForm';
+import { Wardrobe } from '../types';
 
 interface IProps {
   wardrobe: Wardrobe

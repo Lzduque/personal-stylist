@@ -4,8 +4,9 @@ import StyleField from './StyleField';
 import NumberOfOutfitsField from './NumberOfOutfitsField';
 import ColorsField from './ColorsField';
 import PreferencesField from './PreferencesField';
-import { Fields, Season, Style, NumberOfOutfits, Colors, Preferences, Clothing } from '../Enums';
+import { Fields, Season, Style, NumberOfOutfits, Colors, Preferences } from '../Enums';
 import CWardrobe from './Wardrobe';
+import { Capsule, Wardrobe } from '../types';
 
 const server = 
   process.env.NODE_ENV === "production" 
@@ -17,22 +18,6 @@ const frontEnd =
   ? "https://lzduque.github.io/personal-stylist" 
   : "http://localhost:2000"
 
-interface Error {
-  error: string;
-}
-
-export type Wardrobe = [[Clothing, number, [Colors]]] | undefined;
-
-interface Capsule {
-  season: Season;
-  style: Style;
-  numberOfOutfits: NumberOfOutfits;
-  colors: {
-    mains: Colors[];
-    neutrals: Colors[];
-    accents: Colors[]
-  };
-  preferences: Preferences[];
 }
 
 const CapsuleForm = () => {

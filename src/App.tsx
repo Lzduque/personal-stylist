@@ -1,5 +1,7 @@
 import React from 'react';
 import CapsuleForm from './Components/CapsuleForm';
+import { Season, Style, NumberOfOutfits } from './Enums';
+import { Capsule } from './types';
 
 const App = () => {
   return (
