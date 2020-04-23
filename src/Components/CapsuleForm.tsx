@@ -18,24 +18,15 @@ const frontEnd =
   ? "https://lzduque.github.io/personal-stylist" 
   : "http://localhost:2000"
 
+interface IProps {
+  capsule: Capsule,
+  setCapsule: any
 }
 
-const CapsuleForm = () => {
-
+const CapsuleForm = ({ capsule, setCapsule }: IProps) => {
   const [error, setError] = useState<Error | null>(null);
   const [wardrobe, setWardrobe] = useState<Wardrobe | null>(null);
   const [capsuleReady, setCapsuleReady] = useState<boolean>(false);
-  const [capsule, setCapsule] = useState<Capsule>({
-    season: "AutumnWinter" as Season,
-    style: "Casual" as Style,
-    numberOfOutfits: "From10to20" as NumberOfOutfits,
-    colors: {
-      mains: [],
-      neutrals: [],
-      accents: []
-    },
-    preferences: []
-  })
 
   useEffect(() => {
     console.log("useEffect");
