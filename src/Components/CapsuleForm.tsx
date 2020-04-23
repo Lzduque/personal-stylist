@@ -7,6 +7,7 @@ import PreferencesField from './PreferencesField';
 import { Fields, Season, Style, NumberOfOutfits, Colors, Preferences } from '../Enums';
 import CWardrobe from './Wardrobe';
 import Palette from './Palette';
+import Loader from './Loader';
 import { Capsule, Wardrobe } from '../types';
 
 const server = 
@@ -28,6 +29,7 @@ const CapsuleForm = ({ capsule, setCapsule }: IProps) => {
   const [error, setError] = useState<Error | null>(null);
   const [wardrobe, setWardrobe] = useState<Wardrobe | null>(null);
   const [capsuleReady, setCapsuleReady] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     console.log("useEffect");
@@ -61,6 +63,7 @@ const CapsuleForm = ({ capsule, setCapsule }: IProps) => {
         window.location.replace(newWebPage);
         setWardrobe(JSON.parse(responseBody))
         setError(null);
+        setIsLoading(false);
         return response.ok;
       } else {
         setError(JSON.parse(responseBody).message);
@@ -136,8 +139,8 @@ const CapsuleForm = ({ capsule, setCapsule }: IProps) => {
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault();
-
     setWardrobe(null);
+    setIsLoading(true);
     setCapsuleReady(true);
   }
 
@@ -197,7 +200,9 @@ const CapsuleForm = ({ capsule, setCapsule }: IProps) => {
       <div className="container flex" >
         {wardrobe
           ? <CWardrobe wardrobe={wardrobe} />
-          : <br />
+          : isLoading
+            ? <Loader />
+            :<br />
         }
       </div>
     </div>
