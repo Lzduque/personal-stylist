@@ -21,7 +21,7 @@ const NumberOfOutfitsField = ({ selectedNumberOfOutfits, updateField}: IProps) =
     <div className="numberOfOutfits mt0 mb3-ns">
       <h3 className="mt0" >Number of Outfits</h3>
       <p className="fw4 tl">
-        Number of different outfits you want in your capsule wardrobe - you should consider your lifestyle, closet size and laundry habbits to choose this:
+        To choose the number of outfits you want in your capsule wardrobe, you should consider your lifestyle, closet size and laundry habits.
       </p>
       <Select
         className="select"

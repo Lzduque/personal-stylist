@@ -20,9 +20,6 @@ const StyleField = ({ selectedStyle, updateField}: IProps) => {
   return (
     <div className="style mt0 mb3-ns">
       <h3 className="mt0" >Style</h3>
-      <p className="fw4 tl">
-        Style of your future capsule wardrobe:
-      </p>
       <Select
         className="select"
         isSearchable={false}

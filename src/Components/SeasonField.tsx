@@ -22,7 +22,7 @@ const SeasonField = ({ selectedSeason, updateField}: IProps) => {
     <div className="season mt0 mb3-ns" >
       <h3 className="mt0" >Season</h3>
       <p className="fw4 tl">
-        Season in which you are planning to use your capsule wardrobe:
+        What season are you planning to use your capsule wardrobe in?
       </p>
       <Select
         className="select"
