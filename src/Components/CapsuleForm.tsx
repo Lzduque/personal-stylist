@@ -32,47 +32,55 @@ const CapsuleForm = ({ capsule, setCapsule }: IProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log("useEffect");
+    const checkURl = async (webPage: any) => {
+      const encodedCapsule = webPage.hash.slice(2);
+      if (encodedCapsule.length > 0) {
+        const decodedCapsule = JSON.parse(atob(encodedCapsule.replace(/_/g, '/').replace(/-/g, '+')));
+        setCapsule(decodedCapsule);
+        setCapsuleReady(true);
+      }
+    }
+
     checkURl(window.location);
-  }, [])
+  }, [setCapsule])
 
   useEffect(() => {
+    const sendForm = async () => {
+      const encodedRequest = btoa(JSON.stringify(capsule)).replace(/\//g, '_').replace(/\+/g, '-')
+      const newWebPage: string = `${frontEnd}/#/${encodedRequest}`;
+
+      try {
+        const response = await fetch(`${server}/capsule/${encodedRequest}`, {
+          method: "GET",
+          headers: new Headers({
+            Accept: "application/json"
+          }),
+        })
+        if (response.status !== 200) {
+          console.log(`Status ${response.status}`);
+          return false;
+        }
+        const responseBody = await response.text();
+        if (!JSON.parse(responseBody).error) {
+          window.location.replace(newWebPage);
+          setWardrobe(JSON.parse(responseBody))
+          setError(null);
+          setIsLoading(false);
+          return response.ok;
+        } else {
+          setError(JSON.parse(responseBody).message);
+          return false;
+        }
+      } catch (ex) {
+        return false;
+      }
+    }
+
     if (capsuleReady) {
       sendForm();
       setCapsuleReady(false);
     }
   }, [capsuleReady])
-
-  const sendForm = async () => {
-    const encodedRequest = btoa(JSON.stringify(capsule)).replace(/\//g, '_').replace(/\+/g, '-')
-    const newWebPage: string = `${frontEnd}/#/${encodedRequest}`;
-
-    try {
-      const response = await fetch(`${server}/capsule/${encodedRequest}`, {
-        method: "GET",
-        headers: new Headers({
-          Accept: "application/json"
-        }),
-      })
-      if (response.status !== 200) {
-        console.log(`Status ${response.status}`);
-        return false;
-      }
-      const responseBody = await response.text();
-      if (!JSON.parse(responseBody).error) {
-        window.location.replace(newWebPage);
-        setWardrobe(JSON.parse(responseBody))
-        setError(null);
-        setIsLoading(false);
-        return response.ok;
-      } else {
-        setError(JSON.parse(responseBody).message);
-        return false;
-      }
-    } catch (ex) {
-      return false;
-    }
-  }
 
   const updateField = (field: Fields, value: any): any => {
     switch (field) {
@@ -142,17 +150,6 @@ const CapsuleForm = ({ capsule, setCapsule }: IProps) => {
     setWardrobe(null);
     setIsLoading(true);
     setCapsuleReady(true);
-  }
-
-  const checkURl = async (webPage: any) => {
-    const encodedCapsule = webPage.hash.slice(2);
-    if (encodedCapsule.length > 0) {
-      const decodedCapsule = JSON.parse(atob(encodedCapsule.replace(/_/g, '/').replace(/-/g, '+')));
-      setCapsule(decodedCapsule);
-      console.log("decodedCapsule: ", decodedCapsule);
-      console.log("capsule before submitting", capsule);
-      setCapsuleReady(true);
-    }
   }
 
   return (

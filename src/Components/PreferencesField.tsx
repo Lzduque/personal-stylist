@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Preferences, Fields } from '../Enums';
 import Select from 'react-select';
 
@@ -24,10 +24,6 @@ const PreferencesField = ({ selectedPreferences, updateField }: IProps) => {
                 ({ label: Preferences[selected as string as keyof typeof Preferences], value: selected as string })
                 ) 
                 : [];
-
-  useEffect(() => {
-    console.log("selectedPreferences: ", selectedPreferences);
-  }, [selectedPreferences])
 
   return (
     <div className="preferences mt0 mb3-ns">

@@ -12,7 +12,7 @@ const CWardrobe = ({ wardrobe }: IProps) => {
 
   useEffect(() => {
     setTextCopied(false);
-  }, [window.location])
+  }, [])
 
 
   return (

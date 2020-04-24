@@ -1,4 +1,4 @@
-import React, { useEffect, createRef } from 'react';
+import React, { createRef } from 'react';
 import { Colors, Fields, HexColor } from '../Enums';
 import Select from 'react-select';
 import chroma from 'chroma-js';
@@ -90,7 +90,6 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
   }
 
   const handleChangeMains = (selectedOption: any) => {
-    console.log("handleChangeMains");
     updateOptions();
     
     const colors = selectedOption 
@@ -100,7 +99,6 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
   };
 
   const handleChangeNeutrals = (selectedOption: any) => {
-    console.log("handleChangeNeutrals");
     updateOptions();
 
     const colors = selectedOption
@@ -110,7 +108,6 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
   };
 
   const handleChangeAccents = (selectedOption: any) => {
-    console.log("handleChangeAccents");
     updateOptions();
     
     const colors = selectedOption
@@ -118,10 +115,6 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
       : [];
     updateField(Fields.AccentColors, colors);
   };
-
-  useEffect(() => {
-    console.log("selectedColors: ", selectedColors);
-  }, [selectedColors])
 
   const valueMains = selectedColors.mains
     ? selectedColors.mains.map((selected) =>
@@ -158,7 +151,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
     <div className="colors mt0 mb3-ns">
       <h3 className="mt0" >Colors</h3>
       <p className="fw4 tl">
-        Select the colors you want in your capsule wardrobe. If you don't know how to choose your colors, read <a href="https://anuschkarees.com/blog/2014/08/25/how-to-choose-a-versatile-colour-palette-for-your-wardrobe-incl-36-sample-colour-palettes" target="_blank">this before</a>, or just give it a try:
+        Select the colors you want in your capsule wardrobe. If you don't know how to choose your colors, read <a href="https://anuschkarees.com/blog/2014/08/25/how-to-choose-a-versatile-colour-palette-for-your-wardrobe-incl-36-sample-colour-palettes" target="_blank" rel="noopener noreferrer" >this before</a>, or just give it a try:
       </p>
       <ul className="fw4 tl pl3">
         <li className="pt2">Main colours: 3 - 4</li>

@@ -58,10 +58,6 @@ const App = () => {
     });
   }, [capsule.colors.mains, capsule.colors.neutrals, capsule.colors.accents])
 
-  useEffect(() => {
-    console.log("capsule.colors.accents");
-  }, [capsule.colors.accents])
-
   return (
     <div className="App" style={appStyle}>
       <header className="App-header">

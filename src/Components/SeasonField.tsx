@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Season, Fields } from '../Enums';
 import Select from 'react-select';
 
@@ -17,10 +17,6 @@ const SeasonField = ({ selectedSeason, updateField}: IProps) => {
   };
 
   const value = { label: Season[selectedSeason as string as keyof typeof Season], value: selectedSeason as string };
-
-  useEffect(() => {
-    console.log("selectedSeason: ", selectedSeason);
-  }, [selectedSeason])
 
   return (
     <div className="season mt0 mb3-ns" >

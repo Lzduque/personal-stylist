@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NumberOfOutfits, Fields } from '../Enums';
 import Select from 'react-select';
 
@@ -16,10 +16,6 @@ const NumberOfOutfitsField = ({ selectedNumberOfOutfits, updateField}: IProps) =
   };
 
   const value = { label: NumberOfOutfits[selectedNumberOfOutfits as string as keyof typeof NumberOfOutfits], value: selectedNumberOfOutfits as string };
-
-  useEffect(() => {
-    console.log("selectedNumberOfOutfits: ", selectedNumberOfOutfits);
-  }, [selectedNumberOfOutfits])
 
   return (
     <div className="numberOfOutfits mt0 mb3-ns">

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Style, Fields } from '../Enums';
 import Select from 'react-select';
 
@@ -16,10 +16,6 @@ const StyleField = ({ selectedStyle, updateField}: IProps) => {
   };
 
   const value = { label: Style[selectedStyle as string as keyof typeof Style], value: selectedStyle as string };
-
-  useEffect(() => {
-    console.log("selectedStyle: ", selectedStyle);
-  }, [selectedStyle])
 
   return (
     <div className="style mt0 mb3-ns">
