@@ -110,8 +110,8 @@ export enum Preferences {
 }
 
 export enum Clothing {
-  TankTop = "Tank Top",
   Shirt = "Shirts & Tops",
+  TankTop = "T-Shirts & Tank Tops",
   Jeans = "Jeans",
   JeansShorts = "Jeans Shorts",
   DressTrousers = "Dress Trousers",
@@ -122,13 +122,9 @@ export enum Clothing {
   BusinessDress = "Business Dress",
   DayDress = "Day Dress",
   Sweater = "Sweater",
-  Cardigan = "Cardigan",
   Jacket = "Jacket",
-  Vest = "Vest",
+  LongCoat = "LongCoat",
   Blazer = "Blazer",
-  Sweatshirt = "Sweatshirt",
-  TrenchCoat = "Trench Coat",
-  WoolCoat = "Wool Coat",
   Sandals = "Sandals",
   Flats = "Flats",
   Heels = "Heels",
