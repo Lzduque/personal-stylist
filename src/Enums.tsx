@@ -110,8 +110,8 @@ export enum Preferences {
 }
 
 export enum Clothing {
-  Shirt = "Shirt",
   TankTop = "Tank Top",
+  Shirt = "Shirts & Tops",
   Jeans = "Jeans",
   JeansShorts = "Jeans Shorts",
   DressTrousers = "Dress Trousers",
