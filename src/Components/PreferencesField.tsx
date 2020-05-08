@@ -29,7 +29,7 @@ const PreferencesField = ({ selectedPreferences, updateField }: IProps) => {
     <div className="preferences mt0 mb3-ns">
       <h3 className="mt0" >Preferences</h3>
       <p className="fw4 tl">
-        What types of clothing would you like to have in your capsule wardrobe? Don't worry about other types of clothing like shoes, tops and coats, we've got you covered!
+        What types of clothing would you like to have in your capsule wardrobe? We give you the option of choosing your preferences, like dresses, pants, or skirts to be part of your dream closet. If you don't select them, they won't be there! Don't worry about other types of clothing like shoes, tops, and coats, we've got you covered!
       </p>
       <Select
         className="select"
