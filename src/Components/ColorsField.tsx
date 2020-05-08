@@ -151,8 +151,9 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
     <div className="colors mt0 mb3-ns">
       <h3 className="mt0" >Colors</h3>
       <p className="fw4 tl">
-        If you don't know how to choose your colors, read <a href="https://anuschkarees.com/blog/2014/08/25/how-to-choose-a-versatile-colour-palette-for-your-wardrobe-incl-36-sample-colour-palettes" target="_blank" rel="noopener noreferrer" >this before</a>, or just give it a try!
+        If you don't know how to choose your colors, try to take a look at your wardrobe and noticing which colors do you reach for more and feel more comfortable in, or just give it a try here and see if you like the result! You can always choose other colors and try again!
         If you want fewer outfits, 30 for example, you won't need a big color palette, because you won't have many pieces of clothes. The smaller palette, for small capsule wardrobes, is composed of 3 mains, 1 neutral, 2 accents colors. For larger capsules, the recommended size is 3 mains, 2 neutrals, and 3 accents.
+        The main colors are the most important and the first ones you choose are used first. The accent colors are used for purses and dresses.
       </p>
       <ul className="fw4 tl pl3">
         <li className="pt2">Main colours: 3 - 4</li>

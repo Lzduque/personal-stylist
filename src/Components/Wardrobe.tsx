@@ -20,7 +20,7 @@ const CWardrobe = ({ wardrobe }: IProps) => {
       <div className="ba bg-black-10 w-100 mw7-l pa4 br4 tc ">
         <h3 className="mt0" >Here is Your Capsule Wardrobe! Enjoy!!</h3>
         <p className="fw4">
-          Here are the pieces you are going to need if you want this capsule wardrobe. The quantity and colors you'll need for each piece of clothing are listed below! 
+          Here are the pieces you are going to need if you want this capsule wardrobe. The quantity and colors you'll need for each piece of clothing are listed below!
         </p>
         <table className="center collapse">
           <tbody>
