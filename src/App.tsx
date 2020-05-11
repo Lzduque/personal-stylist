@@ -68,7 +68,7 @@ const App = () => {
           How do you want your capsule wardrobe to be?
         </h2>
         <div className="box flex justify-center center ph4-ns cf fl w-100 w-100-ns pa2">
-          <div className="ba bg-black-10 w-100 mw7-l pa4 br4 tc ">
+          <div className="ba bg-black-20 w-100 mw7-l pa4 br4 tc ">
             <p className="fw4">
               To see an example from what to select and what the capsule wardrobe can look like, click <a href="https://lzduque.github.io/personal-stylist/#/eyJzZWFzb24iOiJTcHJpbmdTdW1tZXIiLCJzdHlsZSI6IkNhc3VhbCIsIm51bWJlck9mT3V0Zml0cyI6IkZyb20xODF0bzE5MCIsImNvbG9ycyI6eyJtYWlucyI6WyJOYXZ5IiwiTGlnaHRCbHVlIiwiTGlnaHRHcmVlbiJdLCJuZXV0cmFscyI6WyJPZmZXaGl0ZSIsIkJlaWdlIl0sImFjY2VudHMiOlsiTGlnaHRQaW5rIiwiTGlnaHRZZWxsb3ciLCJDb3JhbCJdfSwicHJlZmVyZW5jZXMiOlsiU2tpcnRzIiwiRHJlc3NlcyIsIlBhbnRzIl19">here!</a>
               How it works:
