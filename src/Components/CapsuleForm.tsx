@@ -182,7 +182,7 @@ const CapsuleForm = ({ capsule, setCapsule }: IProps) => {
         </div>
         <br />
         <div className="tc" >
-          <button type="submit" className="bw0 br2 bg-gray pv2 ph3 white fw5 tc ttu tracked bg-animate hover-bg-dark-gray shadow-5">
+          <button type="submit" className="bw0 br2 bg-gray pv2 ph3 white f3 fw5 tc ttu tracked bg-animate hover-bg-dark-gray shadow-5">
             Check your new Capsule Wardrobe!
           </button>
         </div>
