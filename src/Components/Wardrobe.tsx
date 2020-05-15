@@ -1,6 +1,7 @@
-import React, { useState, useEffect }  from 'react';
+import React, { useState, useEffect } from 'react';
 import { Clothing, HexColor } from '../Enums';
 import { Wardrobe } from '../types';
+import SharePopUp from './SharePopUp';
 
 interface IProps {
   wardrobe: Wardrobe
@@ -8,10 +9,10 @@ interface IProps {
 
 
 const CWardrobe = ({ wardrobe }: IProps) => {
-  const [textCopied, setTextCopied] = useState<boolean>(false);
+  const [clickOnShare, setclickOnShare] = useState<boolean>(false);
 
   useEffect(() => {
-    setTextCopied(false);
+    setclickOnShare(false);
   }, [])
 
 
@@ -26,41 +27,41 @@ const CWardrobe = ({ wardrobe }: IProps) => {
         <table className="center collapse">
           <tbody>
             <tr className="bg-black-20 white" >
-            <th className="tl pa2 bg-black-20" >
-              Clothes
+              <th className="tl pa2 bg-black-20" >
+                Clothes
             </th>
-            <th className="pa2 bg-black-20">
-              #
+              <th className="pa2 bg-black-20">
+                #
             </th>
-            <th className="flex flex-row flex-wrap pa2 bg-black-20" >
-              Colors
+              <th className="flex flex-row flex-wrap pa2 bg-black-20" >
+                Colors
             </th>
-          </tr>
-          {wardrobe!.map((clothe) =>
-            <tr key={"clothing-" + (Math.random()).toString()} className="">
-              <td className="pa2 bg-white-50 tl black ">
-                {Clothing[clothe[0] as keyof typeof Clothing]}
-              </td>
-              <td className="pa2 bg-white-50 black">
-                {clothe[1]}
-              </td>
-              <td className="flex flex-row flex-wrap pa2 bg-white-50" >
-                {clothe[2].map(colors =>
-                  <div key={HexColor[colors as keyof typeof HexColor]} style={{ backgroundColor: HexColor[colors as keyof typeof HexColor] }} className="mr2 mt2 pv3 w2" >
-                  </div>
-                )}
-              </td>
             </tr>
-          )}
+            {wardrobe!.map((clothe) =>
+              <tr key={"clothing-" + (Math.random()).toString()} className="">
+                <td className="pa2 bg-white-50 tl black ">
+                  {Clothing[clothe[0] as keyof typeof Clothing]}
+                </td>
+                <td className="pa2 bg-white-50 black">
+                  {clothe[1]}
+                </td>
+                <td className="flex flex-row flex-wrap pa2 bg-white-50" >
+                  {clothe[2].map(colors =>
+                    <div key={HexColor[colors as keyof typeof HexColor]} style={{ backgroundColor: HexColor[colors as keyof typeof HexColor] }} className="mr2 mt2 pv3 w2" >
+                    </div>
+                  )}
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
         <div className="tc mt4" >
-          <button onClick={() => { 
-            setTextCopied(true);
-            navigator.clipboard.writeText(window.location.toString()) 
-            }} className="bw0 br2 bg-gray pv2 ph3 white fw5 tc ttu tracked bg-animate hover-bg-dark-gray shadow-5" >
-            {textCopied === true? 'Link copied!' : 'Share your Capsule Wardrobe!'}
+          <div className="btn" >
+            <button onClick={() => { setclickOnShare(true) }} className="bw0 br2 bg-gray pv2 ph3 white fw5 tc ttu tracked bg-animate hover-bg-dark-gray shadow-5" >
+              Share your Capsule Wardrobe!
           </button>
+          </div>
+          <SharePopUp setclickOnShare={setclickOnShare} />
         </div>
       </div>
     </div>
