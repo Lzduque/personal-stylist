@@ -61,7 +61,7 @@ const CWardrobe = ({ wardrobe }: IProps) => {
               Share your Capsule Wardrobe!
           </button>
           </div>
-          <SharePopUp setclickOnShare={setclickOnShare} />
+          {clickOnShare === true ? <SharePopUp setclickOnShare={setclickOnShare} /> : null}
         </div>
       </div>
     </div>
