@@ -61,7 +61,9 @@ const CWardrobe = ({ wardrobe }: IProps) => {
               Share your Capsule Wardrobe!
           </button>
           </div>
-          {clickOnShare === true ? <SharePopUp setclickOnShare={setclickOnShare} /> : null}
+          <div className="flex justify-center" >
+            {clickOnShare === true ? <SharePopUp setclickOnShare={setclickOnShare} /> : null}
+          </div>
         </div>
       </div>
     </div>
