@@ -1,6 +1,6 @@
 import React from 'react';
 
-const About = ({ }) => {
+const About = () => {
   return (
     <div className="container flex flex-row flex-wrap justify-around mw9 content-center center ph4-ns" >
       <div className="box ba bg-black-20 tc w-100 w-100-l br4 pa4 ma2">
