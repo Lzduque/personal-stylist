@@ -68,10 +68,8 @@ const App = () => {
         <h2 id="call" className="bw0 br2 pv2 ph3 fw5 tc tracked" >
           How do you want your capsule wardrobe to be?
         </h2>
-        <div className="box flex justify-center center ph4-ns cf fl w-100 w-100-ns pa2">
-          <div className="box ba tc bg-black-20 w-100 w-100-l br4 pa4 ma2">
-            <About />
-          </div>
+        <div className="container flex" >
+          <About />
         </div>
       </header>
       <section>
