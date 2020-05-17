@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { NumberOfOutfits, Fields } from '../Enums';
 import Select from 'react-select';
-import { ReactComponent as QuestionMark } from '../questionmark.svg';
 
 interface IProps {
   selectedNumberOfOutfits: NumberOfOutfits,
@@ -11,6 +10,7 @@ interface IProps {
 const options = Object.keys(NumberOfOutfits).map((k) =>
   ({ label: NumberOfOutfits[k as keyof typeof NumberOfOutfits], value: k })
 )
+
 const NumberOfOutfitsField = ({ selectedNumberOfOutfits, updateField }: IProps) => {
   const [clickReadMore, setclickReadMore] = useState<boolean>(false);
 
@@ -39,9 +39,7 @@ const NumberOfOutfitsField = ({ selectedNumberOfOutfits, updateField }: IProps) 
             <h3 className="mt0" >Number of Outfits</h3>
             <p className="fw4 tl">
               To choose the number of outfits you want in your capsule wardrobe, you should consider your lifestyle, closet size, and laundry habits.
-              <div className="mt3 fw5 pointer:hover" ><a onClick={() => {
-                setclickReadMore(true)
-              }}>Read more...</a></div>
+              <div className="mt3 fw5 pointer:hover" ><a onClick={() => {setclickReadMore(true)}}>Read more...</a></div>
             </p>
             <Select
               className="select"
@@ -52,7 +50,6 @@ const NumberOfOutfitsField = ({ selectedNumberOfOutfits, updateField }: IProps) 
             />
           </div>)
       }
-
     </div>
   )
 }
