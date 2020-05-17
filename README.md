@@ -43,10 +43,13 @@ This Website can also be used as an app since it is a progressive web app:
 !["Home page"](https://github.com/Lzduque/personal-stylist/blob/master/public/APP_HOME_PAGE.png?raw=true)
 
 ### Options Selection
-!["Recipe Book Page"](https://github.com/Lzduque/personal-stylist/blob/master/public/APP_SELECTION.png?raw=true)
+!["Options Selection"](https://github.com/Lzduque/personal-stylist/blob/master/public/APP_SELECTION.png?raw=true)
 
-### Wardrobe Generator
-!["Wardrobe Generator"](https://github.com/Lzduque/personal-stylist/blob/master/public/APP_WARDROBE.png?raw=true)
+### Wardrobe Palette
+!["Wardrobe Palette"](https://github.com/Lzduque/personal-stylist/blob/master/public/APP_PALETTE.png?raw=true)
+
+### Capsule Wardrobe
+!["Capsule Wardrobe"](https://github.com/Lzduque/personal-stylist/blob/master/public/APP_WARDROBE.png?raw=true)
 
 
 ## Additional Features to come
