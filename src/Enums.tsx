@@ -105,7 +105,8 @@ export enum Preferences {
   Skirts = "Skirts",
   Dresses = "Dresses",
   Pants = "Pants",
-  LeggingsPants = "Leggings"
+  LeggingsPants = "Leggings",
+  ShortsPants = "Shorts"
 }
 
 export enum Clothing {
