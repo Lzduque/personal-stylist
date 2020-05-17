@@ -69,7 +69,7 @@ const App = () => {
           How do you want your capsule wardrobe to be?
         </h2>
         <div className="box flex justify-center center ph4-ns cf fl w-100 w-100-ns pa2">
-          <div className="box ba tc bg-black-20 w-100 w-30-l br4 pa4 ma2">
+          <div className="box ba tc bg-black-20 w-100 w-100-l br4 pa4 ma2">
             <About />
           </div>
         </div>

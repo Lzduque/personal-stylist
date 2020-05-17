@@ -21,6 +21,8 @@ const CWardrobe = ({ wardrobe }: IProps) => {
         <h3 className="mt0" >Here is Your Capsule Wardrobe! Enjoy!!</h3>
         <p className="fw4">
           Here are the pieces you are going to need if you want this capsule wardrobe. The quantity and colors you'll need for each piece of clothing are listed below!
+        </p>
+        <p className="fw4">
           Feel free to tweak it as you seem fit! These are just recommendations! But keep in mind that if you take off one pair of pants, for example, you will have fewer outfits then you requested initially.
         </p>
         <table className="center collapse">
