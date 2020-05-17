@@ -1,4 +1,4 @@
-import React, { createRef } from 'react';
+import React, { createRef, useState } from 'react';
 import { Colors, Fields, HexColor } from '../Enums';
 import Select from 'react-select';
 import chroma from 'chroma-js';
@@ -82,6 +82,8 @@ const colourStyles = {
 };
 
 const ColorsField = ({ selectedColors, updateField }: IProps) => {
+  const [clickReadMore, setclickReadMore] = useState<boolean>(false);
+
   const updateOptions = () => {
     // Rebuild all the select options
     selectMains.current.select.buildMenuOptions({ options: [] }, []);
@@ -148,61 +150,77 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
   }
 
   return (
-    <div className="colors mt0 mb3-ns">
-      <h3 className="mt0" >Colors</h3>
-      <p className="fw4 tl">
-        If you don't know how to choose your colors, try to take a look at your wardrobe and noticing which colors do you reach for more and feel more comfortable in, or just give it a try here and see if you like the result! You can always choose other colors and try again!
-        If you want fewer outfits, 30 for example, you won't need a big color palette, because you won't have many pieces of clothes. The smaller palette, for small capsule wardrobes, is composed of 3 mains, 1 neutral, 2 accents colors. For larger capsules, the recommended size is 3 mains, 2 neutrals, and 3 accents.
-        The main colors are the most important and the first ones you choose are used first. The accent colors are used for purses and dresses.
-      </p>
-      <ul className="fw4 tl pl3">
-        <li className="pt2">Main colours: 3 - 4</li>
-        <Select
-          ref={selectMains}
-          className="select pa2"
-          isSearchable={false}
-          closeMenuOnSelect={false}
-          blurInputOnSelect={false}
-          value={valueMains}
-          onChange={handleChangeMains}
-          // isClearable
-          isMulti
-          options={options}
-          styles={colourStyles}
-          isOptionSelected={isOptionSelected}
-        />
-        <li className="pt2">Neutrals: 1 - 3</li>
-        <Select
-          ref={selectNeutrals}
-          className="select pa2"
-          isSearchable={false}
-          closeMenuOnSelect={false}
-          blurInputOnSelect={false}
-          value={valueNeutrals}
-          onChange={handleChangeNeutrals}
-          // isClearable
-          isMulti
-          options={options}
-          styles={colourStyles}
-          isOptionSelected={isOptionSelected}
-        />
-        <li className="pt2">Accent colours: 2 - 5</li>
-        <Select
-          ref={selectAccents}
-          className="select pa2 pb0"
-          isSearchable={false}
-          closeMenuOnSelect={false}
-          blurInputOnSelect={false}
-          value={valueAccents}
-          onChange={handleChangeAccents}
-          // isClearable
-          isMulti
-          options={options}
-          styles={colourStyles}
-          isOptionSelected={isOptionSelected}
-        />
-      </ul>
-    </div >
+    <div>
+      {clickReadMore ? (
+        <div>
+          <p className="fw4 tl">
+            If you want fewer outfits, 30 for example, you won't need a big color palette, because you won't have many pieces of clothes. Small capsule wardrobes should have a small color palette composed of 3 mains, 1 neutral, and 2 accents colors. For larger capsules, the recommended size is 3 mains, 2 neutrals, and 3 accents.
+          </p>
+          <p className="fw4 tl">
+            The main colors are the most important and the first ones you choose are used first. The accent colors are used for purses and dresses.
+            <div className="mt3 fw5 pointer:hover" ><a onClick={() => {
+              setclickReadMore(false)
+            }}>Go back!</a></div>
+          </p>
+        </div>
+      ) : (
+        <div className="colors mt0 mb3-ns">
+          <h3 className="mt0" >Colors</h3>
+          <p className="fw4 tl">
+              If you don't know how to choose your colors, try to take a look at your wardrobe and noticing which colors do you reach for more and feel more comfortable in, or just give it a try here and see if you like the result! You can always choose other colors and try again!
+              <div className="mt3 fw5 pointer:hover" ><a onClick={() => { setclickReadMore(true) }}>Read more...</a></div>
+
+          </p>
+          <ul className="fw4 tl pl3">
+            <li className="pt2">Main colours: 3 - 4</li>
+            <Select
+              ref={selectMains}
+              className="select pa2"
+              isSearchable={false}
+              closeMenuOnSelect={false}
+              blurInputOnSelect={false}
+              value={valueMains}
+              onChange={handleChangeMains}
+              // isClearable
+              isMulti
+              options={options}
+              styles={colourStyles}
+              isOptionSelected={isOptionSelected}
+            />
+            <li className="pt2">Neutrals: 1 - 3</li>
+            <Select
+              ref={selectNeutrals}
+              className="select pa2"
+              isSearchable={false}
+              closeMenuOnSelect={false}
+              blurInputOnSelect={false}
+              value={valueNeutrals}
+              onChange={handleChangeNeutrals}
+              // isClearable
+              isMulti
+              options={options}
+              styles={colourStyles}
+              isOptionSelected={isOptionSelected}
+            />
+            <li className="pt2">Accent colours: 2 - 5</li>
+            <Select
+              ref={selectAccents}
+              className="select pa2 pb0"
+              isSearchable={false}
+              closeMenuOnSelect={false}
+              blurInputOnSelect={false}
+              value={valueAccents}
+              onChange={handleChangeAccents}
+              // isClearable
+              isMulti
+              options={options}
+              styles={colourStyles}
+              isOptionSelected={isOptionSelected}
+            />
+          </ul>
+      </div >)
+      }
+    </div>
   )
 }
 
