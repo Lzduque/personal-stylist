@@ -157,7 +157,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
             If you want fewer outfits, 30 for example, you won't need a big color palette, because you won't have many pieces of clothes. Small capsule wardrobes should have a small color palette composed of 3 mains, 1 neutral, and 2 accents colors. For larger capsules, the recommended size is 3 mains, 2 neutrals, and 3 accents.
           </p>
           <p className="fw4 tl">
-            The main colors are the most important and the first ones you choose are used first. The accent colors are used for purses and dresses.
+            The main colors are the most important and the first ones you choose are used first. The neutral colors are used first for purses and dresses.
             <div className="mt3 pointer:hover" ><button className="bg-transparent bn white fw5 pa0" onClick={() => { setclickReadMore(false) }}>Go back!</button></div>
           </p>
         </div>
@@ -165,7 +165,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
         <div className="colors mt0 mb3-ns">
           <h3 className="mt0" >Colors</h3>
           <p className="fw4 tl">
-              If you don't know how to choose your colors, try to take a look at your wardrobe and noticing which colors do you reach for more and feel more comfortable in, or just give it a try here and see if you like the result! You can always choose other colors and try again!
+              If you don't know how to choose your colors, try to take a look at your wardrobe and noticing which colors you reach for more and feel more comfortable in, or just give it a try here and see if you like the result! You can always choose other colors and try again!
             <div className="mt3 pointer:hover" ><button className="bg-transparent bn white fw5 pa0" onClick={() => { setclickReadMore(true) }}>Read more...</button></div>
           </p>
           <ul className="fw4 tl pl3">
