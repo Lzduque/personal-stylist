@@ -158,9 +158,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
           </p>
           <p className="fw4 tl">
             The main colors are the most important and the first ones you choose are used first. The accent colors are used for purses and dresses.
-            <div className="mt3 fw5 pointer:hover" ><a onClick={() => {
-              setclickReadMore(false)
-            }}>Go back!</a></div>
+            <div className="mt3 pointer:hover" ><button className="bg-transparent bn white fw5 pa0" onClick={() => { setclickReadMore(false) }}>Go back!</button></div>
           </p>
         </div>
       ) : (
@@ -168,8 +166,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
           <h3 className="mt0" >Colors</h3>
           <p className="fw4 tl">
               If you don't know how to choose your colors, try to take a look at your wardrobe and noticing which colors do you reach for more and feel more comfortable in, or just give it a try here and see if you like the result! You can always choose other colors and try again!
-              <div className="mt3 fw5 pointer:hover" ><a onClick={() => { setclickReadMore(true) }}>Read more...</a></div>
-
+            <div className="mt3 pointer:hover" ><button className="bg-transparent bn white fw5 pa0" onClick={() => { setclickReadMore(true) }}>Read more...</button></div>
           </p>
           <ul className="fw4 tl pl3">
             <li className="pt2">Main colours: 3 - 4</li>
