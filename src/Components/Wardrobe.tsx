@@ -16,8 +16,8 @@ const CWardrobe = ({ wardrobe }: IProps) => {
 
 
   return (
-    <div className="wardrobe box mw9 flex justify-center center ph4-ns cf fl w-100 w-100-ns pa2">
-      <div className="ba bg-black-20 w-100 mw7-l pa4 br4 tc ">
+    <div className="container flex flex-row flex-wrap justify-around mw9 content-center center ph4-ns" >
+      <div className="box ba bg-black-20 tc w-100 w-100-l br4 pa4 ma2">
         <h3 className="mt0" >Here is Your Capsule Wardrobe! Enjoy!!</h3>
         <p className="fw4">
           Here are the pieces you are going to need if you want this capsule wardrobe. The quantity and colors you'll need for each piece of clothing are listed below!
