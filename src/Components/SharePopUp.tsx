@@ -1,8 +1,8 @@
 import React from "react";
-import { ReactComponent as FacebookIcon } from '../facebook.svg';
-import { ReactComponent as WhatsAppIcon } from '../whatsapp.svg';
-import { ReactComponent as MailIcon } from '../mail.svg';
-import { ReactComponent as CopyIcon } from '../copy.svg';
+import { ReactComponent as FacebookIcon } from '../Svg/facebook.svg';
+import { ReactComponent as WhatsAppIcon } from '../Svg/whatsapp.svg';
+import { ReactComponent as MailIcon } from '../Svg/mail.svg';
+import { ReactComponent as CopyIcon } from '../Svg/copy.svg';
 
 interface IProps {
   setclickOnShare: any
