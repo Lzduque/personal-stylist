@@ -40,7 +40,13 @@ export enum NumberOfOutfits {
   From201to210 = "From 201 to 210",
   From211to220 = "From 211 to 220",
   From221to230 = "From 221 to 230",
-  From231to240 = "From 231 to 240"
+  From231to240 = "From 231 to 240",
+  From241to250 = "From 241 to 250",
+  From251to260 = "From 251 to 260",
+  From261to270 = "From 261 to 270",
+  From271to280 = "From 271 to 280",
+  From281to290 = "From 281 to 290",
+  From291to300 = "From 291 to 300"
 }
 
 export enum Colors {
