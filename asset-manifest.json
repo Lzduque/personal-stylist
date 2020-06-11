@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/personal-stylist/static/css/main.ef656b31.chunk.css",
+    "main.js": "/personal-stylist/static/js/main.0359462e.chunk.js",
+    "main.js.map": "/personal-stylist/static/js/main.0359462e.chunk.js.map",
+    "runtime-main.js": "/personal-stylist/static/js/runtime-main.063a0d80.js",
+    "runtime-main.js.map": "/personal-stylist/static/js/runtime-main.063a0d80.js.map",
+    "static/js/2.d45f9e31.chunk.js": "/personal-stylist/static/js/2.d45f9e31.chunk.js",
+    "static/js/2.d45f9e31.chunk.js.map": "/personal-stylist/static/js/2.d45f9e31.chunk.js.map",
+    "index.html": "/personal-stylist/index.html",
+    "precache-manifest.915cb27d38db37f18e9e2886ad153873.js": "/personal-stylist/precache-manifest.915cb27d38db37f18e9e2886ad153873.js",
+    "service-worker.js": "/personal-stylist/service-worker.js",
+    "static/css/main.ef656b31.chunk.css.map": "/personal-stylist/static/css/main.ef656b31.chunk.css.map",
+    "static/js/2.d45f9e31.chunk.js.LICENSE.txt": "/personal-stylist/static/js/2.d45f9e31.chunk.js.LICENSE.txt",
+    "static/media/copy.8b237fc1.svg": "/personal-stylist/static/media/copy.8b237fc1.svg",
+    "static/media/facebook.cdb413ff.svg": "/personal-stylist/static/media/facebook.cdb413ff.svg",
+    "static/media/mail.4b760778.svg": "/personal-stylist/static/media/mail.4b760778.svg",
+    "static/media/whatsapp.0aa49936.svg": "/personal-stylist/static/media/whatsapp.0aa49936.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.063a0d80.js",
+    "static/js/2.d45f9e31.chunk.js",
+    "static/css/main.ef656b31.chunk.css",
+    "static/js/main.0359462e.chunk.js"
+  ]
+}
