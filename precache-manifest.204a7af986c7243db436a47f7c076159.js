@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "dfefa4fdcf5e338d4562c1cdf39d3266",
+    "revision": "2f34112b626f70c72bc0ce351cd8c50a",
     "url": "/personal-stylist/index.html"
   },
   {
-    "revision": "7e4a9e84bc794ff1536d",
+    "revision": "e92a2e45b105f601fc5b",
     "url": "/personal-stylist/static/css/main.ef656b31.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/personal-stylist/static/js/2.d45f9e31.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7e4a9e84bc794ff1536d",
-    "url": "/personal-stylist/static/js/main.0359462e.chunk.js"
+    "revision": "e92a2e45b105f601fc5b",
+    "url": "/personal-stylist/static/js/main.d4591c2c.chunk.js"
   },
   {
     "revision": "fe03f2ab09cfe32613c4",
