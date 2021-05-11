@@ -9,10 +9,10 @@ interface IProps {
 
 
 const CWardrobe = ({ wardrobe }: IProps) => {
-  const [clickOnShare, setclickOnShare] = useState<boolean>(false);
+  const [clickOnShare, setClickOnShare] = useState<boolean>(false);
 
   useEffect(() => {
-    setclickOnShare(false);
+    setClickOnShare(false);
   }, [])
 
 
@@ -59,12 +59,12 @@ const CWardrobe = ({ wardrobe }: IProps) => {
         </table>
         <div className="tc mt4" >
           <div className="btn" >
-            <button onClick={() => { setclickOnShare(true) }} className="bw0 br2 bg-gray pv2 ph3 white fw5 tc ttu tracked bg-animate hover-bg-dark-gray shadow-5" >
+            <button onClick={() => { setClickOnShare(true) }} className="bw0 br2 bg-gray pv2 ph3 white fw5 tc ttu tracked bg-animate hover-bg-dark-gray shadow-5" >
               Share your Capsule Wardrobe!
           </button>
           </div>
           <div className="flex justify-center" >
-            {clickOnShare && <SharePopUp setclickOnShare={setclickOnShare} />}
+            {clickOnShare && <SharePopUp setclickOnShare={setClickOnShare} />}
           </div>
         </div>
       </div>
