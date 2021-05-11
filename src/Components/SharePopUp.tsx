@@ -20,10 +20,10 @@ const SharePopUp = ({ setclickOnShare }: IProps) => {
         <div className="mb2 flx content-end" ><span className="mt0 f1 pointer:hover" onClick={() => setclickOnShare(false)}>&times;    </span></div>
 
         <div className="inline-flex mb2" >
-          <div data-href={url}><a target="_blank" href={facebook}><FacebookIcon className="mh2" style={{ height: "50px", width: "50px" }} /></a></div>
-          <div><a href={whatsappUrl} target="_blank"><WhatsAppIcon className="mh2" style={{ height: "50px", width: "50px" }} /></a></div>
-          <div><a href={mailurl} target="_blank"><MailIcon className="mh2" style={{ height: "50px", width: "50px" }} /></a></div>
-          <div><a onClick={() => { navigator.clipboard.writeText(window.location.toString()) }} target="_blank"><CopyIcon className="mh2 pointer:hover" style={{ height: "50px", width: "50px" }} /></a></div>
+          <div data-href={url}><a target="_blank" href={facebook} rel="noopener noreferrer"><FacebookIcon className="mh2" style={{ height: "50px", width: "50px" }} /></a></div>
+          <div><a href={whatsappUrl} target="_blank" rel="noopener noreferrer"><WhatsAppIcon className="mh2" style={{ height: "50px", width: "50px" }} /></a></div>
+          <div><a href={mailurl} target="_blank" rel="noopener noreferrer"><MailIcon className="mh2" style={{ height: "50px", width: "50px" }} /></a></div>
+          <div><button onClick={() => { navigator.clipboard.writeText(window.location.toString()) }}><CopyIcon className="mh2 pointer:hover" style={{ height: "50px", width: "50px" }} /></button></div>
         </div>
 
       </div>

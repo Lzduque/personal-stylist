@@ -80,7 +80,7 @@ const CapsuleForm = ({ capsule, setCapsule }: IProps) => {
       sendForm();
       setCapsuleReady(false);
     }
-  }, [capsuleReady])
+  }, [capsule, capsuleReady])
 
   const updateField = (field: Fields, value: any): any => {
     switch (field) {
