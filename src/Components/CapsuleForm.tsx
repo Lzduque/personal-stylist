@@ -4,7 +4,7 @@ import StyleField from './StyleField';
 import NumberOfOutfitsField from './NumberOfOutfitsField';
 import ColorsField from './ColorsField';
 import PreferencesField from './PreferencesField';
-import { Fields, Season, Style, NumberOfOutfits, Colors, Preferences } from '../Enums';
+import { Clothing, Fields, Season, Style, NumberOfOutfits, Colors, Preferences } from '../Enums';
 import CWardrobe from './Wardrobe';
 import Palette from './Palette';
 import Loader from './Loader';
@@ -24,6 +24,19 @@ interface IProps {
   capsule: Capsule,
   setCapsule: any
 }
+
+// FIXME Provide better mockData
+const mockData: Wardrobe = [
+  ["ShirtTop" as Clothing,3,["Navy" as Colors,"White" as Colors,"LightBlue" as Colors]],
+  ["TShirtTankTop" as Clothing,3,["Navy" as Colors,"White" as Colors,"LightBlue" as Colors]],
+  ["JeansPants" as Clothing,2,["Navy" as Colors,"White" as Colors]],
+  ["DaySkirt" as Clothing,1,["Navy" as Colors]],
+  ["DayDress" as Clothing,1,["LightGreen" as Colors]],
+  ["Sweater" as Clothing,2,["Navy" as Colors,"White" as Colors]],
+  ["Jacket" as Clothing,1,["Navy" as Colors]],
+  ["Shoes" as Clothing,2,["OffWhite" as Colors,"Beige" as Colors]],
+  ["RelaxedBag" as Clothing,1,["OffWhite" as Colors]]
+];
 
 const CapsuleForm = ({ capsule, setCapsule }: IProps) => {
   const [error, setError] = useState<Error | null>(null);
@@ -72,6 +85,14 @@ const CapsuleForm = ({ capsule, setCapsule }: IProps) => {
           return false;
         }
       } catch (ex) {
+        // FIXME Don't play with the window object!
+        const useMockData: Boolean = window.confirm("Something's wrong... I can't communicate with my database. Would you like to see mock data instead?");
+        if (useMockData) {
+          setWardrobe(mockData);
+          setError(null);
+          setIsLoading(false);
+        }
+        // FIXME Handle network errors
         return false;
       }
     }

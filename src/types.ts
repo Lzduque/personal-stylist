@@ -16,5 +16,4 @@ export interface Error {
   error: string;
 }
 
-export type Wardrobe = [[Clothing, number, [Colors]]] | undefined;
-
+export type Wardrobe = [Clothing, number, Colors[]][] | undefined;
