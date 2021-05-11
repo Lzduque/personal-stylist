@@ -1,4 +1,11 @@
-import { Season, Style, NumberOfOutfits, Colors, Preferences, Clothing } from './Enums';
+import {
+  Season,
+  Style,
+  NumberOfOutfits,
+  Colors,
+  Preferences,
+  Clothing
+} from './Enums';
 
 export interface Capsule {
   season: Season;
@@ -7,7 +14,7 @@ export interface Capsule {
   colors: {
     mains: Colors[];
     neutrals: Colors[];
-    accents: Colors[]
+    accents: Colors[];
   };
   preferences: Preferences[];
 }
@@ -16,5 +23,4 @@ export interface Error {
   error: string;
 }
 
-export type Wardrobe = [[Clothing, number, [Colors]]] | undefined;
-
+export type Wardrobe = [Clothing, number, Colors[]][] | undefined;

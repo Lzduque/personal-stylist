@@ -3,47 +3,69 @@ import { Preferences, Fields } from '../Enums';
 import Select from 'react-select';
 
 interface IProps {
-  selectedPreferences: Preferences[],
-  updateField: any
+  selectedPreferences: Preferences[];
+  updateField: any;
 }
 
-const options = Object.keys(Preferences).map((k) =>
-  ({ label: Preferences[k as keyof typeof Preferences], value: k })
-)
+const options = Object.keys(Preferences).map((k) => ({
+  label: Preferences[k as keyof typeof Preferences],
+  value: k
+}));
 
 const PreferencesField = ({ selectedPreferences, updateField }: IProps) => {
   const [clickReadMore, setclickReadMore] = useState<boolean>(false);
 
   const handleChange = (selectedOption: any) => {
     const preferences = selectedOption
-                        ? selectedOption.map((x: any) => x.value)
-                        : [];
+      ? selectedOption.map((x: any) => x.value)
+      : [];
     updateField(Fields.Preferences, preferences);
   };
 
   const value = selectedPreferences
-                ? selectedPreferences.map((selected) => 
-                ({ label: Preferences[selected as string as keyof typeof Preferences], value: selected as string })
-                ) 
-                : [];
+    ? selectedPreferences.map((selected) => ({
+        label: Preferences[selected as string as keyof typeof Preferences],
+        value: selected as string
+      }))
+    : [];
 
   return (
     <div>
       {clickReadMore ? (
         <div>
           <p className="fw4 tl">
-            We give you the option of choosing your preferences, like dresses, pants, or skirts to be part of your dream closet. If you don't select them, they won't be there! Don't worry about other types of clothing like shoes, tops, and coats, we've got you covered!
-            <div className="mt3 pointer:hover" ><button className="bg-transparent bn white fw5 pa0" onClick={() => {
-              setclickReadMore(false)
-            }}>Go back!</button></div>
+            We give you the option of choosing your preferences, like dresses,
+            pants, or skirts to be part of your dream closet. If you don't
+            select them, they won't be there! Don't worry about other types of
+            clothing like shoes, tops, and coats, we've got you covered!
+            <div className="mt3 pointer:hover">
+              <button
+                className="bg-transparent bn white fw5 pa0"
+                onClick={() => {
+                  setclickReadMore(false);
+                }}
+              >
+                Go back!
+              </button>
+            </div>
           </p>
         </div>
       ) : (
         <div className="preferences mt0 mb3-ns">
-          <h3 className="mt0" >Preferences</h3>
+          <h3 className="mt0">Preferences</h3>
           <p className="fw4 tl">
-              What types of clothing would you like to have in your capsule wardrobe? 
-            <div className="mt3 pointer:hover" ><button className="bg-transparent bn white fw5 pa0" onClick={() => {setclickReadMore(true)}}>Read more...</button></div>
+            What types of clothing would you like to have in your capsule
+            wardrobe?
+            <div className="mt3 pointer:hover">
+              <button
+                className="bg-transparent bn white fw5 pa0"
+                onClick={() => {
+                  setclickReadMore(true);
+                }}
+              >
+                Read more...
+              </button>
+            </div>
           </p>
           <Select
             className="select"
@@ -56,10 +78,10 @@ const PreferencesField = ({ selectedPreferences, updateField }: IProps) => {
             isMulti
             options={options}
           />
-        </div>)
-      }
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default PreferencesField;
