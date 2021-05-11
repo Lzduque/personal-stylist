@@ -5,10 +5,10 @@ import { ReactComponent as MailIcon } from '../Svg/mail.svg';
 import { ReactComponent as CopyIcon } from '../Svg/copy.svg';
 
 interface IProps {
-  setclickOnShare: any
+  setClickOnShare: any
 }
 
-const SharePopUp = ({ setclickOnShare }: IProps) => {
+const SharePopUp = ({ setClickOnShare }: IProps) => {
   const url = window.location.toString();
   const facebook = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url) + "&src=sdkpreparse"
   const whatsappUrl = "https://api.whatsapp.com/send?text=" + encodeURIComponent(url);
@@ -17,7 +17,7 @@ const SharePopUp = ({ setclickOnShare }: IProps) => {
   return (
     <div className="ba bg-black-10 mw-100-m pa2 br4 tc mt3">
       <div className="p2">
-        <div className="mb2 flx content-end" ><span className="mt0 f1 pointer:hover" onClick={() => setclickOnShare(false)}>&times;    </span></div>
+        <div className="mb2 flx content-end" ><span className="mt0 f1 pointer:hover" onClick={() => setClickOnShare(false)}>&times;    </span></div>
 
         <div className="inline-flex mb2" >
           <div data-href={url}><a target="_blank" href={facebook} rel="noopener noreferrer"><FacebookIcon className="mh2" style={{ height: "50px", width: "50px" }} /></a></div>

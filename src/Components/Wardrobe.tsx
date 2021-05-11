@@ -64,7 +64,7 @@ const CWardrobe = ({ wardrobe }: IProps) => {
           </button>
           </div>
           <div className="flex justify-center" >
-            {clickOnShare && <SharePopUp setclickOnShare={setClickOnShare} />}
+            {clickOnShare && <SharePopUp setClickOnShare={setClickOnShare} />}
           </div>
         </div>
       </div>
