@@ -60,6 +60,7 @@ const CapsuleForm = ({ capsule, setCapsule }: IProps) => {
   const [capsuleReady, setCapsuleReady] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  // FIXME handleSubmit, not anytime something changes
   useEffect(() => {
     const checkURl = async (webPage: any) => {
       const encodedCapsule = webPage.hash.slice(2);
