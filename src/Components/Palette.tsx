@@ -13,7 +13,7 @@ const Palette = ({ colors }: IProps) => {
   return (
     <div className="container flex flex-row flex-wrap justify-around w-100 mw7 content-center center ph4-ns">
       <div className="box ba bg-black-20 tc w-100 w-100-l br4 pa4 ma2">
-        <h3 className="mt0">This is the Palette you created!!</h3>
+        <h3 className="mt0">This is the palette you created!</h3>
         <div className="paletteContainer bg-white-50 ">
           <div className="mainPalette flex flex-row mv2 mr2">
             {colors.mains.map((colors) => (

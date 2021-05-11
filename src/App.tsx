@@ -67,7 +67,7 @@ const App = () => {
           Personal Stylist
         </h1>
         <h2 id="call" className="bw0 br2 pv2 ph3 fw5 tc tracked">
-          How do you want your capsule wardrobe to be?
+          What would you like in your capsule wardrobe?
         </h2>
         <div className="container flex">
           <About />
@@ -79,7 +79,8 @@ const App = () => {
         </div>
       </section>
       <footer className="tc bg-black-20 fw4 pa3 mt3 white">
-        <h4 className="ma1">Do you like it? Contact Me:</h4>
+        Do you like it? 
+        <h4 className="ma1">Contact Me:</h4>
         <ul className="icons list mb1 pl1">
           <li className="pb1">
             <a href="https://github.com/Lzduque">

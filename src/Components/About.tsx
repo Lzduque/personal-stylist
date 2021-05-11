@@ -6,11 +6,11 @@ const About = () => {
       <div className="box ba bg-black-20 tc w-100 w-100-l br4 pa4 ma2">
         <h3 className="mt0">About</h3>
         <p className="fw4 tl">
-          To see an example from what to select and what the capsule wardrobe
+          To see an example selection and what the capsule wardrobe
           can look like, click{' '}
           <a href="https://lzduque.github.io/personal-stylist/#/eyJzZWFzb24iOiJTcHJpbmdTdW1tZXIiLCJzdHlsZSI6IkNhc3VhbCIsIm51bWJlck9mT3V0Zml0cyI6IkZyb20xODF0bzE5MCIsImNvbG9ycyI6eyJtYWlucyI6WyJOYXZ5IiwiTGlnaHRCbHVlIiwiV2hpdGUiXSwibmV1dHJhbHMiOlsiT2ZmV2hpdGUiLCJDYW1lbCJdLCJhY2NlbnRzIjpbIkxpZ2h0WWVsbG93IiwiTGlnaHRHcmVlbiIsIkxpZ2h0UGluayJdfSwicHJlZmVyZW5jZXMiOlsiU2tpcnRzIiwiRHJlc3NlcyIsIlBhbnRzIiwiU2hvcnRzUGFudHMiXX0=">
-            here!
-          </a>
+            here
+          </a>!
         </p>
         <p className="fw5 tl">How it works:</p>
         <p className="fw4 tl ">

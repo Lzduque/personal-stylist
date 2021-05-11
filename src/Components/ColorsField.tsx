@@ -18,7 +18,7 @@ const options = Object.keys(Colors).map((k) => ({
   color: HexColor[k as keyof typeof HexColor]
 }));
 
-const colourStyles = {
+const colorStyles = {
   control: (styles: any) => ({ ...styles, backgroundColor: 'white' }),
   option: (
     styles: { [x: string]: any },
@@ -188,9 +188,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
           <h3 className="mt0">Colors</h3>
           <p className="fw4 tl">
             If you don't know how to choose your colors, try to take a look at
-            your wardrobe and noticing which colors you reach for more and feel
-            more comfortable in, or just give it a try here and see if you like
-            the result! You can always choose other colors and try again!
+            your wardrobe and notice which colors you tend to reach for more. What do you feel most comfortable in? Alternatively, you can just give it a try here and see if you like the results! You can always choose other colors and try again!
             <div className="mt3 pointer:hover">
               <button
                 className="bg-transparent bn white fw5 pa0"
@@ -203,7 +201,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
             </div>
           </p>
           <ul className="fw4 tl pl3">
-            <li className="pt2">Main colours: 3 - 4</li>
+            <li className="pt2">Main colors: 3 - 4</li>
             <Select
               ref={selectMains}
               className="select pa2"
@@ -215,7 +213,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
               // isClearable
               isMulti
               options={options}
-              styles={colourStyles}
+              styles={colorStyles}
               isOptionSelected={isOptionSelected}
             />
             <li className="pt2">Neutrals: 1 - 3</li>
@@ -230,10 +228,10 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
               // isClearable
               isMulti
               options={options}
-              styles={colourStyles}
+              styles={colorStyles}
               isOptionSelected={isOptionSelected}
             />
-            <li className="pt2">Accent colours: 2 - 5</li>
+            <li className="pt2">Accent colors: 2 - 5</li>
             <Select
               ref={selectAccents}
               className="select pa2 pb0"
@@ -245,7 +243,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
               // isClearable
               isMulti
               options={options}
-              styles={colourStyles}
+              styles={colorStyles}
               isOptionSelected={isOptionSelected}
             />
           </ul>

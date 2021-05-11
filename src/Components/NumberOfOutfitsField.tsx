@@ -35,14 +35,13 @@ const NumberOfOutfitsField = ({
       {clickReadMore ? (
         <div>
           <p className="fw4 tl">
-            If you want one different outfit for each day of the summer, you
+            If you want a different outfit every day of the summer, you
             need 90 different outfits.
           </p>
           <p className="fw4 tl">
             The more outfits you want, the more clothes you will need to make it
-            work.The clothes are combined so each outfit is composed of a unique
-            combination of some of your pieces, for example, 1 pair of pants, 1
-            top, 1 coat, and one pair of shoes.
+            work. The clothes are combined so each outfit is composed of a unique
+            combination of some of your pieces. For example, one combo might be 1 pair of pants, 1 top, 1 coat, and one pair of shoes.
             <div className="mt3 pointer:hover">
               <button
                 className="bg-transparent bn white fw5 pa0"
