@@ -3,23 +3,27 @@ import { Style, Fields } from '../Enums';
 import Select from 'react-select';
 
 interface IProps {
-  selectedStyle: Style,
-  updateField: any
+  selectedStyle: Style;
+  updateField: any;
 }
 
-const options = Object.keys(Style).map((k) =>
-  ({ label: Style[k as keyof typeof Style], value: k })
-)
-const StyleField = ({ selectedStyle, updateField}: IProps) => {
+const options = Object.keys(Style).map((k) => ({
+  label: Style[k as keyof typeof Style],
+  value: k
+}));
+const StyleField = ({ selectedStyle, updateField }: IProps) => {
   const handleChange = (selectedOption: any) => {
     updateField(Fields.Style, selectedOption.value);
   };
 
-  const value = { label: Style[selectedStyle as string as keyof typeof Style], value: selectedStyle as string };
+  const value = {
+    label: Style[selectedStyle as string as keyof typeof Style],
+    value: selectedStyle as string
+  };
 
   return (
     <div className="style mt0 mb3-ns">
-      <h3 className="mt0" >Style</h3>
+      <h3 className="mt0">Style</h3>
       <Select
         className="select"
         isSearchable={false}
@@ -28,7 +32,7 @@ const StyleField = ({ selectedStyle, updateField}: IProps) => {
         options={options}
       />
     </div>
-  )
-}
+  );
+};
 
 export default StyleField;

@@ -5,80 +5,83 @@ import chroma from 'chroma-js';
 
 interface IProps {
   selectedColors: {
-    mains: Colors[],
-    neutrals: Colors[],
-    accents: Colors[]
-  },
-  updateField: any
+    mains: Colors[];
+    neutrals: Colors[];
+    accents: Colors[];
+  };
+  updateField: any;
 }
 
-const options = Object.keys(Colors).map((k) =>
-  ({ label: Colors[k as keyof typeof Colors], value: k, color: HexColor[k as keyof typeof HexColor] })
-)
+const options = Object.keys(Colors).map((k) => ({
+  label: Colors[k as keyof typeof Colors],
+  value: k,
+  color: HexColor[k as keyof typeof HexColor]
+}));
 
 const colourStyles = {
   control: (styles: any) => ({ ...styles, backgroundColor: 'white' }),
-  option: (styles: { [x: string]: any; }, { data, isDisabled, isFocused, isSelected }: any) => {
+  option: (
+    styles: { [x: string]: any },
+    { data, isDisabled, isFocused, isSelected }: any
+  ) => {
     const color = chroma(data.color);
-    const textColor = chroma.contrast('white', color) >= 4.5
-      ? 'white'
-      : 'black';
+    const textColor =
+      chroma.contrast('white', color) >= 4.5 ? 'white' : 'black';
     return {
       ...styles,
       // color of the background of the option - isFocused when hover, then the normal background
-      backgroundColor: isDisabled
+      'backgroundColor': isDisabled
         ? null
         : isSelected
-          ? data.color
-          : isFocused
-            ? data.color
-            : color.alpha(0.5).css(),
+        ? data.color
+        : isFocused
+        ? data.color
+        : color.alpha(0.5).css(),
       // color of the color of text of the option - isFocused when hover
-      color: isDisabled
+      'color': isDisabled
         ? '#ccc'
         : isSelected
-          ? chroma.contrast('white', color) >= 4.5
-            ? 'white'
-            : 'black'
-          : isFocused
-            ? textColor
-            : data.color,
-      cursor: isDisabled ? 'not-allowed' : 'default',
+        ? chroma.contrast('white', color) >= 4.5
+          ? 'white'
+          : 'black'
+        : isFocused
+        ? textColor
+        : data.color,
+      'cursor': isDisabled ? 'not-allowed' : 'default',
       ':active': {
         ...styles[':active'],
-        backgroundColor: !isDisabled && (isSelected ? data.color : color.alpha(0.7).css()),
-      },
+        backgroundColor:
+          !isDisabled && (isSelected ? data.color : color.alpha(0.7).css())
+      }
     };
   },
   multiValue: (styles: any, { data }: any): any => {
     const color: any = chroma(data.color);
     return {
       ...styles,
-      backgroundColor: color.alpha(0.5).css(),
+      backgroundColor: color.alpha(0.5).css()
     };
   },
   multiValueLabel: (styles: any, { data }: any) => {
-    const textColor = chroma.contrast('white', data.color) >= 4.5
-      ? 'white'
-      : 'black';
+    const textColor =
+      chroma.contrast('white', data.color) >= 4.5 ? 'white' : 'black';
     return {
-    ...styles,
-      color: textColor,
+      ...styles,
+      color: textColor
     };
   },
   multiValueRemove: (styles: any, { data }: any) => {
-    const textColor = chroma.contrast('white', data.color) >= 4.5
-      ? 'white'
-      : 'black';
+    const textColor =
+      chroma.contrast('white', data.color) >= 4.5 ? 'white' : 'black';
     return {
-    ...styles,
-      color: textColor,
-    ':hover': {
-      backgroundColor: data.color,
-      color: textColor,
-      },
+      ...styles,
+      'color': textColor,
+      ':hover': {
+        backgroundColor: data.color,
+        color: textColor
+      }
     };
-  },
+  }
 };
 
 const ColorsField = ({ selectedColors, updateField }: IProps) => {
@@ -89,14 +92,14 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
     selectMains.current.select.buildMenuOptions({ options: [] }, []);
     selectNeutrals.current.select.buildMenuOptions({ options: [] }, []);
     selectAccents.current.select.buildMenuOptions({ options: [] }, []);
-  }
+  };
 
   const handleChangeMains = (selectedOption: any) => {
     updateOptions();
-    
-    const colors = selectedOption 
-                  ? selectedOption.map((x: any) => x.value)
-                  : [];
+
+    const colors = selectedOption
+      ? selectedOption.map((x: any) => x.value)
+      : [];
     updateField(Fields.MainColors, colors);
   };
 
@@ -111,7 +114,7 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
 
   const handleChangeAccents = (selectedOption: any) => {
     updateOptions();
-    
+
     const colors = selectedOption
       ? selectedOption.map((x: any) => x.value)
       : [];
@@ -119,21 +122,27 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
   };
 
   const valueMains = selectedColors.mains
-    ? selectedColors.mains.map((selected) =>
-      ({ label: Colors[selected as keyof typeof Colors], value: selected, color: HexColor[selected as keyof typeof HexColor] })
-    )
+    ? selectedColors.mains.map((selected) => ({
+        label: Colors[selected as keyof typeof Colors],
+        value: selected,
+        color: HexColor[selected as keyof typeof HexColor]
+      }))
     : [];
 
   const valueNeutrals = selectedColors.neutrals
-    ? selectedColors.neutrals.map((selected) =>
-      ({ label: Colors[selected as keyof typeof Colors], value: selected, color: HexColor[selected as keyof typeof HexColor] })
-    )
+    ? selectedColors.neutrals.map((selected) => ({
+        label: Colors[selected as keyof typeof Colors],
+        value: selected,
+        color: HexColor[selected as keyof typeof HexColor]
+      }))
     : [];
 
   const valueAccents = selectedColors.accents
-    ? selectedColors.accents.map((selected) =>
-      ({ label: Colors[selected as keyof typeof Colors], value: selected, color: HexColor[selected as keyof typeof HexColor] })
-    )
+    ? selectedColors.accents.map((selected) => ({
+        label: Colors[selected as keyof typeof Colors],
+        value: selected,
+        color: HexColor[selected as keyof typeof HexColor]
+      }))
     : [];
 
   // Make refs to each select
@@ -142,31 +151,56 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
   const selectAccents: any = createRef();
 
   const isOptionSelected = (o: any, opts: any): boolean => {
-    return [...valueMains,
-     ...valueNeutrals,
-     ...valueAccents,
-     ...opts]
-     .some((opt: any): boolean => opt.value === o.value);
-  }
+    return [...valueMains, ...valueNeutrals, ...valueAccents, ...opts].some(
+      (opt: any): boolean => opt.value === o.value
+    );
+  };
 
   return (
     <div>
       {clickReadMore ? (
         <div>
           <p className="fw4 tl">
-            If you want fewer outfits, 30 for example, you won't need a big color palette, because you won't have many pieces of clothes. Small capsule wardrobes should have a small color palette composed of 3 mains, 1 neutral, and 2 accents colors. For larger capsules, the recommended size is 3 mains, 2 neutrals, and 3 accents.
+            If you want fewer outfits, 30 for example, you won't need a big
+            color palette, because you won't have many pieces of clothes. Small
+            capsule wardrobes should have a small color palette composed of 3
+            mains, 1 neutral, and 2 accents colors. For larger capsules, the
+            recommended size is 3 mains, 2 neutrals, and 3 accents.
           </p>
           <p className="fw4 tl">
-            The main colors are the most important and the first ones you choose are used first. The neutral colors are used first for purses and dresses.
-            <div className="mt3 pointer:hover" ><button className="bg-transparent bn white fw5 pa0" onClick={() => { setclickReadMore(false) }}>Go back!</button></div>
+            The main colors are the most important and the first ones you choose
+            are used first. The neutral colors are used first for purses and
+            dresses.
+            <div className="mt3 pointer:hover">
+              <button
+                className="bg-transparent bn white fw5 pa0"
+                onClick={() => {
+                  setclickReadMore(false);
+                }}
+              >
+                Go back!
+              </button>
+            </div>
           </p>
         </div>
       ) : (
         <div className="colors mt0 mb3-ns">
-          <h3 className="mt0" >Colors</h3>
+          <h3 className="mt0">Colors</h3>
           <p className="fw4 tl">
-              If you don't know how to choose your colors, try to take a look at your wardrobe and noticing which colors you reach for more and feel more comfortable in, or just give it a try here and see if you like the result! You can always choose other colors and try again!
-            <div className="mt3 pointer:hover" ><button className="bg-transparent bn white fw5 pa0" onClick={() => { setclickReadMore(true) }}>Read more...</button></div>
+            If you don't know how to choose your colors, try to take a look at
+            your wardrobe and noticing which colors you reach for more and feel
+            more comfortable in, or just give it a try here and see if you like
+            the result! You can always choose other colors and try again!
+            <div className="mt3 pointer:hover">
+              <button
+                className="bg-transparent bn white fw5 pa0"
+                onClick={() => {
+                  setclickReadMore(true);
+                }}
+              >
+                Read more...
+              </button>
+            </div>
           </p>
           <ul className="fw4 tl pl3">
             <li className="pt2">Main colours: 3 - 4</li>
@@ -215,10 +249,10 @@ const ColorsField = ({ selectedColors, updateField }: IProps) => {
               isOptionSelected={isOptionSelected}
             />
           </ul>
-      </div >)
-      }
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default ColorsField;
